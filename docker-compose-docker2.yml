@@ -308,6 +308,24 @@ services:
     profiles: [ docker2, ]
     security_opt: [ no-new-privileges=true, ]
 
+  jsonplaceholder:
+    image: svenwal/jsonplaceholder:latest
+    cap_drop: [ ALL, ]
+    depends_on:
+      traefik:
+        condition: service_healthy
+    labels:
+      traefik.http.routers.jsonplaceholder-router.entrypoints: lan
+      traefik.http.routers.jsonplaceholder-router.rule: Host(`jsonplaceholder.bob.house`)
+      traefik.http.routers.jsonplaceholder-router.tls: "true"
+      traefik.http.services.jsonplaceholder-service.loadbalancer.server.port: "3000"
+    networks:
+      traefik: null
+    profiles: [ docker2, ]
+    read_only: true
+    security_opt: [ no-new-privileges=true, ]
+    user: 1000:1000
+
   moodist:
     image: ghcr.io/remvze/moodist:latest
     cap_drop: [ ALL, ]

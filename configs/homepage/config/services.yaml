@@ -632,6 +632,12 @@
         icon: /icons/jsonpath.svg
         server: ransom-docker
         container: stacks-jsonpath-1
+    - JSONPlaceholder: &jsonplaceholder
+        description: Fake and reliable API for testing and prototyping
+        href: https://jsonplaceholder.bob.house/
+        icon: /icons/jsonplaceholder.ico
+        server: ransom-docker
+        container: stacks-jsonplaceholder-1
     - kiwix: &kiwix
         description: When there is No Internet, there is Kiwix
         href: https://kiwix.bob.house/
@@ -1084,6 +1090,7 @@
     - httpbin: *httpbin
     - IT-Tools: *ittools
     - JSONPath: *jsonpath
+    - JSONPlaceholder: *jsonplaceholder
     - kiwix: *kiwix
     - LeafWiki: *leafwiki
     - Node RED: *nodered
