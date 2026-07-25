@@ -113,7 +113,7 @@ filters:
     url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
     name: AdGuard DNS filter
     id: 1
-  - enabled: false
+  - enabled: true
     url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
     name: AdAway Default Blocklist
     id: 2
@@ -133,6 +133,7 @@ user_rules:
   - '||graph.microsoft.com^'
   - '||mp.microsoft.com^'
   - '||cxcs.microsoft.net^'
+  - '||telemetry.visualstudio.microsoft.com^'
   - '||services.mozilla.com^'
   - '||arc.msn.com^'
   - '||data.msn.com^'
