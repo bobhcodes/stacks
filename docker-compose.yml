@@ -71,6 +71,7 @@ services:
 
       traefik.http.routers.qbittorrent-torrent-router.entrypoints: torrent
       traefik.http.routers.qbittorrent-torrent-router.rule: HostSNI(`*`)
+      traefik.http.routers.qbittorrent-torrent-router.tls: "false"
       traefik.http.routers.qbittorrent-torrent-router.service: qbittorrent-torrent-service
       traefik.http.services.qbittorrent-torrent-service.loadbalancer.server.port: "6881"
 
