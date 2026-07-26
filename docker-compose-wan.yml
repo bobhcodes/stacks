@@ -40,6 +40,7 @@ services:
     profiles: [ wan, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
+    tmpfs: [ "/tmp/:noexec,nosuid,uid=1000,gid=1000", ]
     user: 1000:1000
     volumes:
       - ${DATA_DIR:-/opt/appdata}/leafwiki/:/app/data/:rw
