@@ -323,6 +323,12 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: mockoon
+    group: containers
+    url: http://ransom.bob.house:2375/v1.55/containers/stacks-mockoon-1/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: moodist
     group: containers
     url: http://ransom.bob.house:2375/v1.55/containers/stacks-moodist-1/json

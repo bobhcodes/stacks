@@ -1,0 +1,187 @@
+{
+  "uuid": "",
+  "lastMigration": 29,
+  "name": "Tutorial - Generate mock data",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "routes": [
+    {
+      "uuid": "",
+      "documentation": "healthcheck",
+      "method": "get",
+      "endpoint": "healthcheck",
+      "responses": [
+        {
+          "uuid": "",
+          "body": "Healthy",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [{ "key": "", "value": "" }],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "",
+      "documentation": "Create an employee",
+      "method": "post",
+      "endpoint": "api/v1/employee",
+      "responses": [
+        {
+          "uuid": "",
+          "body": "{\"id\":{{body \"id\"}},\"name\":\"{{body \"name\"}}\",\"department\":\"{{body \"department\"}}\"}",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "Created",
+          "headers": [{ "key": "", "value": "" }],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "",
+      "documentation": "Get employees",
+      "method": "get",
+      "endpoint": "api/v1/employee",
+      "responses": [
+        {
+          "uuid": "",
+          "body": "[{{#repeat (faker 'number.int' min=5 max=10)}}{\"id\":{{@index}},\"name\":\"{{faker 'person.firstName'}} {{faker 'person.lastName'}}\",\"department\":\"{{faker 'commerce.department'}}\"}{{/repeat}}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [{ "key": "", "value": "" }],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "",
+      "documentation": "Update employee",
+      "method": "put",
+      "endpoint": "api/v1/employee/:id",
+      "responses": [
+        {
+          "uuid": "",
+          "body": "{\"id\":{{urlParam \"id\"}},\"name\":\"{{body \"name\"}}\",\"department\":\"{{body \"department\"}}\"}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [{ "key": "", "value": "" }],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "",
+      "documentation": "Delete employee",
+      "method": "delete",
+      "endpoint": "api/v1/employee/:id",
+      "responses": [
+        {
+          "uuid": "",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [{ "key": "", "value": "" }],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "cors": true,
+  "headers":
+    [
+      { "key": "Content-Type", "value": "application/json" },
+      { "key": "Access-Control-Allow-Origin", "value": "*" },
+      { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS" },
+      { "key": "Access-Control-Allow-Headers", "value": "Content-Type,Origin,Accept,Authorization,Content-Length,X-Requested-With" }
+    ],
+  "proxyReqHeaders": [{ "key": "", "value": "" }],
+  "proxyResHeaders": [{ "key": "", "value": "" }],
+  "proxyRemovePrefix": false,
+  "hostname": "",
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "data": [],
+  "folders": [],
+  "rootChildren": [
+    { "type": "route", "uuid": "" },
+    { "type": "route", "uuid": "" },
+    { "type": "route", "uuid": "" },
+    { "type": "route", "uuid": "" },
+    { "type": "route", "uuid": "" }
+  ]
+}

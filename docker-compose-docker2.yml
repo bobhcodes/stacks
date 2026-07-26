@@ -326,6 +326,34 @@ services:
     security_opt: [ no-new-privileges=true, ]
     user: 1000:1000
 
+  mockoon:
+    image: mockoon/cli:latest
+    cap_drop: [ ALL, ]
+    command: [ "--data", "/home/mockoon/data/mockoon.json", "--port", "3000", ]
+    depends_on:
+      traefik:  
+        condition: service_healthy
+    env_file: [ "${REPOS_DIR:-/opt/repos}/Configurations/mockoon.env", ]
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://127.0.0.1:3000/healthcheck || exit 1", ]
+      interval: 30s
+      timeout: 5s
+      retries: 2
+      start_period: 10s
+    labels:
+      traefik.http.routers.mockoon-router.entrypoints: lan
+      traefik.http.routers.mockoon-router.rule: Host(`mockoon.bob.house`)
+      traefik.http.routers.mockoon-router.tls: "true"
+      traefik.http.services.mockoon-service.loadbalancer.server.port: "3000"
+    networks:
+      traefik: null
+    profiles: [ docker2, ]
+    read_only: true
+    security_opt: [ no-new-privileges=true, ]
+    user: 1000:1000
+    volumes:
+      - ./configs/mockoon.json:/home/mockoon/data/mockoon.json:ro
+
   moodist:
     image: ghcr.io/remvze/moodist:latest
     cap_drop: [ ALL, ]

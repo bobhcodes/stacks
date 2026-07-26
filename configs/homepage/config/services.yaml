@@ -738,6 +738,12 @@
         icon: /icons/miasma.svg
         server: kayshon-docker
         container: stacks-miasma-1
+    - Mockoon: &mockoon
+        description: The easiest and quickest way to design and run mock REST APIs
+        href: https://mockoon.bob.house/mockoon-admin
+        icon: /icons/mockoon.svg
+        server: ransom-docker
+        container: stacks-mockoon-1
     - moodist: &moodist
         description: Ambient sounds for focus and calm
         href: https://moodist.bob.house/?share=%7B%22rain-on-window%22%3A0.24%2C%22crowd%22%3A0.96%2C%22inside-a-train%22%3A0.64%2C%22brown-noise%22%3A0.24%7D
@@ -1093,6 +1099,7 @@
     - JSONPlaceholder: *jsonplaceholder
     - kiwix: *kiwix
     - LeafWiki: *leafwiki
+    - Mockoon: *mockoon
     - Node RED: *nodered
     - Planka: *planka
     - RabbitMQ: *rabbitmq
