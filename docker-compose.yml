@@ -172,6 +172,7 @@ services:
       - --entrypoints.docker.address=:2375
       - --entrypoints.lan.address=:443
       - --entrypoints.proxy.address=:3128
+      - --entrypoints.rabbitmq.address=:5672
       - --entrypoints.ssh.address=:222
       - --entrypoints.torrent.address=:6881
       - --entrypoints.wan.address=:4443
@@ -224,6 +225,7 @@ services:
       - 2375:2375/tcp
       - 3128:3128/tcp
       - 4443:4443/tcp
+      - 5672:5672/tcp
       - 6881:6881/tcp
       - 6881:6881/udp
     read_only: true

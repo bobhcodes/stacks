@@ -635,19 +635,23 @@ services:
   rabbitmq:
     image: rabbitmq:management
     cap_drop: [ ALL, ]
-    cap_add: [ CHOWN, SETGID, SETUID, ]
     env_file: [ "${REPOS_DIR:-/opt/repos}/Configurations/rabbitmq.env", ]
     hostname: rabbitmq
     labels:
-      traefik.http.routers.rabbitmq-router.entrypoints: lan
-      traefik.http.routers.rabbitmq-router.rule: Host(`rabbitmq.bob.house`)
-      traefik.http.routers.rabbitmq-router.tls: "true"
-      traefik.http.services.rabbitmq-service.loadbalancer.server.port: "15672"
+      traefik.http.routers.rabbitmq-ui-router.entrypoints: lan
+      traefik.http.routers.rabbitmq-ui-router.rule: Host(`rabbitmq.bob.house`)
+      traefik.http.routers.rabbitmq-ui-router.tls: "true"
+      traefik.http.services.rabbitmq-ui-service.loadbalancer.server.port: "15672"
+
+      traefik.tcp.routers.rabbitmq-router.entrypoints: rabbitmq
+      traefik.tcp.routers.rabbitmq-router.rule: HostSNI(`*`)
+      traefik.tcp.services.rabbitmq-service.loadbalancer.server.port: "5672"
     networks:
       traefik: null
     profiles: [ docker2, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
+    user: 1000:1000
     volumes: [ "${DATA_DIR:-/opt/appdata}/rabbitmq/:/var/lib/rabbitmq/:rw", ]
 
   readeck:
