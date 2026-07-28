@@ -55,7 +55,7 @@ http:
     glances-kayshon-router:
       entryPoints:
         - "lan"
-      priority: "2"
+      priority: "99999"
       rule: "Host(`glances-kayshon.bob.house`)"
       service: "glances-kayshon-service"
       tls: "true"
@@ -74,7 +74,7 @@ http:
     kopia-kayshon-router:
       entryPoints:
         - "lan"
-      priority: "2"
+      priority: "99999"
       rule: "Host(`kopia-kayshon.bob.house`)"
       service: "kopia-kayshon-service"
       tls: "true"
@@ -105,7 +105,7 @@ http:
     traefik-kayshon-router:
       entryPoints:
         - "lan"
-      priority: "2"
+      priority: "99999"
       rule: "Host(`traefik-kayshon.bob.house`)"
       service: "traefik-kayshon-service"
       tls: "true"
