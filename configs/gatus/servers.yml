@@ -110,9 +110,16 @@ suites:
         conditions: *telegraf-conditions-definition
         alerts: *alerts-definition
       - name: traefik kayshon
-        url: https://192.168.20.60/dashboard/
+        url: https://192.168.20.85/dashboard/
         headers:
           Host: traefik-kayshon.bob.house
+        client: *traefik-client-definition
+        conditions: *traefik-conditions-definition
+        alerts: *alerts-definition
+      - name: leafwiki kayshon
+        url: https://192.168.20.85/homepage
+        headers:
+          Host: www.bob.house
         client: *traefik-client-definition
         conditions: *traefik-conditions-definition
         alerts: *alerts-definition
