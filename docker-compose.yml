@@ -254,6 +254,7 @@ configs:
       /tunarr/db*.bak
       /trivy/db/
       /whisper-asr/data/
+      /youtarr/db/ib_logfile*
 
 networks:
   default:
