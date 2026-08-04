@@ -1101,6 +1101,7 @@
     - LeafWiki: *leafwiki
     - Mockoon: *mockoon
     - Node RED: *nodered
+    - NuGet: *nuget
     - Planka: *planka
     - RabbitMQ: *rabbitmq
     - Restfox: *restfox

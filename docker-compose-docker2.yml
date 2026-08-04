@@ -476,7 +476,8 @@ services:
     profiles: [ docker2, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
-    tmpfs: [ /tmp/, ]
+    tmpfs: [ "/tmp/:noexec,nosuid,uid=1000,gid=1000", ]
+    user: 1000:1000
     volumes:
       - ${DATA_DIR:-/opt/appdata}/bagetter/:/data:rw
 
