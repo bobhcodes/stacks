@@ -2,7 +2,6 @@ services:
   apache:
     image: httpd:${HTTPD_IMAGE_TAG:?missing apache image tag}
     cap_drop: [ ALL, ]
-    cap_add: [ SETGID, SETUID, ]
     depends_on:
       traefik:
         condition: service_healthy
@@ -21,8 +20,9 @@ services:
     profiles: [ docker2, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
-    tmpfs: [ /usr/local/apache2/logs/, ]
-    volumes: [ ./configs/htdocs/:/usr/local/apache2/htdocs/:ro, ]
+    tmpfs: [ "/usr/local/apache2/logs/:noexec,nosuid,uid=1000,gid=1000", ]
+    user: 1000:1000
+    volumes: [ ./configs/apache/:/usr/local/apache2/htdocs/:ro, ]
 
   apprise:
     image: caronc/apprise:latest
