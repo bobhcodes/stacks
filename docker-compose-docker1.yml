@@ -178,6 +178,8 @@ services:
     command: ["dagu", "start-all"]
     entrypoint: []
     environment:
+      DAGU_DEBUG: "false"
+      DAGU_ACCESS_LOG_MODE: none
       DAGU_HOME: /var/lib/dagu
       DAGU_DAGS_DIR: /opt/dagu/dags
       DAGU_TZ: Etc/UTC
