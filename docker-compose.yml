@@ -130,11 +130,13 @@ services:
       LOG_LEVEL: info
       TZ: Etc/UTC
 
+      ALLOW_RESTARTS: "1"
       CONTAINERS: "1"
       EVENTS: "1"
       IMAGES: "1"
       INFO: "1"
       PING: "1"
+      POST: "1"
       SERVICES: "1"
       VERSION: "1"
     healthcheck:
@@ -267,6 +269,9 @@ networks:
     internal: "true"
   ganymede:
     name: ganymede-network
+    internal: "true"
+  leantime:
+    name: leantime-network
     internal: "true"
   ollama:
     name: ollama-network
