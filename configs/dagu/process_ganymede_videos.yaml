@@ -111,7 +111,7 @@ steps:
     depends: get_fps
     preconditions:
       - condition: "${get_fps.output.fps}"
-        expected: "30/1"
+        expected: "re:^[36]0/1$"
     output:
       path:
         from: stdout
