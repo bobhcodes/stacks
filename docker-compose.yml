@@ -69,11 +69,11 @@ services:
       traefik.http.routers.qbittorrent-lan-router.service: qbittorrent-lan-service
       traefik.http.services.qbittorrent-lan-service.loadbalancer.server.port: "8080"
 
-      traefik.http.routers.qbittorrent-torrent-router.entrypoints: torrent
-      traefik.http.routers.qbittorrent-torrent-router.rule: HostSNI(`*`)
-      traefik.http.routers.qbittorrent-torrent-router.tls: "false"
-      traefik.http.routers.qbittorrent-torrent-router.service: qbittorrent-torrent-service
-      traefik.http.services.qbittorrent-torrent-service.loadbalancer.server.port: "6881"
+      traefik.tcp.routers.qbittorrent-torrent-router.entrypoints: torrent
+      traefik.tcp.routers.qbittorrent-torrent-router.rule: HostSNI(`*`)
+      traefik.tcp.routers.qbittorrent-torrent-router.tls: "false"
+      traefik.tcp.routers.qbittorrent-torrent-router.service: qbittorrent-torrent-service
+      traefik.tcp.services.qbittorrent-torrent-service.loadbalancer.server.port: "6881"
 
       traefik.tcp.routers.squid-router.entrypoints: proxy
       traefik.tcp.routers.squid-router.rule: HostSNI(`*`)
