@@ -102,7 +102,7 @@ services:
       # https://github.com/goauthentik/authentik/releases/tag/version%2F2026.5.5
       dd.link.template: https://github.com/goauthentik/authentik/releases/tag/version%2F$${major}.$${minor}.$${patch}
       dd.tag.family: loose
-      dd.tag.include: ^v\d+\.\d+\.\d+$$
+      dd.tag.include: ^\d+\.\d+\.\d+$$
       dd.watch: "true"
       dev.dozzle.group: authentik
       traefik.docker.network: traefik-network
@@ -137,7 +137,7 @@ services:
       # https://github.com/goauthentik/authentik/releases/tag/version%2F2026.5.5
       dd.link.template: https://github.com/goauthentik/authentik/releases/tag/version%2F$${major}.$${minor}.$${patch}
       dd.tag.family: loose
-      dd.tag.include: ^v\d+\.\d+\.\d+$$
+      dd.tag.include: ^\d+\.\d+\.\d+$$
       dd.watch: "true"
       dev.dozzle.group: authentik
       traefik.enable: "false"
