@@ -475,7 +475,6 @@ services:
   squid:
     image: ubuntu/squid:latest
     cap_drop: [ ALL, ]
-    cap_add: [ DAC_OVERRIDE, SETGID, SETUID, ]
     depends_on:
       gluetun:
         condition: service_healthy
@@ -487,11 +486,12 @@ services:
     profiles: [ docker1, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
-    tmpfs: [ /run/, ]
+    tmpfs: [ "/run/:noexec,nosuid,uid=1000,gid=1000", ]
+    user: 1000:1000
     volumes:
       - ./configs/squid.conf:/etc/squid/squid.conf:ro
-      - ${DATA_DIR:-/opt/appdata}/squid/:/var/spool/squid/:rw
-      - squid-log:/var/log/squid/:rw
+      - ${DATA_DIR:-/opt/appdata}/squid/data/:/var/spool/squid/:rw
+      - ${DATA_DIR:-/opt/appdata}/squid/log/:/var/log/squid/:rw
 
   sshwifty:
     image: niruix/sshwifty:latest

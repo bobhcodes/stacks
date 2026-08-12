@@ -304,4 +304,3 @@ secrets:
 
 volumes:
   certificates-volume:
-  squid-log:
