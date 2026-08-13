@@ -82,7 +82,7 @@ services:
     networks:
       default: null
       traefik: null
-    profiles: [ docker1, docker2, media, ]
+    profiles: [ docker1, docker2, media1, media1b, ]
     security_opt: [ no-new-privileges=true, ]
 
   kopia:
