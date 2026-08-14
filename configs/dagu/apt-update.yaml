@@ -78,10 +78,6 @@ steps:
         ( apt list -qq --upgradable 2>/dev/nul || true ) \
           | jq --raw-input \
           | jq --compact-output --slurp
-    preconditions:
-      - condition: "${apt_update.output.state}"
-        expected: "All packages are up to date."
-        negate: true
     depends: apt_update
     output:
       upgradable:
