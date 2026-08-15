@@ -4,6 +4,13 @@ global:
     monitor: 'codelab-monitor'
 
 scrape_configs:
+  - job_name: 'haos'
+    bearer_token_file: /etc/prometheus/homeassistant_bearer_token.jwt
+    metrics_path: /api/prometheus
+    scrape_interval: 60s
+    static_configs:
+      - targets: ['haos.bob.house:8123']
+
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']

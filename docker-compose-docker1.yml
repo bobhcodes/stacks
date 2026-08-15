@@ -470,6 +470,7 @@ services:
     user: root
     volumes:
       - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ${REPOS_DIR:-/opt/repos}/Configurations/homeassistant_bearer_token.jwt:/etc/prometheus/homeassistant_bearer_token.jwt:ro
       - ${DATA_DIR:-/opt/appdata}/prometheus/:/prometheus/:rw
 
   squid:
