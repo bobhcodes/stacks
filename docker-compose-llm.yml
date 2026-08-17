@@ -2,6 +2,7 @@ services:
   ollama:
     image: ollama/ollama:latest
     cap_drop: [ ALL, ]
+    container_name: ollama
     depends_on:
       traefik:
         condition: service_healthy
@@ -23,6 +24,7 @@ services:
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
     cap_drop: [ ALL, ]
+    container_name: open-webui
     depends_on:
       ollama:
         condition: service_started
@@ -49,6 +51,7 @@ services:
   speakr:
     image: learnedmachine/speakr:latest
     cap_drop: [ ALL, ]
+    container_name: speakr
     depends_on:
       ollama:
         condition: service_started
@@ -110,6 +113,7 @@ services:
   whisper-asr:
     image: onerahmet/openai-whisper-asr-webservice:latest
     cap_drop: [ ALL, ]
+    container_name: whisper-asr
     depends_on:
       traefik:
         condition: service_healthy

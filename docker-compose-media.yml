@@ -2,6 +2,7 @@ services:
   feishin:
     image: ghcr.io/jeffvli/feishin:latest
     cap_drop: [ ALL, ]
+    container_name: feishin
     depends_on:
       navidrome:
         condition: service_started
@@ -28,6 +29,7 @@ services:
     image: ghcr.io/zibbp/ganymede:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_OVERRIDE, SETGID, SETUID, ]
+    container_name: ganymede
     depends_on:
       ganymede-db:
         condition: service_healthy
@@ -82,6 +84,7 @@ services:
     image: postgres:14
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_READ_SEARCH, FOWNER, SETGID, SETUID, ]
+    container_name: ganymede-db
     env_file:
       - ${REPOS_DIR:-/opt/repos}/Configurations/ganymede.env
     healthcheck:
@@ -105,6 +108,7 @@ services:
   jellyfin:
     image: jellyfin/jellyfin:latest
     cap_drop: [ ALL, ]
+    container_name: jellyfin
     depends_on:
       traefik:
         condition: service_healthy
@@ -146,6 +150,7 @@ services:
   jellyseerr:
     image: fallenbagel/jellyseerr:latest
     cap_drop: [ ALL, ]
+    container_name: jellyseerr
     depends_on:
       jellyfin:
         condition: service_healthy
@@ -176,6 +181,7 @@ services:
     cap_drop: [ ALL, ]
     command:
        - '*.zim'
+    container_name: kiwix
     depends_on:
       traefik:
         condition: service_healthy
@@ -196,6 +202,7 @@ services:
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest
     cap_drop: [ ALL, ]
+    container_name: lidarr
     depends_on:
       qbittorrent:
         condition: service_started
@@ -230,6 +237,7 @@ services:
   metube:
     image: ghcr.io/alexta69/metube:latest
     cap_drop: [ ALL, ]
+    container_name: metube
     depends_on:
       traefik:
         condition: service_healthy
@@ -262,6 +270,7 @@ services:
   navidrome:
     image: deluan/navidrome:latest
     cap_drop: [ ALL, ]
+    container_name: navidrome
     depends_on:
       traefik:
         condition: service_healthy
@@ -292,6 +301,7 @@ services:
   nodered:
     image: nodered/node-red:latest
     cap_drop: [ ALL, ]
+    container_name: nodered
     depends_on:
       traefik:
         condition: service_healthy
@@ -318,6 +328,7 @@ services:
     image: madeofpendletonwool/pinepods:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_OVERRIDE, SETGID, SETUID, ]
+    container_name: pinepods
     depends_on:
       pinepods-db:
         condition: service_healthy
@@ -368,6 +379,7 @@ services:
     image: postgres:17
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_READ_SEARCH, FOWNER, SETGID, SETUID, ]
+    container_name: pinepods-db
     env_file:
       - ${REPOS_DIR:-/opt/repos}/Configurations/pinepods.env
     environment:
@@ -394,6 +406,7 @@ services:
     image: valkey/valkey:8-alpine
     cap_drop: [ ALL, ]
     cap_add: [ SETGID, SETUID, ]
+    container_name: pinepods-valkey
     labels:
       dev.dozzle.group: pinepods
       traefik.enable: "false"
@@ -406,6 +419,7 @@ services:
     image: lscr.io/linuxserver/prowlarr:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, SETGID, SETUID, ]
+    container_name: prowlarr
     depends_on:
       qbittorrent:
         condition: service_started
@@ -436,6 +450,7 @@ services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     cap_drop: [ ALL, ]
+    container_name: qbittorrent
     depends_on:
       gluetun:
         condition: service_healthy
@@ -463,6 +478,7 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     cap_drop: [ ALL, ]
+    container_name: radarr
     depends_on:
       qbittorrent:
         condition: service_started
@@ -497,6 +513,7 @@ services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     cap_drop: [ ALL, ]
+    container_name: sabnzbd
     depends_on:
       traefik:
         condition: service_healthy
@@ -531,6 +548,7 @@ services:
     image: ghcr.io/analogj/scrutiny:master-omnibus
     cap_drop: [ ALL, ]
     cap_add: [ DAC_READ_SEARCH, SYS_RAWIO, ]
+    container_name: scrutiny
     depends_on:
       traefik:
         condition: service_healthy
@@ -558,6 +576,7 @@ services:
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     cap_drop: [ ALL, ]
+    container_name: sonarr
     depends_on:
       qbittorrent:
         condition: service_started
@@ -594,6 +613,7 @@ services:
   tunarr:
     image: ghcr.io/chrisbenincasa/tunarr:latest-vaapi
     cap_drop: [ ALL, ]
+    container_name: tunarr
     depends_on:
       jellyfin:
         condition: service_healthy
@@ -632,6 +652,7 @@ services:
     image: dockurr/windows:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_OVERRIDE, FOWNER, NET_ADMIN, NET_BIND_SERVICE, NET_RAW, SETGID, SETUID, SYS_CHROOT, ]
+    container_name: windows
     depends_on:
       traefik:
         condition: service_healthy
@@ -673,6 +694,7 @@ services:
     image: lscr.io/linuxserver/wireshark:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_OVERRIDE, FOWNER, NET_ADMIN, NET_RAW, SETGID, SETUID, ]
+    container_name: wireshark
     depends_on:
       traefik:
         condition: service_healthy
@@ -697,6 +719,7 @@ services:
   youtarr:
     image: dialmaster/youtarr:latest
     cap_drop: [ ALL, ]
+    container_name: youtarr
     depends_on:
       traefik:
         condition: service_healthy
@@ -745,6 +768,7 @@ services:
     image: mariadb:10
     cap_drop: [ ALL, ]
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --innodb-file-per-table=1 --innodb-large-prefix=ON
+    container_name: youtarr-db
     env_file:
       - ${REPOS_DIR:-/opt/repos}/Configurations/youtarr.env
     environment:

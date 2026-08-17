@@ -3,6 +3,7 @@ services:
     image: ghcr.io/blakeblackshear/frigate:0.17.2
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, FOWNER, SETGID, SETUID, ]
+    container_name: frigate
     depends_on:
       traefik:
         condition: service_healthy
