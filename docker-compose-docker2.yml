@@ -63,6 +63,8 @@ services:
     depends_on:
       traefik:
         condition: service_healthy
+    environment:
+      ALLOW_IANA_RESTRICTED_ADDRESSES: "true"
     labels:
       traefik.docker.network: traefik-network
       traefik.http.routers.changedetection-router.entrypoints: lan
