@@ -2,6 +2,7 @@ services:
   leafwiki:
     image: ghcr.io/perber/leafwiki:${LEAFWIKI_IMAGE_TAG?:missing leafwiki image tag}
     cap_drop: [ ALL, ]
+    container_name: leafwiki
     depends_on:
       traefik:
         condition: service_healthy
@@ -50,6 +51,7 @@ services:
     image: austinweeks/miasma:${MIASMA_IMAGE_TAG?:missing miasma image tag}
     cap_drop: [ ALL, ]
     command: [ "--host", "0.0.0.0", "--port", "9999", "--link-count", "5", "--max-depth", "8", "--max-in-flight", "50", ]
+    container_name: miasma
     depends_on:
       traefik:
         condition: service_healthy

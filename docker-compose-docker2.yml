@@ -2,6 +2,7 @@ services:
   apache:
     image: httpd:${HTTPD_IMAGE_TAG:?missing apache image tag}
     cap_drop: [ ALL, ]
+    container_name: apache
     depends_on:
       traefik:
         condition: service_healthy
@@ -28,6 +29,7 @@ services:
     image: caronc/apprise:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, SETGID, SETUID, ]
+    container_name: apprise
     depends_on:
       traefik:
         condition: service_healthy
@@ -60,6 +62,7 @@ services:
   changedetection:
     image: dgtlmoon/changedetection.io:latest
     cap_drop: [ ALL, ]
+    container_name: changedetection
     depends_on:
       traefik:
         condition: service_healthy
@@ -83,6 +86,7 @@ services:
   donetick:
     image: donetick/donetick:latest
     cap_drop: [ ALL, ]
+    container_name: donetick
     depends_on:
       traefik:
         condition: service_healthy
@@ -107,6 +111,7 @@ services:
     image: ghcr.io/fccview/degoog:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, SETGID, SETUID, ]
+    container_name: degoog
     depends_on:
       gluetun:
         condition: service_healthy
@@ -121,6 +126,7 @@ services:
   drawio:
     image: jgraph/drawio:latest
     cap_drop: [ ALL, ]
+    container_name: drawio
     depends_on:
       traefik:
         condition: service_healthy
@@ -140,6 +146,7 @@ services:
   drydock:
     image: codeswhat/drydock:${DRYDOCK_IMAGE_TAG?:missing drydock image tag}
     cap_drop: [ ALL, ]
+    container_name: drydock
     depends_on:
       socket-proxy:
         condition: service_healthy
@@ -204,6 +211,7 @@ services:
     image: freshrss/freshrss:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_OVERRIDE, FOWNER, SETGID, SETUID, ]
+    container_name: freshrss
     depends_on:
       traefik:
         condition: service_healthy
@@ -234,6 +242,7 @@ services:
   grafana:
     image: grafana/grafana-oss:latest
     cap_drop: [ ALL, ]
+    container_name: grafana
     depends_on:
       traefik:
         condition: service_healthy
@@ -263,6 +272,7 @@ services:
   httpbin:
     image: mccutchen/go-httpbin:latest
     cap_drop: [ ALL, ]
+    container_name: httpbin
     depends_on:
       traefik:
         condition: service_healthy
@@ -281,6 +291,7 @@ services:
     image: ghcr.io/corentinth/it-tools:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, SETGID, SETUID, ]
+    container_name: it-tools
     depends_on:
       traefik:
         condition: service_healthy
@@ -298,6 +309,7 @@ services:
     image: ashphy/jsonpath-online-evaluator:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, SETGID, SETUID, ]
+    container_name: jsonpath
     depends_on:
       traefik:
         condition: service_healthy
@@ -314,6 +326,7 @@ services:
   jsonplaceholder:
     image: svenwal/jsonplaceholder:latest
     cap_drop: [ ALL, ]
+    container_name: jsonplaceholder
     depends_on:
       traefik:
         condition: service_healthy
@@ -333,6 +346,7 @@ services:
     image: mockoon/cli:latest
     cap_drop: [ ALL, ]
     command: [ "--data", "/home/mockoon/data/mockoon.json", "--port", "3000", ]
+    container_name: mockoon
     depends_on:
       traefik:  
         condition: service_healthy
@@ -361,6 +375,7 @@ services:
     image: ghcr.io/remvze/moodist:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, NET_BIND_SERVICE, SETGID, SETUID, ]
+    container_name: moodist
     depends_on:
       traefik:
         condition: service_healthy
@@ -385,6 +400,7 @@ services:
         CMD ["sh", "-c", "nsd; sleep infinity"]
     cap_drop: [ ALL, ]
     cap_add: [ SETGID, SETUID, ]
+    container_name: nsd01
     healthcheck:
       test: ["CMD-SHELL", "nslookup -type=CNAME homepage.bob.house 127.0.0.1"]
       interval: 1m
@@ -415,6 +431,7 @@ services:
         CMD ["sh", "-c", "nsd; sleep infinity"]
     cap_drop: [ ALL, ]
     cap_add: [ SETGID, SETUID, ]
+    container_name: nsd20
     healthcheck:
       test: ["CMD-SHELL", "nslookup -type=CNAME homepage.bob.house 127.0.0.1"]
       interval: 1m
@@ -442,6 +459,7 @@ services:
     cap_drop: [ ALL, ]
     command:
       - serve
+    container_name: ntfy
     depends_on:
       traefik:
         condition: service_healthy
@@ -464,6 +482,7 @@ services:
   nuget:
     image: bagetter/bagetter:latest
     cap_drop: [ ALL, ]
+    container_name: nuget
     depends_on:
       traefik:
         condition: service_healthy
@@ -488,6 +507,7 @@ services:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, SETGID, SETUID, ]
+    container_name: paperless-ngx
     depends_on:
       paperless-ngx-db:
         condition: service_healthy
@@ -535,6 +555,7 @@ services:
     image: docker.io/library/postgres:18
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_READ_SEARCH, FOWNER, SETGID, SETUID, ]
+    container_name: paperless-ngx-db
     environment:
       POSTGRES_DB: paperless
       POSTGRES_USER: paperless
@@ -559,6 +580,7 @@ services:
     image: docker.io/library/redis:8
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, SETGID, SETPCAP, SETUID, ]
+    container_name: paperless-ngx-redis
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -578,6 +600,7 @@ services:
   planka:
     image: ghcr.io/plankanban/planka:latest
     cap_drop: [ ALL, ]
+    container_name: planka
     depends_on:
       planka-db:
         condition: service_healthy
@@ -616,6 +639,7 @@ services:
     image: postgres:16-alpine
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_READ_SEARCH, FOWNER, SETGID, SETUID, ]
+    container_name: planka-db
     environment:
       POSTGRES_DB: planka
       POSTGRES_HOST_AUTH_METHOD: trust
@@ -639,6 +663,7 @@ services:
   rabbitmq:
     image: rabbitmq:management
     cap_drop: [ ALL, ]
+    container_name: rabbitmq
     env_file: [ "${REPOS_DIR:-/opt/repos}/Configurations/rabbitmq.env", ]
     hostname: rabbitmq
     labels:
@@ -661,6 +686,7 @@ services:
   readeck:
     image: codeberg.org/readeck/readeck:latest
     cap_drop: [ ALL, ]
+    container_name: readeck
     depends_on:
       planka-db:
         condition: service_healthy
@@ -683,6 +709,7 @@ services:
   registry:
     image: registry:latest
     cap_drop: [ ALL, ]
+    container_name: registry
     environment:
       OTEL_TRACES_EXPORTER: none
       REGISTRY_LOG_LEVEL: info
@@ -712,6 +739,7 @@ services:
     image: joxit/docker-registry-ui:main
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_OVERRIDE, SETGID, SETUID, ]
+    container_name: registry-ui
     depends_on:
       registry:
         condition: service_started
@@ -745,6 +773,7 @@ services:
   restfox:
     image: flawiddsouza/restfox:latest
     cap_drop: [ ALL, ]
+    container_name: restfox
     depends_on:
       traefik:
         condition: service_healthy
@@ -772,6 +801,7 @@ services:
   snipo:
     image: ghcr.io/mohamedelashri/snipo:latest
     cap_drop: [ ALL, ]
+    container_name: snipo
     depends_on:
       traefik:
         condition: service_healthy
@@ -812,6 +842,7 @@ services:
     image: lscr.io/linuxserver/speedtest-tracker:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_OVERRIDE, FOWNER, SETGID, SETUID, ]
+    container_name: speedtest-tracker
     depends_on:
       traefik:
         condition: service_healthy
@@ -842,6 +873,7 @@ services:
     image: triliumnext/trilium:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_OVERRIDE, SETGID, SETUID, ]
+    container_name: trilium
     depends_on:
       traefik:
         condition: service_healthy
@@ -866,6 +898,7 @@ services:
     image: aquasec/trivy:latest
     cap_drop: [ ALL, ]
     command: server
+    container_name: trivy
     depends_on:
       traefik:
         condition: service_healthy
@@ -896,6 +929,7 @@ services:
   vikunja:
     image: vikunja/vikunja:latest
     cap_drop: [ ALL, ]
+    container_name: vikunja
     depends_on:
       traefik:
         condition: service_healthy
@@ -930,6 +964,7 @@ services:
     image: postgres:18
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_READ_SEARCH, FOWNER, SETGID, SETUID, ]
+    container_name: vikunja-db
     env_file:
       - ${REPOS_DIR:-/opt/repos}/Configurations/vikunja.env
     environment:
@@ -951,6 +986,7 @@ services:
   zimapi:
     image: eassbhhtgu/zimapi:latest
     cap_drop: [ ALL, ]
+    container_name: zimapi
     depends_on:
       traefik:
         condition: service_healthy

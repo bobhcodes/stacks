@@ -11,6 +11,7 @@ services:
     image: nicolargo/glances:latest
     cap_drop: [ ALL, ]
     cap_add: [ SYS_ADMIN, SYS_RAWIO, ]
+    container_name: glances
     depends_on:
       socket-proxy:
         condition: service_healthy
@@ -37,6 +38,7 @@ services:
     image: qmcgaw/gluetun:latest
     cap_drop: [ ALL, ]
     cap_add: [ CHECKPOINT_RESTORE, CHOWN, DAC_OVERRIDE, FOWNER, NET_ADMIN, NET_RAW, SETUID, ]
+    container_name: gluetun
     depends_on:
       traefik:
         condition: service_healthy
@@ -89,6 +91,7 @@ services:
     image: kopia/kopia:latest
     cap_drop: [ ALL, ]
     cap_add: [ DAC_OVERRIDE, ]
+    container_name: kopia
     command:
       - server
       - start
@@ -125,6 +128,7 @@ services:
   socket-proxy:
     image: tecnativa/docker-socket-proxy:${DOCKER_SOCKET_PROXY_IMAGE_TAG?:missing docker-socket-proxy image tag}
     cap_drop: [ ALL, ]
+    container_name: socket-proxy
     environment:
       DISABLE_IPV6: "true"
       LOG_LEVEL: info
@@ -193,6 +197,7 @@ services:
       - --providers.docker
       - --providers.docker.endpoint=tcp://socket-proxy:2375
       - --providers.file.directory=/etc/traefik/dynamic_conf/
+    container_name: traefik
     depends_on:
       socket-proxy:
         condition: service_healthy
