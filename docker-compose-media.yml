@@ -235,7 +235,7 @@ services:
       - /mnt/md1/MediaThumbnails/lidarr/:/config/MediaCover/:rw
 
   metube:
-    image: ghcr.io/alexta69/metube:latest
+    image: ghcr.io/alexta69/metube:${METUBE_IMAGE_TAG?:missing metube image tag}
     cap_drop: [ ALL, ]
     container_name: metube
     depends_on:
@@ -250,6 +250,8 @@ services:
       PGID: "1000"
       PUID: "1000"
     labels:
+      dd.link.template: https://github.com/alexta69/metube/releases/tag/$${major}.$${minor}.$${patch}
+      dd.watch: "true"
       traefik.docker.network: traefik-network
       traefik.http.routers.metube-router.entrypoints: lan
       traefik.http.routers.metube-router.rule: Host(`metube.bob.house`)
@@ -717,7 +719,7 @@ services:
     volumes: [ "${DATA_DIR:-/opt/appdata}/wireshark/:/config/:rw", ]
 
   youtarr:
-    image: dialmaster/youtarr:latest
+    image: dialmaster/youtarr:${YOUTARR_IMAGE_TAG?:missing youtarr image tag}
     cap_drop: [ ALL, ]
     container_name: youtarr
     depends_on:
@@ -744,6 +746,8 @@ services:
       retries: 3
       start_period: 40s
     labels:
+      dd.link.template: https://github.com/DialmasterOrg/Youtarr/releases/tag/v$${major}.$${minor}.$${patch}
+      dd.watch: "true"
       dev.dozzle.group: youtarr
       traefik.docker.network: traefik-network
       traefik.http.routers.youtarr-router.entrypoints: lan
