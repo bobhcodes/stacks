@@ -47,10 +47,6 @@ steps:
         from: stdout
         decode: json
         select: .body.ip
-      country:
-        from: stdout
-        decode: json
-        select: .body.location.country
   - id: get_records
     action: http.request
     with:
@@ -93,8 +89,6 @@ steps:
         expected: "200"
       - condition: "${get_ip.output.ip}"
         expected: "re:.+"
-      - condition: "${get_ip.output.country}"
-        expected: "United Kingdom"
       - condition: "${get_records.output.records}"
         expected: "re:.+"
       - condition: "${get_records.output.records}"
