@@ -123,31 +123,31 @@ suites:
         client: *traefik-client-definition
         conditions: *traefik-conditions-definition
         alerts: *alerts-definition
-  - name: ransom
+  - name: docker2
     group: servers
     interval: 1m
     timeout: 30s
     endpoints:
-      - name: ping ransom .1
+      - name: ping docker2 .1
         url: icmp://192.168.1.65
         conditions: *ping-conditions-definition
         alerts: *alerts-definition
-      - name: ping ransom .20
+      - name: ping docker2 .20
         url: icmp://192.168.20.65
         conditions: *ping-conditions-definition
         alerts: *alerts-definition
-      - name: telegraf ransom
+      - name: telegraf docker2
         url: http://192.168.20.65:9273/metrics
         conditions: *telegraf-conditions-definition
         alerts: *alerts-definition
-      - name: docker ransom
+      - name: docker docker2
         url: http://192.168.20.65:2375/v1.55/_ping
         conditions: *docker-conditions-definition
         alerts: *alerts-definition
-      - name: traefik ransom
+      - name: traefik docker2
         url: https://192.168.20.65/dashboard/
         headers:
-          Host: traefik-ransom.bob.house
+          Host: traefik-docker2.bob.house
         client: *traefik-client-definition
         conditions: *traefik-conditions-definition
         alerts: *alerts-definition

@@ -55,11 +55,11 @@ endpoints:
       - "[DNS_RCODE] == NOERROR"
     alerts: *alerts-definition
 
-  - name: ransom .20
+  - name: docker2 .20
     group: dns .20
     url: 192.168.20.60
     dns:
-      query-name: ransom.bob.house
+      query-name: docker2.bob.house
       query-type: A
     conditions:
       - "[BODY] == 192.168.20.65"

@@ -29,13 +29,13 @@
         description: The most popular web server on the Internet
         href: https://apache.bob.house
         icon: apache.png
-        server: ransom-docker
+        server: docker2
         container: apache
     - Apprise: &apprise
         description: Push Notifications that work with just about every platform!
         href: https://apprise.bob.house
         icon: apprise.png
-        server: ransom-docker
+        server: docker2
         container: apprise
     - Authentik: &authentik
         description: Bring all of your authentication into a unified platform
@@ -58,7 +58,7 @@
         description: Web page change detection, website watcher, restock monitor and notification service
         href: https://changedetection.bob.house/
         icon: changedetection.svg
-        server: ransom-docker
+        server: docker2
         container: changedetection
         widget:
           type: changedetectionio
@@ -74,19 +74,19 @@
         description: Search engine aggregator with a comprehensive plugin/extension system
         href: https://degoog.bob.house/
         icon: /icons/degoog.svg
-        server: ransom-docker
+        server: docker2
         container: degoog
     - Docker Registry: &dockerregistry
         description: UI for your private docker registry
         href: https://registry-ui.bob.house/
         icon: docker-moby.svg
-        server: ransom-docker
+        server: docker2
         container: registry
     - Donetick: &donetick
         description: Simplify Tasks & Chores, Together
         href: https://donetick.bob.house/
         icon: donetick.png
-        server: ransom-docker
+        server: docker2
         container: donetick
     - Dozzle: &dozzle
         description: Real-time log viewer for docker containers
@@ -98,13 +98,13 @@
         description: a JavaScript, client-side editor for general diagramming
         href: https://drawio.bob.house
         icon: draw-io.svg
-        server: ransom-docker
+        server: docker2
         container: drawio
     - drydock: &drydock
         description: Open source container update monitoring
         href: https://drydock.bob.house
         icon: /icons/drydock.png
-        server: ransom-docker
+        server: docker2
         container: drydock
     - Feishin: &feishin
         description: A modern self-hosted music player
@@ -126,7 +126,7 @@
         description: A free, self-hostable news aggregator
         href: https://freshrss.bob.house/
         icon: freshrss.svg
-        server: ransom-docker
+        server: docker2
         container: freshrss
     - Frigate: &frigate
         description: NVR with realtime local object detection for IP cameras
@@ -321,10 +321,10 @@
                 query: docker_n_containers_paused{host='kayshon'}
               - label: stopped containers
                 query: docker_n_containers_stopped{host='kayshon'}
-    - Glances RANSOM: &glancesransom
-        href: https://glances-ransom.bob.house/
+    - Glances DOCKER2: &glancesdocker2
+        href: https://glances-docker2.bob.house/
         icon: glances.png
-        server: ransom-docker
+        server: docker2
         container: glances
         widgets:
           - type: prometheusmetric
@@ -334,21 +334,21 @@
               - label: uptime
                 format:
                   type: duration
-                query: system_uptime{host='ransom'}
+                query: system_uptime{host='docker2'}
               - label: user cpu
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_user{host='ransom'}[5m])
+                query: rate(cpu_usage_user{host='docker2'}[5m])
               - label: system cpu
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_system{host='ransom'}[5m])
+                query: rate(cpu_usage_system{host='docker2'}[5m])
           - type: prometheusmetric
             url: https://prometheus.bob.house
             refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
@@ -358,23 +358,23 @@
                   type: bytes
                   options:
                     maximumFractionDigits: 1
-                query: disk_free{host='ransom',path='/'}
+                query: disk_free{host='docker2',path='/'}
               - label: disk used
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
-                query: disk_used_percent{host='ransom',path='/'}
+                query: disk_used_percent{host='docker2',path='/'}
           - type: prometheusmetric
             url: https://prometheus.bob.house
             refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
             metrics:
               - label: running containers
-                query: docker_n_containers_running{host='ransom'}
+                query: docker_n_containers_running{host='docker2'}
               - label: paused containers
-                query: docker_n_containers_paused{host='ransom'}
+                query: docker_n_containers_paused{host='docker2'}
               - label: stopped containers
-                query: docker_n_containers_stopped{host='ransom'}
+                query: docker_n_containers_stopped{host='docker2'}
     - Glances SHAXS: &glancesshaxs
         href: https://glances-shaxs.bob.house/
         icon: glances.png
@@ -499,14 +499,14 @@
           url: https://gluetun-freeman.bob.house/
           key: {{HOMEPAGE_VAR_GLUETUN_KEY}}
           version: 2
-    - Gluetun RANSOM: &gluetunransom
+    - Gluetun DOCKER2: &gluetundocker2
         description: VPN client for multiple VPN providers using OpenVPN or Wireguard, DNS over TLS
         icon: gluetun.svg
-        server: ransom-docker
+        server: docker2
         container: gluetun
         widget:
           type: gluetun
-          url: https://gluetun-ransom.bob.house/
+          url: https://gluetun-docker2.bob.house/
           key: {{HOMEPAGE_VAR_GLUETUN_KEY}}
           version: 2
     - Gluetun TANA: &gluetuntana
@@ -529,7 +529,7 @@
         description: The open and composable observability and data visualization platform
         href: https://grafana.bob.house/
         icon: grafana.svg
-        server: ransom-docker
+        server: docker2
         container: grafana
         widget:
           type: grafana
@@ -578,13 +578,13 @@
         description: A simple HTTP Request & Response Service
         href: https://httpbin.bob.house/
         icon: /icons/httpbin.png
-        server: ransom-docker
+        server: docker2
         container: httpbin
     - IT-Tools: &ittools
         description: Collection of handy online tools for developers, with great UX
         href: https://it-tools.bob.house/
         icon: it-tools.svg
-        server: ransom-docker
+        server: docker2
         container: it-tools
     - Jellyfin: &jellyfin
         description: Your media, on your terms
@@ -630,13 +630,13 @@
         description: JSONPath Online Evaluator
         href: https://jsonpath.bob.house/
         icon: /icons/jsonpath.svg
-        server: ransom-docker
+        server: docker2
         container: jsonpath
     - JSONPlaceholder: &jsonplaceholder
         description: Fake and reliable API for testing and prototyping
         href: https://jsonplaceholder.bob.house/
         icon: /icons/jsonplaceholder.ico
-        server: ransom-docker
+        server: docker2
         container: jsonplaceholder
     - kiwix: &kiwix
         description: When there is No Internet, there is Kiwix
@@ -677,15 +677,15 @@
           url: https://kopia-kayshon.bob.house
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
-    - Kopia RANSOM: &kopiaransom
+    - Kopia DOCKER2: &kopiadocker2
         description: Cross-platform backup tool
-        href: https://kopia-ransom.bob.house/
+        href: https://kopia-docker2.bob.house/
         icon: kopia.svg
-        server: ransom-docker
+        server: docker2
         container: kopia
         widget:
           type: kopia
-          url: https://kopia-ransom.bob.house
+          url: https://kopia-docker2.bob.house
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
     - Kopia SHAXS: &kopiashaxs
@@ -742,13 +742,13 @@
         description: The easiest and quickest way to design and run mock REST APIs
         href: https://mockoon.bob.house/mockoon-admin
         icon: /icons/mockoon.svg
-        server: ransom-docker
+        server: docker2
         container: mockoon
     - moodist: &moodist
         description: Ambient sounds for focus and calm
         href: https://moodist.bob.house/?share=%7B%22rain-on-window%22%3A0.24%2C%22crowd%22%3A0.96%2C%22inside-a-train%22%3A0.64%2C%22brown-noise%22%3A0.24%7D
         icon: moodist.png
-        server: ransom-docker
+        server: docker2
         container: moodist
     - Navidrome: &navidrome
         description: 🎧☁️ Your Personal Streaming Service
@@ -772,7 +772,7 @@
         description: Send push notifications to your phone or desktop via PUT/POST
         href: https://ntfy.bob.house/{{HOMEPAGE_VAR_NTFY_TOPIC}}
         icon: ntfy.svg
-        server: ransom-docker
+        server: docker2
         container: ntfy
         widgets:
           - type: prometheusmetric
@@ -786,12 +786,12 @@
                   type: bytes
                   options:
                     maximumFractionDigits: 2
-                query: docker_container_mem_usage{com_docker_compose_project="ransom",com_docker_compose_service="ntfy"}
+                query: docker_container_mem_usage{com_docker_compose_project="docker2",com_docker_compose_service="ntfy"}
               - label: uptime
                 format:
                   type: duration
                   scale: .000000001
-                query: docker_container_status_uptime_ns{com_docker_compose_project="ransom",com_docker_compose_service="ntfy"}
+                query: docker_container_status_uptime_ns{com_docker_compose_project="docker2",com_docker_compose_service="ntfy"}
           - type: ntfy
             fields: [ "title", "message", "lastReceived", ]
             url: https://ntfy.bob.house
@@ -800,7 +800,7 @@
         description: A lightweight NuGet and symbol server
         href: https://nuget.bob.house/
         icon: microsoft.svg
-        server: ransom-docker
+        server: docker2
         container: nuget
     - Open WebUI: &openwebui
         description: An extensible, feature-rich, and user-friendly self-hosted AI platform designed to operate entirely offline
@@ -812,7 +812,7 @@
         description: A community-supported open-source document management system
         href: https://paperless-ngx.bob.house
         icon: paperless-ngx.svg
-        server: ransom-docker
+        server: docker2
         container: paperless-ngx
         widget:
           type: paperlessngx
@@ -828,7 +828,7 @@
         description: Realtime kanban board for workgroups
         href: https://planka.bob.house/
         icon: planka.svg
-        server: ransom-docker
+        server: docker2
         container: planka
     - Portainer: &portainer
         description: Making Docker and Kubernetes management easy
@@ -887,7 +887,7 @@
         description: One broker to queue them all
         href: https://rabbitmq.bob.house/
         icon: rabbitmq.png
-        server: ransom-docker
+        server: docker2
         container: rabbitmq
     - Radarr: &radarr
         description: Movie organizer/manager for usenet and torrent users
@@ -904,13 +904,13 @@
         description: Keep all that web content you'll want to revisit in an hour, tomorrow, or in 20 years
         href: https://readeck.bob.house/
         icon: readeck.png
-        server: ransom-docker
+        server: docker2
         container: readeck
     - Restfox: &restfox
         description: Offline-First Minimalistic HTTP & Socket Testing Client
         href: https://restfox.bob.house/
         icon: /icons/restfox.png
-        server: ransom-docker
+        server: docker2
         container: restfox
     - SABnzbd: &sabnzbd
         description: Free and easy binary newsreader
@@ -935,7 +935,7 @@
         description: Single-user snippet-manager web app
         href: https://snipo.bob.house/
         icon: /icons/snipo.png
-        server: ransom-docker
+        server: docker2
         container: snipo
     - Sonarr: &sonarr
         description: Usenet and BitTorrent PVR
@@ -958,7 +958,7 @@
         description: Free & Open-Source HTML5 Network Performance Estimation Tool
         href: https://speedtest.bob.house/
         icon: openspeedtest.png
-        server: ransom-docker
+        server: docker2
         container: speedtest-tracker
         widget:
           type: speedtest
@@ -997,15 +997,15 @@
         widget:
           type: traefik
           url: https://traefik-kayshon.bob.house
-    - Traefik RANSOM: &traefikransom
+    - Traefik DOCKER2: &traefikdocker2
         description: HTTP reverse proxy and load balancer
-        href: https://traefik-ransom.bob.house/dashboard/
+        href: https://traefik-docker2.bob.house/dashboard/
         icon: traefik-proxy.svg
-        server: ransom-docker
+        server: docker2
         container: traefik
         widget:
           type: traefik
-          url: https://traefik-ransom.bob.house
+          url: https://traefik-docker2.bob.house
     - Traefik SHAXS: &traefikshaxs
         description: HTTP reverse proxy and load balancer
         href: https://traefik-shaxs.bob.house/dashboard/
@@ -1028,7 +1028,7 @@
         description: Hierarchical note taking application
         href: https://trilium.bob.house/
         icon: trilium.svg
-        server: ransom-docker
+        server: docker2
         container: trilium
     - Tunarr: &tunarr
         description: IPTV backed by Plex/Jellyfin/Emby
@@ -1040,7 +1040,7 @@
         description: The to-do app to organize your life
         href: https://vikunja.bob.house/
         icon: vikunja.svg
-        server: ransom-docker
+        server: docker2
         container: vikunja
         widget:
           type: vikunja
@@ -1070,7 +1070,7 @@
         description: Wrapper API for the Kiwix official Download Repository
         href: https://zimapi.bob.house/library
         icon: /icons/zim.png
-        server: ransom-docker
+        server: docker2
         container: zimapi
 
 - Main:
@@ -1140,10 +1140,10 @@
           - Glances: *glanceskayshon
           - Kopia: *kopiakayshon
           - Traefik: *traefikkayshon
-    - Ransom:
-          - Glances: *glancesransom
-          - Kopia: *kopiaransom
-          - Traefik: *traefikransom
+    - Docker2:
+          - Glances: *glancesdocker2
+          - Kopia: *kopiadocker2
+          - Traefik: *traefikdocker2
     - Shaxs:
           - Glances: *glancesshaxs
           - Kopia: *kopiashaxs

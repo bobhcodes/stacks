@@ -27,7 +27,7 @@ steps:
       items:
         - host: freeman.bob.house
           container: gluetun
-        - host: ransom.bob.house
+        - host: docker2.bob.house
           container: gluetun
         - host: tana.bob.house
           container: gluetun

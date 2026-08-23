@@ -14,8 +14,8 @@ kayshon-docker:
   host: kayshon.bob.house
   port: 2375
 
-ransom-docker:
-  host: ransom.bob.house
+docker2:
+  host: docker2.bob.house
   port: 2375
 
 shaxs-docker:

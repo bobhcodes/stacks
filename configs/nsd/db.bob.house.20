@@ -3,8 +3,8 @@ $TTL 7200
 
 ; SOA
 
-@       IN      SOA    ransom.bob.house. hostmaster.bob.house. (
-                                         2026072601 ; Serial
+@       IN      SOA    docker2.bob.house. hostmaster.bob.house. (
+                                         2026082300 ; Serial
                                          7200       ; Refresh
                                          1800       ; Retry
                                          1209600    ; Expire
@@ -12,7 +12,7 @@ $TTL 7200
 
 ; NAMESERVERS
 
-@                   IN        NS                   ransom.bob.house.
+@                   IN        NS                   docker2.bob.house.
 
 ; A RECORDS
 
@@ -22,7 +22,7 @@ billups             IN        A                    192.168.1.75
 freeman             IN        A                    192.168.20.60
 haos                IN        A                    192.168.20.80
 kayshon             IN        A                    192.168.20.85
-ransom              IN        A                    192.168.20.65
+docker2             IN        A                    192.168.20.65
 shaxs               IN        A                    192.168.20.55
 tana                IN        A                    192.168.20.70
 
@@ -70,42 +70,42 @@ kopia-kayshon       IN        CNAME                kayshon
 traefik-kayshon     IN        CNAME                kayshon
 www                 IN        CNAME                kayshon
 
-apache              IN        CNAME                ransom
-apprise             IN        CNAME                ransom
-baget               IN        CNAME                ransom
-changedetection     IN        CNAME                ransom
-degoog              IN        CNAME                ransom
-docker-ransom       IN        CNAME                ransom
-donetick            IN        CNAME                ransom
-drawio              IN        CNAME                ransom
-drydock             IN        CNAME                ransom
-freshrss            IN        CNAME                ransom
-glances-ransom      IN        CNAME                ransom
-gluetun-ransom      IN        CNAME                ransom
-grafana             IN        CNAME                ransom
-httpbin             IN        CNAME                ransom
-it-tools            IN        CNAME                ransom
-jsonpath            IN        CNAME                ransom
-jsonplaceholder     IN        CNAME                ransom
-kopia-ransom        IN        CNAME                ransom
-mockoon             IN        CNAME                ransom
-moodist             IN        CNAME                ransom
-ntfy                IN        CNAME                ransom
-nuget               IN        CNAME                ransom
-paperless-ngx       IN        CNAME                ransom
-planka              IN        CNAME                ransom
-rabbitmq            IN        CNAME                ransom
-readeck             IN        CNAME                ransom
-registry            IN        CNAME                ransom
-registry-ui         IN        CNAME                ransom
-restfox             IN        CNAME                ransom
-snipo               IN        CNAME                ransom
-speedtest           IN        CNAME                ransom
-traefik-ransom      IN        CNAME                ransom
-trilium             IN        CNAME                ransom
-trivy               IN        CNAME                ransom
-vikunja             IN        CNAME                ransom
-zimapi              IN        CNAME                ransom
+apache              IN        CNAME                docker2
+apprise             IN        CNAME                docker2
+baget               IN        CNAME                docker2
+changedetection     IN        CNAME                docker2
+degoog              IN        CNAME                docker2
+docker-docker2      IN        CNAME                docker2
+donetick            IN        CNAME                docker2
+drawio              IN        CNAME                docker2
+drydock             IN        CNAME                docker2
+freshrss            IN        CNAME                docker2
+glances-docker2     IN        CNAME                docker2
+gluetun-docker2     IN        CNAME                docker2
+grafana             IN        CNAME                docker2
+httpbin             IN        CNAME                docker2
+it-tools            IN        CNAME                docker2
+jsonpath            IN        CNAME                docker2
+jsonplaceholder     IN        CNAME                docker2
+kopia-docker2       IN        CNAME                docker2
+mockoon             IN        CNAME                docker2
+moodist             IN        CNAME                docker2
+ntfy                IN        CNAME                docker2
+nuget               IN        CNAME                docker2
+paperless-ngx       IN        CNAME                docker2
+planka              IN        CNAME                docker2
+rabbitmq            IN        CNAME                docker2
+readeck             IN        CNAME                docker2
+registry            IN        CNAME                docker2
+registry-ui         IN        CNAME                docker2
+restfox             IN        CNAME                docker2
+snipo               IN        CNAME                docker2
+speedtest           IN        CNAME                docker2
+traefik-docker2     IN        CNAME                docker2
+trilium             IN        CNAME                docker2
+trivy               IN        CNAME                docker2
+vikunja             IN        CNAME                docker2
+zimapi              IN        CNAME                docker2
 
 docker-shaxs        IN        CNAME                shaxs
 frigate             IN        CNAME                shaxs

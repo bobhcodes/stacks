@@ -236,7 +236,7 @@ services:
     environment:
       DOZZLE_AUTH_PROVIDER: simple
       DOZZLE_NO_ANALYTICS: "true"
-      DOZZLE_REMOTE_HOST: tcp://socket-proxy:2375|freeman,tcp://docker-kayshon.bob.house:2375|kayshon,tcp://docker-ransom.bob.house:2375|ransom,tcp://docker-shaxs.bob.house:2375|shaxs,tcp://docker-tana.bob.house:2375|tana
+      DOZZLE_REMOTE_HOST: tcp://socket-proxy:2375|freeman,tcp://docker-kayshon.bob.house:2375|kayshon,tcp://docker-docker2.bob.house:2375|docker2,tcp://docker-shaxs.bob.house:2375|shaxs,tcp://docker-tana.bob.house:2375|tana
     healthcheck:
       test: ["CMD", "/dozzle", "healthcheck"]
       interval: 5s

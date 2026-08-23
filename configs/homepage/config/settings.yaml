@@ -51,7 +51,7 @@ layout:
       rows: 3
       style: column
       tab: Monitoring
-    Ransom:
+    Docker2:
       rows: 3
       style: column
       tab: Monitoring

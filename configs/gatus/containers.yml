@@ -166,7 +166,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: glances RANSOM
+  - name: glances DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.55/containers/glances/json
     conditions: *conditions-definition
@@ -190,7 +190,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: gluetun RANSOM
+  - name: gluetun DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.55/containers/gluetun/json
     conditions: *conditions-definition
@@ -281,7 +281,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: kopia RANSOM
+  - name: kopia DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.55/containers/kopia/json
     conditions: *conditions-definition
@@ -524,7 +524,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: socket-proxy RANSOM
+  - name: socket-proxy DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.55/containers/socket-proxy/json
     conditions: *conditions-definition
@@ -586,7 +586,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: traefik RANSOM
+  - name: traefik DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.55/containers/traefik/json
     conditions: *conditions-definition

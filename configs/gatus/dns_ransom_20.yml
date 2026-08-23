@@ -6,7 +6,7 @@ endpoints:
       query-name: apache.bob.house
       query-type: CNAME
     conditions: &conditions-definition
-      - "[BODY] == ransom.bob.house."
+      - "[BODY] == docker2.bob.house."
       - "[DNS_RCODE] == NOERROR"
     alerts: &alerts-definition
       - type: ntfy
@@ -47,11 +47,11 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: docker-ransom .20
+  - name: docker-docker2 .20
     group: dns .20
     url: 192.168.20.60
     dns:
-      query-name: docker-ransom.bob.house
+      query-name: docker-docker2.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
@@ -92,20 +92,20 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: glances-ransom .20
+  - name: glances-docker2 .20
     group: dns .20
     url: 192.168.20.60
     dns:
-      query-name: glances-ransom.bob.house
+      query-name: glances-docker2.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: gluetun-ransom .20
+  - name: gluetun-docker2 .20
     group: dns .20
     url: 192.168.20.60
     dns:
-      query-name: gluetun-ransom.bob.house
+      query-name: gluetun-docker2.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
@@ -155,11 +155,11 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: kopia-ransom .20
+  - name: kopia-docker2 .20
     group: dns .20
     url: 192.168.20.60
     dns:
-      query-name: kopia-ransom.bob.house
+      query-name: kopia-docker2.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
@@ -281,11 +281,11 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: traefik-ransom .20
+  - name: traefik-docker2 .20
     group: dns .20
     url: 192.168.20.60
     dns:
-      query-name: traefik-ransom.bob.house
+      query-name: traefik-docker2.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition

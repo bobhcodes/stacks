@@ -8,7 +8,7 @@ steps:
       items:
         - freeman.bob.house
         - kayshon.bob.house
-        - ransom.bob.house
+        - docker2.bob.house
         - shaxs.bob.house
         - tana.bob.house
     with:

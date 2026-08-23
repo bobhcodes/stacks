@@ -16,7 +16,10 @@ if [[ $(hostname --long) =~ ^freeman ]]; then
 	make_user_directory "/opt/appdata/squid/log/"
 fi
 
-if [[ $(hostname --long) =~ ^ransom ]]; then
-	echo ransom
+if [[ $(hostname --long) =~ ^docker2 ]]; then
+	echo docker2
+	make_user_directory "/opt/appdata/apprise/"
+	make_user_directory "/opt/appdata/bagetter/"
 	make_user_directory "/opt/appdata/grafana/"
+	make_user_directory "/opt/appdata/rabbitmq/"
 fi

@@ -66,9 +66,9 @@
       }
     },
     {
-      "Title": "ransom",
+      "Title": "docker2",
       "Type": "SSH",
-      "Host": "ransom.bob.house:22",
+      "Host": "docker2.bob.house:22",
       "Meta": {
         "Authentication": "Private Key",
         "User": "root",
