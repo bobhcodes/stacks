@@ -240,7 +240,7 @@ services:
       - ${DATA_DIR:-/opt/appdata}/freshrss/extensions/:/var/www/FreshRSS/extensions/:rw
 
   grafana:
-    image: grafana/grafana-oss:latest
+    image: grafana/grafana:latest
     cap_drop: [ ALL, ]
     container_name: grafana
     depends_on:
@@ -265,7 +265,8 @@ services:
     profiles: [ docker2, docker2b, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
-    user: "0"
+    tmpfs: [ "/tmp/:noexec,nosuid,uid=1000,gid=1000", ]
+    user: 1000:1000
     volumes:
       - ${DATA_DIR:-/opt/appdata}/grafana/:/var/lib/grafana/:rw
 
