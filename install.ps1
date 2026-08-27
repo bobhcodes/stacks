@@ -3,6 +3,7 @@ function Add-Program([string] $Id) {
 }
 
 Add-Program '7zip.7zip' # 7-Zip
+Add-Program 'AutoHotkey.AutoHotkey' # AutoHotkey
 Add-Program 'Mythicsoft.AgentRansack' # Agent Ransack
 Add-Program 'Brother.iPrintScan' # Brother iPrint&Scan
 #Add-Program 'Piriform.CCleaner' # CCleaner
