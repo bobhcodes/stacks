@@ -1,0 +1,42 @@
+[
+  {
+    "id": "health",
+    "execute-command": "printf",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command":
+    [
+      { "source": "string", "name": "Healthy" }
+    ],
+    "trigger-rule-mismatch-http-response-code": 401,
+    "trigger-rule":
+    {
+      "and":
+      [
+        {
+          "match":
+          {
+            "type": "regex",
+            "regex": "^140\\.82\\.115\\.[0-9]{1,3}$",
+            "parameter": { "source": "header", "name": "X-Forwarded-For" }
+          }
+        },
+        {
+          "match":
+          {
+            "type": "regex",
+            "regex": "^p(ing|ush)$",
+            "parameter": { "source": "header", "name": "X-Github-Event" }
+          }
+        },
+        {
+          "match":
+          {
+            "type": "payload-hmac-sha256",
+            "secret": "{{ getenv "GITHUB_WEBHOOK_SECRET" | js }}",
+            "parameter": { "source": "header", "name": "X-Hub-Signature-256" }
+          }
+        }
+      ]
+    }
+  }
+]
