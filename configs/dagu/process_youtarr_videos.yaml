@@ -1,0 +1,48 @@
+retry_policy:
+  limit: 0
+steps:
+  - id: get_nfo_files
+    action: ssh.run
+    with:
+      user: root
+      host: tana.bob.house
+      key: /run/secrets/id_rsa
+      known_host_file: /run/secrets/known_hosts
+      timeout_sec: 60s
+      command: |
+        find '/mnt/md1/youtarr/' -mmin -5 -type f -name *.nfo \
+        | jq --raw-input \
+        | jq --compact-output --slurp
+    output:
+      files:
+        from: stdout
+        decode: json
+  - id: file_loop
+    action: dag.run
+    parallel:
+      items: "${get_nfo_files.output.files}"
+    with:
+      dag: file_processor
+      params:
+        FILE: "${ITEM}"
+    depends: [ get_nfo_files, ]
+---
+name: file_processor
+retry_policy:
+  limit: 0
+params:
+  FILE: ""
+steps:
+  - id: work
+    action: ssh.run
+    with:
+      user: root
+      host: tana.bob.house
+      key: /run/secrets/id_rsa
+      known_host_file: /run/secrets/known_hosts
+      timeout_sec: 60s
+      command: |
+        dir=$(dirname --zero "${FILE}")
+        name=$(basename --zero "${dir}")
+        cp --force --verbose "${FILE}" "${FILE}.bak"
+        sed --in-place --regexp-extended --expression="s/<title>.+?<\/title>/<title>$name<\/title>/" "${FILE}"
