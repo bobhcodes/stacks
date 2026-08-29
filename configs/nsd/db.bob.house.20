@@ -4,7 +4,7 @@ $TTL 7200
 ; SOA
 
 @       IN      SOA    docker2.bob.house. hostmaster.bob.house. (
-                                         2026090400 ; Serial
+                                         2026090401 ; Serial
                                          7200       ; Refresh
                                          1800       ; Retry
                                          1209600    ; Expire
@@ -68,6 +68,7 @@ docker-kayshon      IN        CNAME                kayshon
 glances-kayshon     IN        CNAME                kayshon
 kopia-kayshon       IN        CNAME                kayshon
 traefik-kayshon     IN        CNAME                kayshon
+webhooks            IN        CNAME                kayshon
 www                 IN        CNAME                kayshon
 
 apache              IN        CNAME                docker2

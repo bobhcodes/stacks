@@ -79,3 +79,40 @@ services:
     profiles: [ wan, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
+
+  webhooks:
+    build:
+      dockerfile_inline: |
+        FROM alpine:latest
+        RUN apk add --no-cache --update curl webhook
+        ENTRYPOINT [ "webhook", "-hooks", "/app/webhooks.json", "-template", "-verbose" ]
+    cap_drop: [ ALL, ]
+    container_name: webhooks
+    depends_on:
+      traefik:
+        condition: service_healthy
+    env_file:
+      - ${REPOS_DIR:-/opt/repos}/Configurations/webhooks.env
+    labels:
+      traefik.docker.network: traefik-network
+
+      traefik.http.routers.webhooks-lan-router.entrypoints: lan
+      traefik.http.routers.webhooks-lan-router.rule: Host(`webhooks.bob.house`)
+      traefik.http.routers.webhooks-lan-router.service: webhooks-lan-service
+      traefik.http.routers.webhooks-lan-router.tls: "true"
+      traefik.http.services.webhooks-lan-service.loadbalancer.server.port: "9000"
+
+      traefik.http.routers.webhooks-wan-router.entrypoints: wan
+      traefik.http.routers.webhooks-wan-router.middlewares: secure-headers@file
+      traefik.http.routers.webhooks-wan-router.rule: Host(`webhooks.bob.house`)
+      traefik.http.routers.webhooks-wan-router.service: webhooks-wan-service
+      traefik.http.routers.webhooks-wan-router.tls: "true"
+      traefik.http.services.webhooks-wan-service.loadbalancer.server.port: "9000"
+    networks:
+      default: null
+      traefik: null
+    profiles: [ wan, ]
+    read_only: true
+    security_opt: [ no-new-privileges=true, ]
+    user: 1000:1000
+    volumes: [ "./configs/webhooks.json:/app/webhooks.json:ro", ]

@@ -109,6 +109,12 @@ http:
       rule: "Host(`traefik-kayshon.bob.house`)"
       service: "traefik-kayshon-service"
       tls: "true"
+    webhooks-router:
+      entryPoints:
+        - "lan"
+      rule: "Host(`webhooks.bob.house`)"
+      service: "webhooks-service"
+      tls: "true"
   services:
     glances-kayshon-service:
       loadBalancer:
@@ -143,6 +149,10 @@ http:
         servers:
         - url: "https://kayshon.bob.house"
     traefik-kayshon-service:
+      loadBalancer:
+        servers:
+        - url: "https://kayshon.bob.house"
+    webhooks-service:
       loadBalancer:
         servers:
         - url: "https://kayshon.bob.house"

@@ -628,6 +628,12 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: webhooks
+    group: containers
+    url: http://192.168.20.85:2375/v1.56/containers/webhooks/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: whisper-asr
     group: containers
     enabled: false
