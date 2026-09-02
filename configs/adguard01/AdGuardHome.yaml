@@ -120,6 +120,7 @@ filters:
 whitelist_filters: []
 user_rules:
   - '||adjust.com^'
+  - '||adnxs.net^'
   - '||bing.com^'
   - '||cloud.microsoft^'
   - '||duckduckgo.com^'

@@ -1,4 +1,6 @@
 schedule: CRON_TZ=Etc/UTC 0 2 * * *
+retry_policy:
+  limit: 0
 
 ssh:
   user: root

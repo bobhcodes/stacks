@@ -36,7 +36,7 @@ steps:
       url: https://ntfy.bob.house/364d0bdedc5b0bc275b048dc42e342460fb535dc1efcc5daf35460bf4ba4c26e
       body: "${format.output.formatted}"
       headers:
-        Accept: applicaton/json
+        Accept: application/json
         Content-Type: text/markdown
         Markdown: yes
         Priority: high
