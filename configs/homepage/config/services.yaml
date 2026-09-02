@@ -626,6 +626,12 @@
           type: jellyseerr
           url: https://jellyseerr.bob.house
           key: {{HOMEPAGE_VAR_JELLYSEERR_KEY}}
+    - jotty·page: &jotty
+        description: A self-hosted app for your checklists and notes
+        href: https://jotty.bob.house/
+        icon: jotty.png
+        server: docker2
+        container: jotty
     - JSONPath: &jsonpath
         description: JSONPath Online Evaluator
         href: https://jsonpath.bob.house/
@@ -1097,6 +1103,7 @@
     - IT-Tools: *ittools
     - JSONPath: *jsonpath
     - JSONPlaceholder: *jsonplaceholder
+    - jotty·page: *jotty
     - kiwix: *kiwix
     - LeafWiki: *leafwiki
     - Mockoon: *mockoon

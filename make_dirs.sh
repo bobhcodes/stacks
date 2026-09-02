@@ -21,6 +21,8 @@ if [[ $(hostname --long) =~ ^docker2 ]]; then
 	make_user_directory "/opt/appdata/apprise/"
 	make_user_directory "/opt/appdata/bagetter/"
 	make_user_directory "/opt/appdata/grafana/"
+	make_user_directory "/opt/appdata/jotty/config/"
+	make_user_directory "/opt/appdata/jotty/data/"
 	make_user_directory "/opt/appdata/rabbitmq/"
 	make_user_directory "/opt/appdata/snipo/"
 fi

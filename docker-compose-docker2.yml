@@ -306,6 +306,39 @@ services:
     profiles: [ docker2, docker2b, ]
     security_opt: [ no-new-privileges=true, ]
 
+  jotty:
+    image: ghcr.io/fccview/jotty:latest
+    cap_drop: [ ALL, ]
+    container_name: jotty
+    depends_on:
+      traefik:
+        condition: service_healthy
+    env_file:
+      - ${REPOS_DIR:-/opt/repos}/Configurations/jotty.env
+    environment:
+      APP_URL: https://jotty.bob.house
+      AUTH_MODE: oidc
+      INTERNAL_API_URL: http://localhost:3000
+      NODE_ENV: production
+      SSO_FALLBACK_LOCAL: no
+    labels:
+      traefik.docker.network: traefik-network
+      traefik.http.routers.jotty-router.entrypoints: lan
+      traefik.http.routers.jotty-router.rule: Host(`jotty.bob.house`)
+      traefik.http.routers.jotty-router.tls: "true"
+      traefik.http.services.jotty-service.loadbalancer.server.port: "3000"
+    networks:
+      default: null
+      traefik: null
+    profiles: [ docker2, docker2b, ]
+    read_only: true
+    security_opt: [ no-new-privileges=true, ]
+    tmpfs: [ "/app/.next/cache/:noexec,nosuid,uid=1000,gid=1000", ]
+    user: 1000:1000
+    volumes:
+      - ${DATA_DIR:-/opt/appdata}/jotty/config/:/app/config/:rw
+      - ${DATA_DIR:-/opt/appdata}/jotty/data/:/app/data/:rw
+
   jsonpath:
     image: ashphy/jsonpath-online-evaluator:latest
     cap_drop: [ ALL, ]

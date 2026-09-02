@@ -244,6 +244,12 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: jotty
+    group: containers
+    url: http://192.168.20.65:2375/v1.55/containers/jotty/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: jsonpath
     group: containers
     url: http://192.168.20.65:2375/v1.55/containers/jsonpath/json
