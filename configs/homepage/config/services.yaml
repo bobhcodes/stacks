@@ -830,12 +830,6 @@
         icon: pinepods.png
         server: tana-docker
         container: pinepods
-    - Planka: &planka
-        description: Realtime kanban board for workgroups
-        href: https://planka.bob.house/
-        icon: planka.svg
-        server: docker2
-        container: planka
     - Portainer: &portainer
         description: Making Docker and Kubernetes management easy
         href: https://portainer.bob.house/
@@ -1109,7 +1103,6 @@
     - Mockoon: *mockoon
     - Node RED: *nodered
     - NuGet: *nuget
-    - Planka: *planka
     - RabbitMQ: *rabbitmq
     - Restfox: *restfox
     - Snipo: *snipo

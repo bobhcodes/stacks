@@ -289,9 +289,6 @@ networks:
   pinepods:
     name: pinepods-network
     internal: "true"
-  planka:
-    name: planka-network
-    internal: "true"
   registry:
     name: registry-network
     internal: "true"

@@ -631,69 +631,6 @@ services:
     volumes:
       - ${DATA_DIR:-/opt/appdata}/paperless-ngx/redis/:/data/:rw
 
-  planka:
-    image: ghcr.io/plankanban/planka:latest
-    cap_drop: [ ALL, ]
-    container_name: planka
-    depends_on:
-      planka-db:
-        condition: service_healthy
-      traefik:
-        condition: service_healthy
-    environment:
-      BASE_URL: https://planka.bob.house
-      DATABASE_URL: postgresql://postgres@planka-db/planka
-      DEFAULT_ADMIN_EMAIL: demo@demo.demo # Do not remove if you want to prevent this user from being edited/deleted
-      DEFAULT_ADMIN_NAME: Demo Demo
-      DEFAULT_ADMIN_PASSWORD: demo
-      DEFAULT_ADMIN_USERNAME: demo
-      OIDC_ISSUER: https://authentik.bob.house/application/o/planka/
-      OIDC_SCOPES: openid profile email
-      OIDC_ADMIN_ROLES: authentik Admins
-      OIDC_ENFORCED: "true"
-    env_file:
-      - ${REPOS_DIR:-/opt/repos}/Configurations/planka.env
-    labels:
-      dev.dozzle.group: planka
-      traefik.docker.network: traefik-network
-      traefik.http.routers.planka-router.entrypoints: lan
-      traefik.http.routers.planka-router.rule: Host(`planka.bob.house`)
-      traefik.http.routers.planka-router.tls: "true"
-      traefik.http.services.planka-service.loadbalancer.server.port: "1337"
-    networks:
-      default: null
-      planka: null
-      traefik: null
-    profiles: [ docker2, docker2b, ]
-    security_opt: [ no-new-privileges=true, ]
-    volumes:
-      - ${DATA_DIR:-/opt/appdata}/planka/data:/app/data/:rw
-
-  planka-db:
-    image: postgres:16-alpine
-    cap_drop: [ ALL, ]
-    cap_add: [ CHOWN, DAC_READ_SEARCH, FOWNER, SETGID, SETUID, ]
-    container_name: planka-db
-    environment:
-      POSTGRES_DB: planka
-      POSTGRES_HOST_AUTH_METHOD: trust
-    healthcheck:
-      test:
-        - CMD-SHELL
-        - pg_isready -U postgres -d planka
-      timeout: 5s
-      interval: 10s
-      retries: 5
-    labels:
-      dev.dozzle.group: planka
-      traefik.enable: "false"
-    networks:
-      planka: null
-    profiles: [ docker2, docker2b, ]
-    security_opt: [ no-new-privileges=true, ]
-    volumes:
-      - ${DATA_DIR:-/opt/appdata}/planka/db/:/var/lib/postgresql/data/:rw
-
   rabbitmq:
     image: rabbitmq:management
     cap_drop: [ ALL, ]
@@ -722,7 +659,7 @@ services:
     cap_drop: [ ALL, ]
     container_name: readeck
     depends_on:
-      planka-db:
+      traefik:
         condition: service_healthy
     env_file:
       - ${REPOS_DIR:-/opt/repos}/Configurations/readeck.env

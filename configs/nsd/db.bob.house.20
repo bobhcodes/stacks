@@ -4,7 +4,7 @@ $TTL 7200
 ; SOA
 
 @       IN      SOA    docker2.bob.house. hostmaster.bob.house. (
-                                         2026090200 ; Serial
+                                         2026090400 ; Serial
                                          7200       ; Refresh
                                          1800       ; Retry
                                          1209600    ; Expire
@@ -94,7 +94,6 @@ moodist             IN        CNAME                docker2
 ntfy                IN        CNAME                docker2
 nuget               IN        CNAME                docker2
 paperless-ngx       IN        CNAME                docker2
-planka              IN        CNAME                docker2
 rabbitmq            IN        CNAME                docker2
 readeck             IN        CNAME                docker2
 registry            IN        CNAME                docker2

@@ -415,18 +415,6 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: planka
-    group: containers
-    url: http://192.168.20.65:2375/v1.56/containers/planka/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: planka-db
-    group: containers
-    url: http://192.168.20.65:2375/v1.56/containers/planka-db/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
   - name: portainer
     group: containers
     url: http://192.168.20.60:2375/v1.56/containers/portainer/json
