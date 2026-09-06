@@ -267,10 +267,10 @@
                 query: docker_n_containers_paused{host='freeman'}
               - label: stopped containers
                 query: docker_n_containers_stopped{host='freeman'}
-    - Glances KAYSHON: &glanceskayshon
-        href: https://glances-kayshon.bob.house/
+    - Glances WAN1: &glanceswan1
+        href: https://glances-wan1.bob.house/
         icon: glances.png
-        server: kayshon-docker
+        server: wan1-docker
         container: glances
         widgets:
           - type: prometheusmetric
@@ -280,21 +280,21 @@
               - label: uptime
                 format:
                   type: duration
-                query: system_uptime{host='kayshon'}
+                query: system_uptime{host='wan1'}
               - label: user cpu
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_user{host='kayshon'}[5m])
+                query: rate(cpu_usage_user{host='wan1'}[5m])
               - label: system cpu
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_system{host='kayshon'}[5m])
+                query: rate(cpu_usage_system{host='wan1'}[5m])
           - type: prometheusmetric
             url: https://prometheus.bob.house
             refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
@@ -304,23 +304,23 @@
                   type: bytes
                   options:
                     maximumFractionDigits: 1
-                query: disk_free{host='kayshon',path='/'}
+                query: disk_free{host='wan1',path='/'}
               - label: disk used
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
-                query: disk_used_percent{host='kayshon',path='/'}
+                query: disk_used_percent{host='wan1',path='/'}
           - type: prometheusmetric
             url: https://prometheus.bob.house
             refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
             metrics:
               - label: running containers
-                query: docker_n_containers_running{host='kayshon'}
+                query: docker_n_containers_running{host='wan1'}
               - label: paused containers
-                query: docker_n_containers_paused{host='kayshon'}
+                query: docker_n_containers_paused{host='wan1'}
               - label: stopped containers
-                query: docker_n_containers_stopped{host='kayshon'}
+                query: docker_n_containers_stopped{host='wan1'}
     - Glances DOCKER2: &glancesdocker2
         href: https://glances-docker2.bob.house/
         icon: glances.png
@@ -672,15 +672,15 @@
           url: http://kopia:51515
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
-    - Kopia KAYSHON: &kopiakayshon
+    - Kopia WAN1: &kopiawan1
         description: Cross-platform backup tool
-        href: https://kopia-kayshon.bob.house/
+        href: https://kopia-wan1.bob.house/
         icon: kopia.svg
-        server: kayshon-docker
+        server: wan1-docker
         container: kopia
         widget:
           type: kopia
-          url: https://kopia-kayshon.bob.house
+          url: https://kopia-wan1.bob.house
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
     - Kopia DOCKER2: &kopiadocker2
@@ -720,7 +720,7 @@
         description: A real wiki app without the heavy stack
         href: https://www.bob.house/
         icon: /icons/leafwiki.svg
-        server: kayshon-docker
+        server: wan1-docker
         container: leafwiki
     - Lidarr: &lidarr
         description: Looks and smells like Sonarr but made for music
@@ -742,7 +742,7 @@
         description: Trap AI web scrapers in an endless poison pit
         href: https://miasma.bob.house/
         icon: /icons/miasma.svg
-        server: kayshon-docker
+        server: wan1-docker
         container: miasma
     - Mockoon: &mockoon
         description: The easiest and quickest way to design and run mock REST APIs
@@ -990,13 +990,13 @@
         widget:
           type: traefik
           url: https://traefik-freeman.bob.house
-    - Traefik KAYSHON: &traefikkayshon
+    - Traefik WAN1: &traefikwan1
         description: HTTP reverse proxy and load balancer
-        href: https://traefik-kayshon.bob.house/dashboard/
+        href: https://traefik-wan1.bob.house/dashboard/
         icon: traefik-proxy.svg
         widget:
           type: traefik
-          url: https://traefik-kayshon.bob.house
+          url: https://traefik-wan1.bob.house
     - Traefik DOCKER2: &traefikdocker2
         description: HTTP reverse proxy and load balancer
         href: https://traefik-docker2.bob.house/dashboard/
@@ -1136,10 +1136,10 @@
           - Glances: *glancesfreeman
           - Kopia: *kopiafreeman
           - Traefik: *traefikfreeman
-    - Kayshon:
-          - Glances: *glanceskayshon
-          - Kopia: *kopiakayshon
-          - Traefik: *traefikkayshon
+    - WAN1:
+          - Glances: *glanceswan1
+          - Kopia: *kopiawan1
+          - Traefik: *traefikwan1
     - Docker2:
           - Glances: *glancesdocker2
           - Kopia: *kopiadocker2

@@ -47,7 +47,7 @@ layout:
       rows: 3
       style: column
       tab: Monitoring
-    Kayshon:
+    WAN1:
       rows: 3
       style: column
       tab: Monitoring

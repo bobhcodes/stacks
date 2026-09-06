@@ -52,13 +52,6 @@ http:
         stsPreload: true
         stsSeconds: 31536000
   routers:
-    glances-kayshon-router:
-      entryPoints:
-        - "lan"
-      priority: "99999"
-      rule: "Host(`glances-kayshon.bob.house`)"
-      service: "glances-kayshon-service"
-      tls: "true"
     homeassistant-router:
       entryPoints:
         - "lan"
@@ -70,19 +63,6 @@ http:
         - "lan"
       rule: "Host(`iot-switch.bob.house`)"
       service: "iot-switch-service"
-      tls: "true"
-    kopia-kayshon-router:
-      entryPoints:
-        - "lan"
-      priority: "99999"
-      rule: "Host(`kopia-kayshon.bob.house`)"
-      service: "kopia-kayshon-service"
-      tls: "true"
-    leafwiki-router:
-      entryPoints:
-        - "lan"
-      rule: "Host(`www.bob.house`)"
-      service: "leafwiki-service"
       tls: "true"
     main-router-router:
       entryPoints:
@@ -96,24 +76,7 @@ http:
       rule: "Host(`main-switch.bob.house`)"
       service: "main-switch-service"
       tls: "true"
-    miasma-router:
-      entryPoints:
-        - "lan"
-      rule: "Host(`miasma.bob.house`)"
-      service: "miasma-service"
-      tls: "true"
-    traefik-kayshon-router:
-      entryPoints:
-        - "lan"
-      priority: "99999"
-      rule: "Host(`traefik-kayshon.bob.house`)"
-      service: "traefik-kayshon-service"
-      tls: "true"
   services:
-    glances-kayshon-service:
-      loadBalancer:
-        servers:
-        - url: "https://kayshon.bob.house"
     homeassistant-service:
       loadBalancer:
         servers:
@@ -122,14 +85,6 @@ http:
       loadBalancer:
         servers:
         - url: "http://192.168.20.5"
-    kopia-kayshon-service:
-      loadBalancer:
-        servers:
-        - url: "https://kayshon.bob.house"
-    leafwiki-service:
-      loadBalancer:
-        servers:
-        - url: "https://kayshon.bob.house"
     main-router-service:
       loadBalancer:
         servers:
@@ -138,11 +93,3 @@ http:
       loadBalancer:
         servers:
         - url: "http://192.168.1.5"
-    miasma-service:
-      loadBalancer:
-        servers:
-        - url: "https://kayshon.bob.house"
-    traefik-kayshon-service:
-      loadBalancer:
-        servers:
-        - url: "https://kayshon.bob.house"

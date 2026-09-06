@@ -160,9 +160,9 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: glances KAYSHON
+  - name: glances WAN1
     group: containers
-    url: http://192.168.20.85:2375/v1.56/containers/glances/json
+    url: http://192.168.1.85:2375/v1.56/containers/glances/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -281,9 +281,9 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: kopia KAYSHON
+  - name: kopia WAN1
     group: containers
-    url: http://192.168.20.85:2375/v1.56/containers/kopia/json
+    url: http://192.168.1.85:2375/v1.56/containers/kopia/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -307,7 +307,7 @@ endpoints:
 
   - name: leafwiki
     group: containers
-    url: http://192.168.20.85:2375/v1.56/containers/leafwiki/json
+    url: http://192.168.1.85:2375/v1.56/containers/leafwiki/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -325,7 +325,7 @@ endpoints:
 
   - name: miasma
     group: containers
-    url: http://192.168.20.85:2375/v1.56/containers/miasma/json
+    url: http://192.168.1.85:2375/v1.56/containers/miasma/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -512,9 +512,9 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: socket-proxy KAYSHON
+  - name: socket-proxy WAN1
     group: containers
-    url: http://192.168.20.85:2375/v1.56/containers/socket-proxy/json
+    url: http://192.168.1.85:2375/v1.56/containers/socket-proxy/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -574,9 +574,9 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: traefik KAYSHON
+  - name: traefik WAN1
     group: containers
-    url: http://192.168.20.85:2375/v1.56/containers/traefik/json
+    url: http://192.168.1.85:2375/v1.56/containers/traefik/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 

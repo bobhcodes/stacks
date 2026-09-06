@@ -4,7 +4,7 @@ $TTL 7200
 ; SOA
 
 @       IN      SOA    docker2.bob.house. hostmaster.bob.house. (
-                                         2026090400 ; Serial
+                                         2026090600 ; Serial
                                          7200       ; Refresh
                                          1800       ; Retry
                                          1209600    ; Expire
@@ -21,7 +21,7 @@ badgey              IN        A                    192.168.1.50
 billups             IN        A                    192.168.1.75
 freeman             IN        A                    192.168.20.60
 haos                IN        A                    192.168.20.80
-kayshon             IN        A                    192.168.20.85
+wan1                IN        A                    192.168.1.85
 docker2             IN        A                    192.168.20.65
 shaxs               IN        A                    192.168.20.55
 tana                IN        A                    192.168.20.70
@@ -63,12 +63,12 @@ sshwifty            IN        CNAME                freeman
 traefik-freeman     IN        CNAME                freeman
 uptimekuma          IN        CNAME                freeman
 
-miasma              IN        CNAME                kayshon
-docker-kayshon      IN        CNAME                kayshon
-glances-kayshon     IN        CNAME                kayshon
-kopia-kayshon       IN        CNAME                kayshon
-traefik-kayshon     IN        CNAME                kayshon
-www                 IN        CNAME                kayshon
+miasma              IN        CNAME                wan1
+docker-wan1         IN        CNAME                wan1
+glances-wan1        IN        CNAME                wan1
+kopia-wan1          IN        CNAME                wan1
+traefik-wan1        IN        CNAME                wan1
+www                 IN        CNAME                wan1
 
 apache              IN        CNAME                docker2
 apprise             IN        CNAME                docker2

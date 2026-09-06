@@ -42,14 +42,14 @@
       }
     },
     {
-      "Title": "kayshon",
+      "Title": "wan1",
       "Type": "SSH",
-      "Host": "kayshon.bob.house:22",
+      "Host": "wan1.bob.house:22",
       "Meta": {
         "Authentication": "Private Key",
         "User": "root",
         "Private Key": "file:////run/secrets/id_rsa",
-        "Fingerprint": "SHA256:wFPmVGiYtmUO4NeC3dFNNXQpibPpDHh3fH59qWMmskE",
+        "Fingerprint": "SHA256:Uwhncp2PSqtCKfGf0Wq8ivOFp8MyNlseivyZyBAwiKs",
         "Encoding": "utf-8"
       }
     },

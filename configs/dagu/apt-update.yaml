@@ -7,7 +7,7 @@ steps:
     parallel:
       items:
         - freeman.bob.house
-        - kayshon.bob.house
+        - wan1.bob.house
         - docker2.bob.house
         - shaxs.bob.house
         - tana.bob.house

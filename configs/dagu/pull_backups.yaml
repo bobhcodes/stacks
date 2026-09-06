@@ -11,8 +11,8 @@ ssh:
 steps:
   - id: freeman
     run: rsync --archive --delete --partial --progress root@freeman.bob.house:/repository/ /mnt/md2/backup/freeman/
-  - id: kayshon
-    run: rsync --archive --delete --partial --progress root@kayshon.bob.house:/repository/ /mnt/md2/backup/kayshon/
+  - id: wan1
+    run: rsync --archive --delete --partial --progress root@wan1.bob.house:/repository/ /mnt/md2/backup/wan1/
   - id: docker2
     run: rsync --archive --delete --partial --progress root@docker2.bob.house:/repository/ /mnt/md2/backup/docker2/
   - id: shaxs
@@ -24,7 +24,7 @@ steps:
     depends: shaxs
   - id: get_disk_usage
     run: df --human-readable --print-type /mnt/md2/
-    depends: [freeman, kayshon, docker2, shaxs, tana, cctv]
+    depends: [freeman, wan1, docker2, shaxs, tana, cctv]
     output: USAGE
   - id: notify
     type: http
