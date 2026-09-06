@@ -43,15 +43,11 @@ layout:
       rows: 3
       style: column
       tab: Monitoring
-    Freeman:
-      rows: 3
-      style: column
-      tab: Monitoring
-    WAN1:
-      rows: 3
-      style: column
-      tab: Monitoring
     Docker2:
+      rows: 3
+      style: column
+      tab: Monitoring
+    Freeman:
       rows: 3
       style: column
       tab: Monitoring
@@ -60,6 +56,10 @@ layout:
       style: column
       tab: Monitoring
     Tana:
+      rows: 3
+      style: column
+      tab: Monitoring
+    WAN1:
       rows: 3
       style: column
       tab: Monitoring

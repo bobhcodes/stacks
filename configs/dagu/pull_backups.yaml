@@ -9,22 +9,22 @@ ssh:
   known_host_file: /run/secrets/known_hosts
 
 steps:
-  - id: freeman
-    run: rsync --archive --delete --partial --progress root@freeman.bob.house:/repository/ /mnt/md2/backup/freeman/
-  - id: wan1
-    run: rsync --archive --delete --partial --progress root@wan1.bob.house:/repository/ /mnt/md2/backup/wan1/
   - id: docker2
     run: rsync --archive --delete --partial --progress root@docker2.bob.house:/repository/ /mnt/md2/backup/docker2/
+  - id: freeman
+    run: rsync --archive --delete --partial --progress root@freeman.bob.house:/repository/ /mnt/md2/backup/freeman/
   - id: shaxs
     run: rsync --archive --delete --partial --progress root@shaxs.bob.house:/repository/ /mnt/md2/backup/shaxs/
   - id: tana
     run: rsync --archive --delete --partial --progress /repository/ /mnt/md2/backup/tana/
+  - id: wan1
+    run: rsync --archive --delete --partial --progress root@wan1.bob.house:/repository/ /mnt/md2/backup/wan1/
   - id: cctv
     run: rsync --archive --delete --partial --progress root@shaxs.bob.house:/recordings/ /mnt/md2/backup/cctv/
     depends: shaxs
   - id: get_disk_usage
     run: df --human-readable --print-type /mnt/md2/
-    depends: [freeman, wan1, docker2, shaxs, tana, cctv]
+    depends: [docker2, freeman, shaxs, tana, wan1, cctv]
     output: USAGE
   - id: notify
     type: http

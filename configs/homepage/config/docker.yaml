@@ -6,16 +6,12 @@ billups-docker:
   host: billups.bob.house
   port: 2375
 
-freeman-docker:
-  host: socket-proxy
-  port: 2375
-
-wan1-docker:
-  host: wan1.bob.house
-  port: 2375
-
 docker2:
   host: docker2.bob.house
+  port: 2375
+
+freeman-docker:
+  host: socket-proxy
   port: 2375
 
 shaxs-docker:
@@ -24,4 +20,8 @@ shaxs-docker:
 
 tana-docker:
   host: tana.bob.house
+  port: 2375
+
+wan1-docker:
+  host: wan1.bob.house
   port: 2375

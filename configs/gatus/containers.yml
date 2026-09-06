@@ -150,25 +150,19 @@ endpoints:
   - name: glances BILLUPS
     group: containers
     enabled: false
-    url: http://192.168.20.75:2375/v1.56/containers/glances/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: glances FREEMAN
-    group: containers
-    url: http://192.168.20.60:2375/v1.56/containers/glances/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: glances WAN1
-    group: containers
-    url: http://192.168.1.85:2375/v1.56/containers/glances/json
+    url: http://192.168.1.75:2375/v1.56/containers/glances/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
   - name: glances DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/glances/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: glances FREEMAN
+    group: containers
+    url: http://192.168.20.60:2375/v1.56/containers/glances/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -184,15 +178,21 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: gluetun FREEMAN
+  - name: glances WAN1
     group: containers
-    url: http://192.168.20.60:2375/v1.56/containers/gluetun/json
+    url: http://192.168.1.85:2375/v1.56/containers/glances/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
   - name: gluetun DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/gluetun/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: gluetun FREEMAN
+    group: containers
+    url: http://192.168.20.60:2375/v1.56/containers/gluetun/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -271,25 +271,19 @@ endpoints:
   - name: kopia BILLUPS
     group: containers
     enabled: false
-    url: http://192.168.20.75:2375/v1.56/containers/kopia/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: kopia FREEMAN
-    group: containers
-    url: http://192.168.20.60:2375/v1.56/containers/kopia/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: kopia WAN1
-    group: containers
-    url: http://192.168.1.85:2375/v1.56/containers/kopia/json
+    url: http://192.168.1.75:2375/v1.56/containers/kopia/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
   - name: kopia DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/kopia/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: kopia FREEMAN
+    group: containers
+    url: http://192.168.20.60:2375/v1.56/containers/kopia/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -302,6 +296,12 @@ endpoints:
   - name: kopia TANA
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/kopia/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: kopia WAN1
+    group: containers
+    url: http://192.168.1.85:2375/v1.56/containers/kopia/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -380,14 +380,14 @@ endpoints:
   - name: ollama
     group: containers
     enabled: false
-    url: http://192.168.20.75:2375/v1.56/containers/ollama/json
+    url: http://192.168.1.75:2375/v1.56/containers/ollama/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
   - name: open-webui
     group: containers
     enabled: false
-    url: http://192.168.20.75:2375/v1.56/containers/open-webui/json
+    url: http://192.168.1.75:2375/v1.56/containers/open-webui/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -502,25 +502,19 @@ endpoints:
   - name: socket-proxy BILLUPS
     group: containers
     enabled: false
-    url: http://192.168.20.75:2375/v1.56/containers/socket-proxy/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: socket-proxy FREEMAN
-    group: containers
-    url: http://192.168.20.60:2375/v1.56/containers/socket-proxy/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: socket-proxy WAN1
-    group: containers
-    url: http://192.168.1.85:2375/v1.56/containers/socket-proxy/json
+    url: http://192.168.1.75:2375/v1.56/containers/socket-proxy/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
   - name: socket-proxy DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/socket-proxy/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: socket-proxy FREEMAN
+    group: containers
+    url: http://192.168.20.60:2375/v1.56/containers/socket-proxy/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -536,10 +530,16 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: socket-proxy WAN1
+    group: containers
+    url: http://192.168.1.85:2375/v1.56/containers/socket-proxy/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: speakr
     group: containers
     enabled: false
-    url: http://192.168.20.75:2375/v1.56/containers/speakr/json
+    url: http://192.168.1.75:2375/v1.56/containers/speakr/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -564,25 +564,19 @@ endpoints:
   - name: traefik BILLUPS
     group: containers
     enabled: false
-    url: http://192.168.20.75:2375/v1.56/containers/traefik/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: traefik FREEMAN
-    group: containers
-    url: http://192.168.20.60:2375/v1.56/containers/traefik/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: traefik WAN1
-    group: containers
-    url: http://192.168.1.85:2375/v1.56/containers/traefik/json
+    url: http://192.168.1.75:2375/v1.56/containers/traefik/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
   - name: traefik DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/traefik/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: traefik FREEMAN
+    group: containers
+    url: http://192.168.20.60:2375/v1.56/containers/traefik/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -595,6 +589,12 @@ endpoints:
   - name: traefik TANA
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/traefik/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: traefik WAN1
+    group: containers
+    url: http://192.168.1.85:2375/v1.56/containers/traefik/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -631,7 +631,7 @@ endpoints:
   - name: whisper-asr
     group: containers
     enabled: false
-    url: http://192.168.20.75:2375/v1.56/containers/whisper-asr/json
+    url: http://192.168.1.75:2375/v1.56/containers/whisper-asr/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 

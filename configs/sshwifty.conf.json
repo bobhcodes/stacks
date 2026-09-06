@@ -30,6 +30,18 @@
       }
     },
     {
+      "Title": "docker2",
+      "Type": "SSH",
+      "Host": "docker2.bob.house:22",
+      "Meta": {
+        "Authentication": "Private Key",
+        "User": "root",
+        "Private Key": "file:////run/secrets/id_rsa",
+        "Fingerprint": "SHA256:0KxPQY3PcQHx488eeKI7vTXDdgiEqbupTtvVxsRdOIU",
+        "Encoding": "utf-8"
+      }
+    },
+    {
       "Title": "freeman",
       "Type": "SSH",
       "Host": "freeman.bob.house:22",
@@ -42,18 +54,6 @@
       }
     },
     {
-      "Title": "wan1",
-      "Type": "SSH",
-      "Host": "wan1.bob.house:22",
-      "Meta": {
-        "Authentication": "Private Key",
-        "User": "root",
-        "Private Key": "file:////run/secrets/id_rsa",
-        "Fingerprint": "SHA256:Uwhncp2PSqtCKfGf0Wq8ivOFp8MyNlseivyZyBAwiKs",
-        "Encoding": "utf-8"
-      }
-    },
-    {
       "Title": "haos",
       "Type": "SSH",
       "Host": "haos.bob.house:22",
@@ -62,18 +62,6 @@
         "User": "root",
         "Private Key": "file:////run/secrets/id_rsa",
         "Fingerprint": "SHA256:NHyk2TyDPA7v/UnoX4ng/pKH/KMR7I359+1O69GTgFg",
-        "Encoding": "utf-8"
-      }
-    },
-    {
-      "Title": "docker2",
-      "Type": "SSH",
-      "Host": "docker2.bob.house:22",
-      "Meta": {
-        "Authentication": "Private Key",
-        "User": "root",
-        "Private Key": "file:////run/secrets/id_rsa",
-        "Fingerprint": "SHA256:0KxPQY3PcQHx488eeKI7vTXDdgiEqbupTtvVxsRdOIU",
         "Encoding": "utf-8"
       }
     },
@@ -97,7 +85,19 @@
         "Authentication": "Private Key",
         "User": "root",
         "Private Key": "file:////run/secrets/id_rsa",
-        "Fingerprint": "SHA256:IHL/4TvGclhsGd+ZNIHmb1vJVn0R6mb/XyPYPqEicMc",
+        "Fingerprint": "SHA256:Uwhncp2PSqtCKfGf0Wq8ivOFp8MyNlseivyZyBAwiKs",
+        "Encoding": "utf-8"
+      }
+    },
+    {
+      "Title": "wan1",
+      "Type": "SSH",
+      "Host": "wan1.bob.house:22",
+      "Meta": {
+        "Authentication": "Private Key",
+        "User": "root",
+        "Private Key": "file:////run/secrets/id_rsa",
+        "Fingerprint": "SHA256:Uwhncp2PSqtCKfGf0Wq8ivOFp8MyNlseivyZyBAwiKs",
         "Encoding": "utf-8"
       }
     }
