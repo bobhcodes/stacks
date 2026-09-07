@@ -22,6 +22,17 @@ endpoints:
       - "[DNS_RCODE] == NOERROR"
     alerts: *alerts-definition
 
+  - name: docker2 .20
+    group: dns .20
+    url: 192.168.20.60
+    dns:
+      query-name: docker2.bob.house
+      query-type: A
+    conditions:
+      - "[BODY] == 192.168.20.65"
+      - "[DNS_RCODE] == NOERROR"
+    alerts: *alerts-definition
+
   - name: freeman .20
     group: dns .20
     url: 192.168.20.60
@@ -44,28 +55,6 @@ endpoints:
       - "[DNS_RCODE] == NOERROR"
     alerts: *alerts-definition
 
-  - name: kayshon .20
-    group: dns .20
-    url: 192.168.20.60
-    dns:
-      query-name: kayshon.bob.house
-      query-type: A
-    conditions:
-      - "[BODY] == 192.168.20.85"
-      - "[DNS_RCODE] == NOERROR"
-    alerts: *alerts-definition
-
-  - name: docker2 .20
-    group: dns .20
-    url: 192.168.20.60
-    dns:
-      query-name: docker2.bob.house
-      query-type: A
-    conditions:
-      - "[BODY] == 192.168.20.65"
-      - "[DNS_RCODE] == NOERROR"
-    alerts: *alerts-definition
-
   - name: shaxs .20
     group: dns .20
     url: 192.168.20.60
@@ -85,5 +74,16 @@ endpoints:
       query-type: A
     conditions:
       - "[BODY] == 192.168.20.70"
+      - "[DNS_RCODE] == NOERROR"
+    alerts: *alerts-definition
+
+  - name: wan1 .20
+    group: dns .20
+    url: 192.168.20.60
+    dns:
+      query-name: wan1.bob.house
+      query-type: A
+    conditions:
+      - "[BODY] == 192.168.1.85"
       - "[DNS_RCODE] == NOERROR"
     alerts: *alerts-definition

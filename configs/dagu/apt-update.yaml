@@ -6,11 +6,11 @@ steps:
     action: dag.run
     parallel:
       items:
-        - freeman.bob.house
-        - kayshon.bob.house
         - docker2.bob.house
+        - freeman.bob.house
         - shaxs.bob.house
         - tana.bob.house
+        - wan1.bob.house
     with:
       dag: update-processor
       params: "SERVER=${ITEM}"

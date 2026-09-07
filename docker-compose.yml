@@ -4,7 +4,7 @@ include:
   - ./docker-compose-llm.yml
   - ./docker-compose-media.yml
   - ./docker-compose-security.yml
-  - ./docker-compose-wan.yml
+  - ./docker-compose-wan1.yml
 
 services:
   glances:

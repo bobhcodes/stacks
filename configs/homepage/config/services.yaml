@@ -179,14 +179,14 @@
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_user{host='billups'}[5m])
+                query: rate(cpu_usage_user{cpu='cpu-total',host='billups'}[5m])
               - label: system cpu
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_system{host='billups'}[5m])
+                query: rate(cpu_usage_system{cpu='cpu-total',host='billups'}[5m])
           - type: prometheusmetric
             url: https://prometheus.bob.house
             refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
@@ -213,114 +213,6 @@
                 query: docker_n_containers_paused{host='billups'}
               - label: stopped containers
                 query: docker_n_containers_stopped{host='billups'}
-    - Glances FREEMAN: &glancesfreeman
-        href: https://glances-freeman.bob.house/
-        icon: glances.png
-        server: freeman-docker
-        container: glances
-        widgets:
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: uptime
-                format:
-                  type: duration
-                query: system_uptime{host='freeman'}
-              - label: user cpu
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                  scale: 100
-                query: rate(cpu_usage_user{host='freeman'}[5m])
-              - label: system cpu
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                  scale: 100
-                query: rate(cpu_usage_system{host='freeman'}[5m])
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: free disk
-                format:
-                  type: bytes
-                  options:
-                    maximumFractionDigits: 1
-                query: disk_free{host='freeman',path='/'}
-              - label: disk used
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                query: disk_used_percent{host='freeman',path='/'}
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: running containers
-                query: docker_n_containers_running{host='freeman'}
-              - label: paused containers
-                query: docker_n_containers_paused{host='freeman'}
-              - label: stopped containers
-                query: docker_n_containers_stopped{host='freeman'}
-    - Glances KAYSHON: &glanceskayshon
-        href: https://glances-kayshon.bob.house/
-        icon: glances.png
-        server: kayshon-docker
-        container: glances
-        widgets:
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: uptime
-                format:
-                  type: duration
-                query: system_uptime{host='kayshon'}
-              - label: user cpu
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                  scale: 100
-                query: rate(cpu_usage_user{host='kayshon'}[5m])
-              - label: system cpu
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                  scale: 100
-                query: rate(cpu_usage_system{host='kayshon'}[5m])
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: free disk
-                format:
-                  type: bytes
-                  options:
-                    maximumFractionDigits: 1
-                query: disk_free{host='kayshon',path='/'}
-              - label: disk used
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                query: disk_used_percent{host='kayshon',path='/'}
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: running containers
-                query: docker_n_containers_running{host='kayshon'}
-              - label: paused containers
-                query: docker_n_containers_paused{host='kayshon'}
-              - label: stopped containers
-                query: docker_n_containers_stopped{host='kayshon'}
     - Glances DOCKER2: &glancesdocker2
         href: https://glances-docker2.bob.house/
         icon: glances.png
@@ -341,14 +233,14 @@
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_user{host='docker2'}[5m])
+                query: rate(cpu_usage_user{cpu='cpu-total',host='docker2'}[5m])
               - label: system cpu
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_system{host='docker2'}[5m])
+                query: rate(cpu_usage_system{cpu='cpu-total',host='docker2'}[5m])
           - type: prometheusmetric
             url: https://prometheus.bob.house
             refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
@@ -375,6 +267,60 @@
                 query: docker_n_containers_paused{host='docker2'}
               - label: stopped containers
                 query: docker_n_containers_stopped{host='docker2'}
+    - Glances FREEMAN: &glancesfreeman
+        href: https://glances-freeman.bob.house/
+        icon: glances.png
+        server: freeman-docker
+        container: glances
+        widgets:
+          - type: prometheusmetric
+            url: https://prometheus.bob.house
+            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
+            metrics:
+              - label: uptime
+                format:
+                  type: duration
+                query: system_uptime{host='freeman'}
+              - label: user cpu
+                format:
+                  type: percent
+                  options:
+                    maximumFractionDigits: 1
+                  scale: 100
+                query: rate(cpu_usage_user{cpu='cpu-total',host='freeman'}[5m])
+              - label: system cpu
+                format:
+                  type: percent
+                  options:
+                    maximumFractionDigits: 1
+                  scale: 100
+                query: rate(cpu_usage_system{cpu='cpu-total',host='freeman'}[5m])
+          - type: prometheusmetric
+            url: https://prometheus.bob.house
+            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
+            metrics:
+              - label: free disk
+                format:
+                  type: bytes
+                  options:
+                    maximumFractionDigits: 1
+                query: disk_free{host='freeman',path='/'}
+              - label: disk used
+                format:
+                  type: percent
+                  options:
+                    maximumFractionDigits: 1
+                query: disk_used_percent{host='freeman',path='/'}
+          - type: prometheusmetric
+            url: https://prometheus.bob.house
+            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
+            metrics:
+              - label: running containers
+                query: docker_n_containers_running{host='freeman'}
+              - label: paused containers
+                query: docker_n_containers_paused{host='freeman'}
+              - label: stopped containers
+                query: docker_n_containers_stopped{host='freeman'}
     - Glances SHAXS: &glancesshaxs
         href: https://glances-shaxs.bob.house/
         icon: glances.png
@@ -395,14 +341,14 @@
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_user{host='shaxs'}[5m])
+                query: rate(cpu_usage_user{cpu='cpu-total',host='shaxs'}[5m])
               - label: system cpu
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_system{host='shaxs'}[5m])
+                query: rate(cpu_usage_system{cpu='cpu-total',host='shaxs'}[5m])
           - type: prometheusmetric
             url: https://prometheus.bob.house
             refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
@@ -449,14 +395,14 @@
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_user{host='tana'}[5m])
+                query: rate(cpu_usage_user{cpu='cpu-total',host='tana'}[5m])
               - label: system cpu
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_system{host='tana'}[5m])
+                query: rate(cpu_usage_system{cpu='cpu-total',host='tana'}[5m])
           - type: prometheusmetric
             url: https://prometheus.bob.house
             refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
@@ -489,16 +435,60 @@
                 query: docker_n_containers_paused{host='tana'}
               - label: stopped containers
                 query: docker_n_containers_stopped{host='tana'}
-    - Gluetun FREEMAN: &gluetunfreeman
-        description: VPN client for multiple VPN providers using OpenVPN or Wireguard, DNS over TLS
-        icon: gluetun.svg
-        server: freeman-docker
-        container: gluetun
-        widget:
-          type: gluetun
-          url: https://gluetun-freeman.bob.house/
-          key: {{HOMEPAGE_VAR_GLUETUN_KEY}}
-          version: 2
+    - Glances WAN1: &glanceswan1
+        href: https://glances-wan1.bob.house/
+        icon: glances.png
+        server: wan1-docker
+        container: glances
+        widgets:
+          - type: prometheusmetric
+            url: https://prometheus.bob.house
+            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
+            metrics:
+              - label: uptime
+                format:
+                  type: duration
+                query: system_uptime{host='wan1'}
+              - label: user cpu
+                format:
+                  type: percent
+                  options:
+                    maximumFractionDigits: 1
+                  scale: 100
+                query: rate(cpu_usage_user{cpu='cpu-total',host='wan1'}[5m])
+              - label: system cpu
+                format:
+                  type: percent
+                  options:
+                    maximumFractionDigits: 1
+                  scale: 100
+                query: rate(cpu_usage_system{cpu='cpu-total',host='wan1'}[5m])
+          - type: prometheusmetric
+            url: https://prometheus.bob.house
+            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
+            metrics:
+              - label: free disk
+                format:
+                  type: bytes
+                  options:
+                    maximumFractionDigits: 1
+                query: disk_free{host='wan1',path='/'}
+              - label: disk used
+                format:
+                  type: percent
+                  options:
+                    maximumFractionDigits: 1
+                query: disk_used_percent{host='wan1',path='/'}
+          - type: prometheusmetric
+            url: https://prometheus.bob.house
+            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
+            metrics:
+              - label: running containers
+                query: docker_n_containers_running{host='wan1'}
+              - label: paused containers
+                query: docker_n_containers_paused{host='wan1'}
+              - label: stopped containers
+                query: docker_n_containers_stopped{host='wan1'}
     - Gluetun DOCKER2: &gluetundocker2
         description: VPN client for multiple VPN providers using OpenVPN or Wireguard, DNS over TLS
         icon: gluetun.svg
@@ -507,6 +497,16 @@
         widget:
           type: gluetun
           url: https://gluetun-docker2.bob.house/
+          key: {{HOMEPAGE_VAR_GLUETUN_KEY}}
+          version: 2
+    - Gluetun FREEMAN: &gluetunfreeman
+        description: VPN client for multiple VPN providers using OpenVPN or Wireguard, DNS over TLS
+        icon: gluetun.svg
+        server: freeman-docker
+        container: gluetun
+        widget:
+          type: gluetun
+          url: https://gluetun-freeman.bob.house/
           key: {{HOMEPAGE_VAR_GLUETUN_KEY}}
           version: 2
     - Gluetun TANA: &gluetuntana
@@ -661,28 +661,6 @@
           url: https://kopia-billups.bob.house
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
-    - Kopia FREEMAN: &kopiafreeman
-        description: Cross-platform backup tool
-        href: https://kopia-freeman.bob.house/
-        icon: kopia.svg
-        server: freeman-docker
-        container: kopia
-        widget:
-          type: kopia
-          url: http://kopia:51515
-          username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
-          password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
-    - Kopia KAYSHON: &kopiakayshon
-        description: Cross-platform backup tool
-        href: https://kopia-kayshon.bob.house/
-        icon: kopia.svg
-        server: kayshon-docker
-        container: kopia
-        widget:
-          type: kopia
-          url: https://kopia-kayshon.bob.house
-          username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
-          password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
     - Kopia DOCKER2: &kopiadocker2
         description: Cross-platform backup tool
         href: https://kopia-docker2.bob.house/
@@ -692,6 +670,17 @@
         widget:
           type: kopia
           url: https://kopia-docker2.bob.house
+          username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
+          password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
+    - Kopia FREEMAN: &kopiafreeman
+        description: Cross-platform backup tool
+        href: https://kopia-freeman.bob.house/
+        icon: kopia.svg
+        server: freeman-docker
+        container: kopia
+        widget:
+          type: kopia
+          url: http://kopia:51515
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
     - Kopia SHAXS: &kopiashaxs
@@ -716,11 +705,22 @@
           url: https://kopia-tana.bob.house
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
+    - Kopia WAN1: &kopiawan1
+        description: Cross-platform backup tool
+        href: https://kopia-wan1.bob.house/
+        icon: kopia.svg
+        server: wan1-docker
+        container: kopia
+        widget:
+          type: kopia
+          url: https://kopia-wan1.bob.house
+          username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
+          password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
     - LeafWiki: &leafwiki
         description: A real wiki app without the heavy stack
         href: https://www.bob.house/
         icon: /icons/leafwiki.svg
-        server: kayshon-docker
+        server: wan1-docker
         container: leafwiki
     - Lidarr: &lidarr
         description: Looks and smells like Sonarr but made for music
@@ -742,7 +742,7 @@
         description: Trap AI web scrapers in an endless poison pit
         href: https://miasma.bob.house/
         icon: /icons/miasma.svg
-        server: kayshon-docker
+        server: wan1-docker
         container: miasma
     - Mockoon: &mockoon
         description: The easiest and quickest way to design and run mock REST APIs
@@ -981,22 +981,6 @@
         widget:
           type: traefik
           url: https://traefik-billups.bob.house
-    - Traefik FREEMAN: &traefikfreeman
-        description: HTTP reverse proxy and load balancer
-        href: https://traefik-freeman.bob.house/dashboard/
-        icon: traefik-proxy.svg
-        server: freeman-docker
-        container: traefik
-        widget:
-          type: traefik
-          url: https://traefik-freeman.bob.house
-    - Traefik KAYSHON: &traefikkayshon
-        description: HTTP reverse proxy and load balancer
-        href: https://traefik-kayshon.bob.house/dashboard/
-        icon: traefik-proxy.svg
-        widget:
-          type: traefik
-          url: https://traefik-kayshon.bob.house
     - Traefik DOCKER2: &traefikdocker2
         description: HTTP reverse proxy and load balancer
         href: https://traefik-docker2.bob.house/dashboard/
@@ -1006,6 +990,15 @@
         widget:
           type: traefik
           url: https://traefik-docker2.bob.house
+    - Traefik FREEMAN: &traefikfreeman
+        description: HTTP reverse proxy and load balancer
+        href: https://traefik-freeman.bob.house/dashboard/
+        icon: traefik-proxy.svg
+        server: freeman-docker
+        container: traefik
+        widget:
+          type: traefik
+          url: https://traefik-freeman.bob.house
     - Traefik SHAXS: &traefikshaxs
         description: HTTP reverse proxy and load balancer
         href: https://traefik-shaxs.bob.house/dashboard/
@@ -1024,6 +1017,13 @@
         widget:
           type: traefik
           url: https://traefik-tana.bob.house
+    - Traefik WAN1: &traefikwan1
+        description: HTTP reverse proxy and load balancer
+        href: https://traefik-wan1.bob.house/dashboard/
+        icon: traefik-proxy.svg
+        widget:
+          type: traefik
+          url: https://traefik-wan1.bob.house
     - Trilium: &trilium
         description: Hierarchical note taking application
         href: https://trilium.bob.house/
@@ -1132,18 +1132,14 @@
           - Glances: *glancesbillups
           - Kopia: *kopiabillups
           - Traefik: *traefikbillups
-    - Freeman:
-          - Glances: *glancesfreeman
-          - Kopia: *kopiafreeman
-          - Traefik: *traefikfreeman
-    - Kayshon:
-          - Glances: *glanceskayshon
-          - Kopia: *kopiakayshon
-          - Traefik: *traefikkayshon
     - Docker2:
           - Glances: *glancesdocker2
           - Kopia: *kopiadocker2
           - Traefik: *traefikdocker2
+    - Freeman:
+          - Glances: *glancesfreeman
+          - Kopia: *kopiafreeman
+          - Traefik: *traefikfreeman
     - Shaxs:
           - Glances: *glancesshaxs
           - Kopia: *kopiashaxs
@@ -1152,6 +1148,10 @@
           - Glances: *glancestana
           - Kopia: *kopiatana
           - Traefik: *traefiktana
+    - WAN1:
+          - Glances: *glanceswan1
+          - Kopia: *kopiawan1
+          - Traefik: *traefikwan1
 
 - Media:
     - Feishin: *feishin

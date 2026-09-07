@@ -22,28 +22,6 @@ endpoints:
       - "[DNS_RCODE] == NOERROR"
     alerts: *alerts-definition
 
-  - name: freeman .1
-    group: dns .1
-    url: 192.168.1.50
-    dns:
-      query-name: freeman.bob.house
-      query-type: A
-    conditions:
-      - "[BODY] == 192.168.1.60"
-      - "[DNS_RCODE] == NOERROR"
-    alerts: *alerts-definition
-
-  - name: kayshon .1
-    group: dns .1
-    url: 192.168.1.50
-    dns:
-      query-name: kayshon.bob.house
-      query-type: A
-    conditions:
-      - "[BODY] == 192.168.20.85"
-      - "[DNS_RCODE] == NOERROR"
-    alerts: *alerts-definition
-
   - name: docker2 .1
     group: dns .1
     url: 192.168.1.50
@@ -52,6 +30,17 @@ endpoints:
       query-type: A
     conditions:
       - "[BODY] == 192.168.1.65"
+      - "[DNS_RCODE] == NOERROR"
+    alerts: *alerts-definition
+
+  - name: freeman .1
+    group: dns .1
+    url: 192.168.1.50
+    dns:
+      query-name: freeman.bob.house
+      query-type: A
+    conditions:
+      - "[BODY] == 192.168.1.60"
       - "[DNS_RCODE] == NOERROR"
     alerts: *alerts-definition
 
@@ -74,5 +63,16 @@ endpoints:
       query-type: A
     conditions:
       - "[BODY] == 192.168.1.70"
+      - "[DNS_RCODE] == NOERROR"
+    alerts: *alerts-definition
+
+  - name: wan1 .1
+    group: dns .1
+    url: 192.168.1.50
+    dns:
+      query-name: wan1.bob.house
+      query-type: A
+    conditions:
+      - "[BODY] == 192.168.1.85"
       - "[DNS_RCODE] == NOERROR"
     alerts: *alerts-definition

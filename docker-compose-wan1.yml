@@ -38,7 +38,7 @@ services:
       traefik.http.services.leafwiki-wan-service.loadbalancer.server.port: "8080"
     networks:
       traefik: null
-    profiles: [ wan, ]
+    profiles: [ wan1, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
     tmpfs: [ "/tmp/:noexec,nosuid,uid=1000,gid=1000", ]
@@ -76,6 +76,6 @@ services:
     networks:
       default: null
       traefik: null
-    profiles: [ wan, ]
+    profiles: [ wan1, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]

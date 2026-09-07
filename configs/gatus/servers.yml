@@ -55,6 +55,34 @@ suites:
           - "[STATUS] == 200"
           - "len([BODY]) > 0"
         alerts: *alerts-definition
+  - name: docker2
+    group: servers
+    interval: 1m
+    timeout: 30s
+    endpoints:
+      - name: ping docker2 .1
+        url: icmp://192.168.1.65
+        conditions: *ping-conditions-definition
+        alerts: *alerts-definition
+      - name: ping docker2 .20
+        url: icmp://192.168.20.65
+        conditions: *ping-conditions-definition
+        alerts: *alerts-definition
+      - name: telegraf docker2
+        url: http://192.168.20.65:9273/metrics
+        conditions: *telegraf-conditions-definition
+        alerts: *alerts-definition
+      - name: docker docker2
+        url: http://192.168.20.65:2375/v1.56/_ping
+        conditions: *docker-conditions-definition
+        alerts: *alerts-definition
+      - name: traefik docker2
+        url: https://192.168.20.65/dashboard/
+        headers:
+          Host: traefik-docker2.bob.house
+        client: *traefik-client-definition
+        conditions: *traefik-conditions-definition
+        alerts: *alerts-definition
   - name: freeman
     group: servers
     interval: 1m
@@ -95,61 +123,6 @@ suites:
       - name: curl homeassistant
         url: http://192.168.20.80:8123
         conditions: *telegraf-conditions-definition
-        alerts: *alerts-definition
-  - name: kayshon
-    group: servers
-    interval: 1m
-    timeout: 30s
-    endpoints:
-      - name: ping kayshon .20
-        url: icmp://192.168.20.85
-        conditions: *ping-conditions-definition
-        alerts: *alerts-definition
-      - name: telegraf kayshon
-        url: http://192.168.20.85:9273/metrics
-        conditions: *telegraf-conditions-definition
-        alerts: *alerts-definition
-      - name: traefik kayshon
-        url: https://192.168.20.85/dashboard/
-        headers:
-          Host: traefik-kayshon.bob.house
-        client: *traefik-client-definition
-        conditions: *traefik-conditions-definition
-        alerts: *alerts-definition
-      - name: leafwiki kayshon
-        url: https://192.168.20.85/homepage
-        headers:
-          Host: www.bob.house
-        client: *traefik-client-definition
-        conditions: *traefik-conditions-definition
-        alerts: *alerts-definition
-  - name: docker2
-    group: servers
-    interval: 1m
-    timeout: 30s
-    endpoints:
-      - name: ping docker2 .1
-        url: icmp://192.168.1.65
-        conditions: *ping-conditions-definition
-        alerts: *alerts-definition
-      - name: ping docker2 .20
-        url: icmp://192.168.20.65
-        conditions: *ping-conditions-definition
-        alerts: *alerts-definition
-      - name: telegraf docker2
-        url: http://192.168.20.65:9273/metrics
-        conditions: *telegraf-conditions-definition
-        alerts: *alerts-definition
-      - name: docker docker2
-        url: http://192.168.20.65:2375/v1.56/_ping
-        conditions: *docker-conditions-definition
-        alerts: *alerts-definition
-      - name: traefik docker2
-        url: https://192.168.20.65/dashboard/
-        headers:
-          Host: traefik-docker2.bob.house
-        client: *traefik-client-definition
-        conditions: *traefik-conditions-definition
         alerts: *alerts-definition
   - name: shaxs
     group: servers
@@ -204,6 +177,33 @@ suites:
         url: https://192.168.20.70/dashboard/
         headers:
           Host: traefik-tana.bob.house
+        client: *traefik-client-definition
+        conditions: *traefik-conditions-definition
+        alerts: *alerts-definition
+  - name: wan1
+    group: servers
+    interval: 1m
+    timeout: 30s
+    endpoints:
+      - name: ping wan1 .1
+        url: icmp://192.168.1.85
+        conditions: *ping-conditions-definition
+        alerts: *alerts-definition
+      - name: telegraf wan1
+        url: http://192.168.1.85:9273/metrics
+        conditions: *telegraf-conditions-definition
+        alerts: *alerts-definition
+      - name: traefik wan1
+        url: https://192.168.1.85/dashboard/
+        headers:
+          Host: traefik-wan1.bob.house
+        client: *traefik-client-definition
+        conditions: *traefik-conditions-definition
+        alerts: *alerts-definition
+      - name: leafwiki wan1
+        url: https://192.168.1.85/homepage
+        headers:
+          Host: www.bob.house
         client: *traefik-client-definition
         conditions: *traefik-conditions-definition
         alerts: *alerts-definition
