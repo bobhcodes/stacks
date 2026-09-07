@@ -1,0 +1,37 @@
+name: DNS Zone CNAME Uniqueness Check
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  cname-uniqueness:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate CNAME uniqueness
+        env:
+          ZONE_FILE_1: "configs/nsd/db.bob.house.1"
+          ZONE_FILE_2: "configs/nsd/db.bob.house.20"
+        run: |
+          status=0
+          for zone in "$ZONE_FILE_1" "$ZONE_FILE_2"; do
+            duplicates=$( \
+              grep 'CNAME' "$zone" \
+                | grep --only-matching --perl-regexp '^[\d\w-]+' \
+                | sort \
+                | uniq --repeated)
+            if [[ -n "$duplicates" ]]; then
+              status=1
+              echo $duplicates
+            fi
+          done
+
+          if [[ $status -eq 1 ]]; then
+            exit 1
+          fi
