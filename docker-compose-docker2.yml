@@ -200,7 +200,9 @@ services:
     profiles: [ docker2, docker2a, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
-    tmpfs: [ "/store/:noexec,nosuid,uid=1000,gid=1000", ]
+    tmpfs:
+      - /store/:noexec,nosuid,uid=1000,gid=1000
+      - /tmp/:noexec,nosuid,uid=1000,gid=1000
     user: 1000:1000
     networks:
       default: null
