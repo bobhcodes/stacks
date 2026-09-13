@@ -1,6 +1,6 @@
 services:
   frigate:
-    image: ghcr.io/blakeblackshear/frigate:0.17.2
+    image: ghcr.io/blakeblackshear/frigate:${FRIGATE_IMAGE_TAG?:missing frigate image tag}
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, FOWNER, SETGID, SETUID, ]
     container_name: frigate
@@ -26,6 +26,7 @@ services:
     profiles: [ security, ]
     security_opt: [ no-new-privileges=true, ]
     shm_size: 192mb
+    stop_grace_period: 30s # allow enough time to shut down the various services
     volumes:
       - ./configs/frigate.yaml:/config/config.yaml:rw
       - ${DATA_DIR:-/opt/appdata}/frigate/:/config/:rw

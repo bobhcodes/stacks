@@ -76,8 +76,14 @@ cameras:
       contour_area: 20
       improve_contrast: true
       mask:
-        - 0,0,0,0.046,0.354,0.045,0.354,0
-        - 1,0,0.57,0,0.55,0.143,1,0.781
+        motion_mask_1:
+          friendly_name: Motion Mask 1
+          enabled: true
+          coordinates: 0,0,0,0.046,0.354,0.045,0.354,0
+        motion_mask_2:
+          friendly_name: Motion Mask 2
+          enabled: true
+          coordinates: 1,0,0.57,0,0.55,0.143,1,0.781
     zones:
       garden:
         coordinates: 0,1,0,0.364,0.588,0.173,1,0.784,1,1
@@ -91,4 +97,4 @@ camera_groups:
     icon: LuCar
     order: 0
 
-version: 0.17-0
+version: 0.18-0
