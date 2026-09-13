@@ -433,9 +433,9 @@ services:
       dockerfile_inline: |
         FROM alpine:${ALPINE_IMAGE_TAG:?missing alpine image tag}
         RUN apk add --no-cache --update nsd
+        USER 100:101
         CMD ["sh", "-c", "nsd; sleep infinity"]
     cap_drop: [ ALL, ]
-    cap_add: [ SETGID, SETUID, ]
     container_name: nsd01
     healthcheck:
       test: ["CMD-SHELL", "nslookup -type=CNAME homepage.bob.house 127.0.0.1"]
@@ -454,7 +454,9 @@ services:
       - 192.168.1.65:53:53/tcp
       - 192.168.1.65:53:53/udp
     profiles: [ docker2, docker2a, ]
+    read_only: true
     security_opt: [ no-new-privileges=true, ]
+    tmpfs: [ "/var/db/nsd/:noexec,nosuid,uid=100,gid=101", ]
     volumes:
       - ./configs/nsd/nsd.conf:/etc/nsd/nsd.conf:ro
       - ./configs/nsd/db.bob.house.1:/zones/db.bob.house:ro
@@ -464,9 +466,9 @@ services:
       dockerfile_inline: |
         FROM alpine:${ALPINE_IMAGE_TAG:?missing alpine image tag}
         RUN apk add --no-cache --update nsd
+        USER 100:101
         CMD ["sh", "-c", "nsd; sleep infinity"]
     cap_drop: [ ALL, ]
-    cap_add: [ SETGID, SETUID, ]
     container_name: nsd20
     healthcheck:
       test: ["CMD-SHELL", "nslookup -type=CNAME homepage.bob.house 127.0.0.1"]
@@ -485,7 +487,9 @@ services:
       - 192.168.20.65:53:53/tcp
       - 192.168.20.65:53:53/udp
     profiles: [ docker2, docker2a, ]
+    read_only: true
     security_opt: [ no-new-privileges=true, ]
+    tmpfs: [ "/var/db/nsd/:noexec,nosuid,uid=100,gid=101", ]
     volumes:
       - ./configs/nsd/nsd.conf:/etc/nsd/nsd.conf:ro
       - ./configs/nsd/db.bob.house.20:/zones/db.bob.house:ro
