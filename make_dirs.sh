@@ -27,6 +27,11 @@ if [[ $(hostname --long) =~ ^docker2 ]]; then
 	make_user_directory "/opt/appdata/snipo/"
 fi
 
+if [[ $(hostname --long) =~ ^tana ]]; then
+	echo tana
+	make_user_directory "/mnt/md1/MediaThumbnails/navidrome/"
+fi
+
 if [[ $(hostname --long) =~ ^wan1 ]]; then
 	echo wan1
 	make_user_directory "/opt/appdata/leafwiki/"

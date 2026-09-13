@@ -294,11 +294,14 @@ services:
     profiles: [ media1, media1a, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
-    tmpfs: [ "/data/cache/:noexec,nosuid,uid=1000,gid=1000", /run/, ]
+    tmpfs:
+      - /run/:noexec,nosuid,uid=1000,gid=1000
+      - /tmp/:noexec,nosuid,uid=1000,gid=1000
     user: 1000:1000
     volumes:
       - ${DATA_DIR:-/opt/appdata}/navidrome/:/data/:rw
       - /mnt/md1/music/:/music/:rw
+      - /mnt/md1/MediaThumbnails/navidrome/:/data/cache/:rw
 
   nodered:
     image: nodered/node-red:latest
