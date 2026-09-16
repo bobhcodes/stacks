@@ -1,0 +1,87 @@
+accesslog: false
+
+api:
+  dashboard: true
+  insecure: true
+
+certificatesResolvers:
+  cloudflare-resolver:
+    acme:
+      dnsChallenge:
+        provider: cloudflare
+        resolvers: [ 1.1.1.1:53, 1.0.0.1:53, ]
+      email: mail@bob.codes
+      storage: /var/certs/acme.json
+
+entryPoints:
+  docker:
+    address: :2375
+    http:
+      aliasHeadersStrategy: delete
+  lan:
+    address: :443
+    http:
+      aliasHeadersStrategy: delete
+  proxy:
+    address: :3128
+    http:
+      aliasHeadersStrategy: delete
+  rabbitmq:
+    address: :5672
+    http:
+      aliasHeadersStrategy: delete
+  ssh:
+    address: :222
+    http:
+      aliasHeadersStrategy: delete
+  torrent:
+    address: :6881
+    http:
+      aliasHeadersStrategy: delete
+  traefik:
+    address: :8080
+    http:
+      aliasHeadersStrategy: delete
+  wan:
+    address: :4443
+    http:
+      aliasHeadersStrategy: delete
+      encodedCharacters:
+        allowEncodedSlash: false          # %2F - Default: true
+        allowEncodedBackSlash: false      # %5C - Default: true
+        allowEncodedNullCharacter: false  # %00 - Default: true
+        allowEncodedSemicolon: false      # %3B - Default: true
+        allowEncodedPercent: false        # %25 - Default: true
+        allowEncodedQuestionMark: false   # %3F - Default: true
+        allowEncodedHash: false           # %23 - Default: true
+
+experimental:
+  plugins:
+    block-path-plugin:
+      modulename: github.com/traefik/plugin-blockpath
+      version: v0.3.0
+    method-whitelist-plugin:
+      modulename: github.com/antoniomacri/traefik-method-whitelist
+      version: v1.0.1
+
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+log:
+  # TRACE  DEBUG  INFO  WARN  ERROR  FATAL  PANIC
+  level: INFO
+
+metrics:
+  prometheus:
+    addentrypointslabels: true
+    addrouterslabels: true
+    addserviceslabels: true
+
+ping: {}
+
+providers:
+  docker:
+    endpoint: tcp://socket-proxy:2375
+  file:
+    directory: /etc/traefik/dynamic_conf/

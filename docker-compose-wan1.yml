@@ -31,7 +31,7 @@ services:
       traefik.http.services.leafwiki-lan-service.loadbalancer.server.port: "8080"
 
       traefik.http.routers.leafwiki-wan-router.entrypoints: wan
-      traefik.http.routers.leafwiki-wan-router.middlewares: method-whitelist-plugin@file,secure-headers@file,block-path-middleware@file
+      traefik.http.routers.leafwiki-wan-router.middlewares: method-whitelist-middleware@file,secure-headers-middleware@file,block-path-middleware@file
       traefik.http.routers.leafwiki-wan-router.rule: Host(`www.bob.house`)
       traefik.http.routers.leafwiki-wan-router.service: leafwiki-wan-service
       traefik.http.routers.leafwiki-wan-router.tls: "true"
@@ -68,7 +68,7 @@ services:
       traefik.http.services.miasma-lan-service.loadbalancer.server.port: "9999"
 
       traefik.http.routers.miasma-wan-router.entrypoints: wan
-      traefik.http.routers.miasma-wan-router.middlewares: method-whitelist-plugin@file,secure-headers@file
+      traefik.http.routers.miasma-wan-router.middlewares: method-whitelist-middleware@file,secure-headers-middleware@file
       traefik.http.routers.miasma-wan-router.rule: Host(`miasma.bob.house`)
       traefik.http.routers.miasma-wan-router.service: miasma-wan-service
       traefik.http.routers.miasma-wan-router.tls: "true"

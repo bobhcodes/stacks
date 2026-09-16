@@ -172,38 +172,6 @@ services:
   traefik:
     image: traefik:${TRAEFIK_IMAGE_TAG?:missing traefik image tag}
     cap_drop: [ ALL, ]
-    command:
-      # - --accesslog=true
-      - --api.insecure=true
-      - --certificatesresolvers.cloudflare.acme.dnsChallenge.provider=cloudflare
-      - --certificatesresolvers.cloudflare.acme.dnsChallenge.resolvers=1.1.1.1:53,1.0.0.1:53
-      - --certificatesresolvers.cloudflare.acme.email=mail@bob.codes
-      - --certificatesresolvers.cloudflare.acme.storage=/var/certs/acme.json
-      - --entrypoints.docker.address=:2375
-      - --entrypoints.lan.address=:443
-      - --entrypoints.proxy.address=:3128
-      - --entrypoints.rabbitmq.address=:5672
-      - --entrypoints.ssh.address=:222
-      - --entrypoints.torrent.address=:6881
-      - --entrypoints.wan.address=:4443
-      - --entrypoints.wan.http.aliasHeadersStrategy=delete
-      - --entrypoints.wan.http.underscoreHeadersStrategy=delete
-      - --experimental.plugins.block-path-plugin.modulename=github.com/traefik/plugin-blockpath
-      - --experimental.plugins.block-path-plugin.version=v0.2.1
-      - --experimental.plugins.method-whitelist.modulename=github.com/antoniomacri/traefik-method-whitelist
-      - --experimental.plugins.method-whitelist.version=v1.0.1
-      - --global.checkNewVersion=false
-      - --global.sendAnonymousUsage=false
-      # TRACE  DEBUG  INFO  WARN  ERROR  FATAL  PANIC
-      - --log.level=INFO
-      - --metrics.prometheus=true
-      - --metrics.prometheus.addentrypointslabels=true
-      - --metrics.prometheus.addrouterslabels=true
-      - --metrics.prometheus.addserviceslabels=true
-      - --ping
-      - --providers.docker
-      - --providers.docker.endpoint=tcp://socket-proxy:2375
-      - --providers.file.directory=/etc/traefik/dynamic_conf/
     container_name: traefik
     depends_on:
       socket-proxy:
@@ -223,7 +191,7 @@ services:
       traefik.http.routers.traefik-router.entrypoints: lan
       traefik.http.routers.traefik-router.rule: HostRegexp(`^traefik-\w+\.bob\.house$`)
       traefik.http.routers.traefik-router.tls: "true"
-      traefik.http.routers.traefik-router.tls.certresolver: cloudflare
+      traefik.http.routers.traefik-router.tls.certresolver: cloudflare-resolver
       traefik.http.routers.traefik-router.tls.domains[0].main: bob.house
       traefik.http.routers.traefik-router.tls.domains[0].sans: '*.bob.house'
       traefik.http.services.traefik-service.loadbalancer.server.port: "8080"
@@ -244,7 +212,8 @@ services:
     security_opt: [ no-new-privileges=true, ]
     volumes:
       - certificates-volume:/var/certs/:rw
-      - ./configs/traefik.yml:/etc/traefik/dynamic_conf/conf.yml:ro
+      - ./configs/traefik-dynamic.yml:/etc/traefik/dynamic_conf/conf.yml:ro
+      - ./configs/traefik-static.yml:/etc/traefik/traefik.yml:ro
       - ${DATA_DIR:-/opt/appdata}/traefik/plugins/:/plugins-storage/:rw
       - /etc/localtime:/etc/localtime:ro
 

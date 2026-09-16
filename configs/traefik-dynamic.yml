@@ -1,14 +1,3 @@
-entryPoints:
-  wan:
-    http:
-      encodedCharacters:
-        allowEncodedSlash: false          # %2F - Default: true
-        allowEncodedBackSlash: false      # %5C - Default: true
-        allowEncodedNullCharacter: false  # %00 - Default: true
-        allowEncodedSemicolon: false      # %3B - Default: true
-        allowEncodedPercent: false        # %25 - Default: true
-        allowEncodedQuestionMark: false   # %3F - Default: true
-        allowEncodedHash: false           # %23 - Default: true
 http:
   middlewares:
     block-path-middleware:
@@ -16,12 +5,12 @@ http:
         block-path-plugin:
           regex: [ "^/api(.*)", "^/settings(.*)", "^/users(.*)", ]
           code: 404
-    method-whitelist-plugin:
+    method-whitelist-middleware:
       plugin:
-        method-whitelist:
+        method-whitelist-plugin:
           Message: "Method Not Allowed"
           Methods: [ GET, OPTIONS, ]
-    secure-headers:
+    secure-headers-middleware:
       headers:
         accessControlAllowHeaders: [ "*", ]
         accessControlAllowMethods: [ GET, OPTIONS, ]
