@@ -112,8 +112,15 @@ services:
     depends_on:
       traefik:
         condition: service_healthy
-    devices:
-      - /dev/dri:/dev/dri
+    deploy:
+      resources:
+        limits:
+          cpus: 4
+          memory: 8G
+          pids: 1000
+        reservations:
+          cpus: 1
+          memory: 2G
     healthcheck:
       test: curl -f http://localhost:8096/health
     labels:
@@ -145,7 +152,7 @@ services:
       - type: tmpfs
         target: /cache/
         tmpfs:
-          size: 2gb
+          size: 4gb
 
   jellyseerr:
     image: fallenbagel/jellyseerr:latest
