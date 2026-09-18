@@ -6,7 +6,7 @@ network:
       dhcp4: "false"
       link-local: [ipv4]
       nameservers:
-        addresses: [192.168.1.50,9.9.9.9]
+        addresses: [192.168.1.50]
         search: [bob.house]
       routes:
       - to: "default"
@@ -16,7 +16,7 @@ network:
       dhcp4: "false"
       link-local: [ipv4]
       nameservers:
-        addresses: [192.168.20.60,9.9.9.9]
+        addresses: [192.168.20.60]
         search: [bob.house]
       routes:
       - to: 192.168.20.0/24
