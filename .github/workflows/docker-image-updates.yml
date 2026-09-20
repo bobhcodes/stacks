@@ -1,0 +1,40 @@
+name: Docker Image Updates
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  docker-image-updates:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fire webhook if .env changed
+        env:
+          FILE_PATTERN: "^\\.env"
+          WEBHOOK_API_KEY: ${{ secrets.WEBHOOK_API_KEY }}
+          WEBHOOK_URL: "https://webhooks.bob.house/webhooks/docker_image_changes"
+        run: |
+          set -euo pipefail
+
+          count=$(git show --name-only --oneline HEAD \
+            | tail --lines +2 \
+            | (grep --count $"{FILE_PATTERN}" || true))
+
+          if [[ "$count" -eq 0 ]]; then
+            echo ".env unchanged — skipping."
+            exit 0
+          fi
+
+          curl \
+            --header "X-Api-Key: ${WEBHOOK_API_KEY}" \
+            --request PUT \
+            --show-error --silent \
+            --url "${WEBHOOK_URL}"
