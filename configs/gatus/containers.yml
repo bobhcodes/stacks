@@ -415,12 +415,6 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: portainer
-    group: containers
-    url: http://192.168.20.60:2375/v1.56/containers/portainer/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
   - name: prometheus
     group: containers
     url: http://192.168.20.60:2375/v1.56/containers/prometheus/json

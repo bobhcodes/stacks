@@ -433,33 +433,6 @@ services:
       - ./configs/homepage/icons/:/app/public/icons/:ro
       - ./configs/homepage/images/:/app/public/images/:ro
 
-  portainer:
-    image: portainer/portainer-ce:latest
-    cap_drop: [ ALL, ]
-    command: -H tcp://socket-proxy:2375
-    container_name: portainer
-    depends_on:
-      socket-proxy:
-        condition: service_started
-      traefik:
-        condition: service_healthy
-    labels:
-      traefik.docker.network: traefik-network
-      traefik.http.routers.portainer-router.entrypoints: lan
-      traefik.http.routers.portainer-router.rule: Host(`portainer.bob.house`)
-      traefik.http.routers.portainer-router.tls: "true"
-      traefik.http.services.portainer-service.loadbalancer.server.port: "9000"
-    networks:
-      default: null
-      socket-proxy: null
-      traefik: null
-    profiles: [ docker1, docker1b, ]
-    read_only: true
-    security_opt: [ no-new-privileges=true, ]
-    tmpfs: [ /data/backups/, ]
-    volumes:
-      - ${DATA_DIR:-/opt/appdata}/portainer/:/data/:rw
-
   prometheus:
     image: prom/prometheus:latest
     cap_drop: [ ALL, ]

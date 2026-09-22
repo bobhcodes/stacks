@@ -831,33 +831,6 @@
         icon: pinepods.png
         server: tana-docker
         container: pinepods
-    - Portainer: &portainer
-        description: Making Docker and Kubernetes management easy
-        href: https://portainer.bob.house/
-        icon: portainer.svg
-        server: freeman-docker
-        container: portainer
-        widgets:
-          - type: portainer
-            url: https://portainer.bob.house
-            env: 18
-            key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
-          - type: portainer
-            url: https://portainer.bob.house
-            env: 5
-            key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
-          - type: portainer
-            url: https://portainer.bob.house
-            env: 7
-            key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
-          - type: portainer
-            url: https://portainer.bob.house
-            env: 8
-            key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
-          - type: portainer
-            url: https://portainer.bob.house
-            env: 19
-            key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
     - Prometheus: &prometheus
         description: The Prometheus monitoring system and time series database
         href: https://prometheus.bob.house/
@@ -1125,7 +1098,6 @@
     - Gatus: *gatus
     - Grafana: *grafana
     - ntfy: *ntfy
-    - Portainer: *portainer
     - Prometheus: *prometheus
     - Scrutiny: *scrutiny
     - Speedtest: *speedtest
