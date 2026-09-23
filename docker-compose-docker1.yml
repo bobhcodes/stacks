@@ -224,6 +224,32 @@ services:
       - ./configs/dagu/:/opt/dagu/dags/:rw
       - ${REPOS_DIR:-/opt/repos}/Configurations/dagu.json:/var/lib/dagu/dagu.json:ro
 
+  dockhand:
+    image: fnsys/dockhand:latest
+    cap_drop: [ ALL, ]
+    container_name: dockhand
+    depends_on:
+      traefik:
+        condition: service_healthy
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+      TRUST_FORWARDED_HEADERS: "true"
+    labels:
+      traefik.docker.network: traefik-network
+      traefik.http.routers.dockhand-router.entrypoints: lan
+      traefik.http.routers.dockhand-router.rule: Host(`dockhand.bob.house`)
+      traefik.http.routers.dockhand-router.tls: "true"
+      traefik.http.services.dockhand-service.loadbalancer.server.port: "3000"
+    networks:
+      default: null
+      traefik: null
+    profiles: [ docker1, docker1b, ]
+    read_only: true
+    security_opt: [ no-new-privileges=true, ]
+    user: 1000:1000
+    volumes: [ "${REPOS_DIR:-/opt/appdata}/dockhand/:/app/data/:rw", ]
+
   dozzle:
     image: amir20/dozzle:latest
     cap_drop: [ ALL, ]

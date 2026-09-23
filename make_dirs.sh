@@ -11,6 +11,7 @@ make_user_directory() {
 
 if [[ $(hostname --long) =~ ^freeman ]]; then
 	echo freeman
+	make_user_directory "/opt/appdata/dockhand/"
 	make_user_directory "/opt/appdata/squid/"
 	make_user_directory "/opt/appdata/squid/data/"
 	make_user_directory "/opt/appdata/squid/log/"

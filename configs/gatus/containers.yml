@@ -69,6 +69,12 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: dockhand
+    group: containers
+    url: http://192.168.20.60:2375/v1.56/containers/dockhand/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: donetick
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/donetick/json

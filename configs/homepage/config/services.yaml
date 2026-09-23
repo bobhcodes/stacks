@@ -82,6 +82,17 @@
         icon: docker-moby.svg
         server: docker2
         container: registry
+    - Dockhand: &dockhand
+        description: Modern Docker Management UI
+        href: https://dockhand.bob.house/
+        icon: dockhand.png
+        server: freeman-docker
+        container: dockhand
+        widget:
+          type: dockhand
+          url: https://dockhand.bob.house
+          username: {{HOMEPAGE_VAR_DOCKHAND_USERNAME}}
+          password: {{HOMEPAGE_VAR_DOCKHAND_PASSWORD}}
     - Donetick: &donetick
         description: Simplify Tasks & Chores, Together
         href: https://donetick.bob.house/
@@ -1093,6 +1104,7 @@
     - Adguard 20: *adguard20
     - Apprise: *apprise
     - Authentik: *authentik
+    - Dockhand: *dockhand
     - Dozzle: *dozzle
     - drydock: *drydock
     - Gatus: *gatus
