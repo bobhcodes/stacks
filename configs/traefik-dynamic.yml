@@ -40,6 +40,12 @@ http:
         stsIncludeSubdomains: true
         stsPreload: true
         stsSeconds: 31536000
+    security-txt-middleware:
+      plugin:
+        security-txt-plugin:
+          Contact: "mailto:mail@bob.codes"
+          Expires: "2026-12-01T23:59:59.000Z"
+          PreferredLanguages: "en"
   routers:
     homeassistant-router:
       entryPoints:

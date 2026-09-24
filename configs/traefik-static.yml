@@ -63,6 +63,9 @@ experimental:
     method-whitelist-plugin:
       modulename: github.com/antoniomacri/traefik-method-whitelist
       version: v1.0.1
+    security-txt-plugin:
+      moduleName: github.com/Ju0x/traefik-security-txt
+      version: v0.1.0
 
 global:
   checkNewVersion: false

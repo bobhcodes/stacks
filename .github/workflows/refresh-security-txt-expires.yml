@@ -1,0 +1,41 @@
+# .github/workflows/refresh-security-txt-expires.yml
+name: Refresh security.txt Expires
+
+on:
+  schedule:
+    # 03:23 UTC on the 1st of Jan / Apr / Jul / Oct
+    - cron: "23 3 1 1,4,7,10 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bump-expires:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bump Expires date (+3 months)
+        run: |
+          set -euo pipefail
+
+          date=$(date --date "+3 months" --universal +%Y-%m-01)
+
+          sed --in-place \
+            "s/Expires: .*$/Expires: \"${date}T23:59:59.000Z\"/" \
+            configs/traefik-dynamic.yml
+
+      - name: Verify
+        run: |
+          grep --line-number 'Expires:' configs/traefik-dynamic.yml
+
+      - name: Commit & push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add configs/traefik-dynamic.yml
+          git commit -m "chore: bump security.txt Expires to $(date --date "+3 months" --universal +%Y-%m-01)"
+          git push
