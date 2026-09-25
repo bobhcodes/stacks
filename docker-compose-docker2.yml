@@ -190,7 +190,8 @@ services:
       DD_WATCHER_WAN1_WATCHBYDEFAULT: "false"
     labels:
       dd.link.template: https://github.com/CodesWhat/drydock/releases/tag/v$${major}.$${minor}.$${patch}
-      dd.tag.include: ^\d+\.\d+\.\d+$$
+      dd.tag.family: loose
+      dd.tag.include: ^v\d+\.\d+\.\d+$$
       dd.watch: "true"
       traefik.docker.network: traefik-network
       traefik.http.routers.drydock-router.entrypoints: lan
