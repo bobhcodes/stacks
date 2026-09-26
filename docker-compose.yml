@@ -156,6 +156,7 @@ services:
     labels:
       dd.link.template: https://github.com/Tecnativa/docker-socket-proxy/releases/tag/v$${major}.$${minor}.$${patch}
       dd.tag.family: loose
+      dd.tag.include: ^v\d+\.\d+\.\d+$$
       dd.watch: "true"
       traefik.docker.network: traefik-network
       traefik.tcp.routers.socket-proxy-router.entrypoints: docker
@@ -186,6 +187,7 @@ services:
     labels:
       dd.link.template: https://github.com/traefik/traefik/releases/tag/v$${major}.$${minor}.$${patch}
       dd.tag.family: loose
+      dd.tag.include: ^v\d+\.\d+\.\d+$$
       dd.watch: "true"
       traefik.docker.network: traefik-network
       traefik.http.routers.traefik-router.entrypoints: lan

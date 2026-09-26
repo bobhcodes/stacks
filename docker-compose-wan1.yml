@@ -58,6 +58,7 @@ services:
     labels:
       dd.link.template: https://github.com/austin-weeks/miasma/releases/tag/v$${major}.$${minor}.$${patch}
       dd.tag.family: loose
+      dd.tag.include: ^\d+\.\d+\.\d+$$
       dd.watch: "true"
       traefik.docker.network: traefik-network
 
