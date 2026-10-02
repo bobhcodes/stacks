@@ -155,6 +155,15 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: retroarr .20
+    group: dns .20
+    url: 192.168.20.60
+    dns:
+      query-name: retroarr.bob.house
+      query-type: CNAME
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: sabnzbd .20
     group: dns .20
     url: 192.168.20.60
