@@ -232,6 +232,8 @@ configs:
       /prowlarr/logs.db*
       /radarr/logs.db*
       /registry/docker/
+      /retroarr/logs/
+      /retroarr/RetroArr.log
       /sonarr/logs.db*
       /scrutiny/
       /tunarr/backups/
