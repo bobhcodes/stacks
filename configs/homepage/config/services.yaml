@@ -901,6 +901,12 @@
         icon: /icons/restfox.png
         server: docker2
         container: restfox
+    - Retroarr: &retroarr
+        description: Game library manager for PC and retro consoles
+        href: https://retroarr.bob.house/
+        icon: /icons/retroarr.png
+        server: tana-docker
+        container: retroarr
     - SABnzbd: &sabnzbd
         description: Free and easy binary newsreader
         href: https://sabnzbd.bob.house/

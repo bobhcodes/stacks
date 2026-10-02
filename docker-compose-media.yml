@@ -524,6 +524,34 @@ services:
       - /mnt/md1/films/:/movies/:rw
       - /mnt/md1/MediaThumbnails/radarr/:/config/MediaCover/:rw
 
+  retroarr:
+    image: ghcr.io/riddix/retroarr:latest
+    cap_drop: [ ALL, ]
+    container_name: retroarr
+    depends_on:
+      traefik:
+        condition: service_healthy
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+    labels:
+      traefik.docker.network: traefik-network
+      traefik.http.routers.retroarr-router.entrypoints: lan
+      traefik.http.routers.retroarr-router.rule: Host(`retroarr.bob.house`)
+      traefik.http.routers.retroarr-router.tls: "true"
+      traefik.http.services.retroarr-service.loadbalancer.server.port: "2727"
+    networks:
+      default: null
+      traefik: null
+    read_only: true
+    profiles: [ media1, media1b, ]
+    security_opt: [ no-new-privileges=true, ]
+    user: 1000:1000
+    volumes:
+      - ${DATA_DIR:-/opt/appdata}/retroarr/config/:/app/config/:rw
+      - ${DATA_DIR:-/opt/appdata}/retroarr/savestates/:/app/savestates/:rw
+      - /mnt/md1/retro/:/media/:rw
+
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     cap_drop: [ ALL, ]

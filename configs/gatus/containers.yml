@@ -475,6 +475,12 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: retroarr
+    group: containers
+    url: http://192.168.20.70:2375/v1.56/containers/retroarr/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: sabnzbd
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/sabnzbd/json
