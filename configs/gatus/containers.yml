@@ -397,6 +397,12 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: opencanary
+    group: containers
+    url: http://192.168.20.65:2375/v1.56/containers/opencanary/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: paperless-ngx
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/paperless-ngx/json

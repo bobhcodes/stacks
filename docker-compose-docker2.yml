@@ -544,6 +544,56 @@ services:
     volumes:
       - ${DATA_DIR:-/opt/appdata}/bagetter/:/data:rw
 
+  opencanary:
+    image: thinkst/opencanary:${OPENCANARY_IMAGE_TAG?:missing opencanary image tag}
+    cap_drop: [ ALL, ]
+    cap_add: [ SETGID, SETUID, ]
+    container_name: opencanary
+    deploy:
+      resources:
+        limits:
+          cpus: 1
+          memory: 128M
+          pids: 4
+        reservations:
+          cpus: 1
+          memory: 128M
+    labels:
+      dd.link.template: https://github.com/thinkst/opencanary/releases/tag/v$${major}.$${minor}.$${patch}
+      dd.tag.family: loose
+      dd.tag.include: ^\d+\.\d+\.\d+$$
+      dd.watch: "true"
+      traefik.enable: "false"
+    networks:
+      default: null
+    ports:
+      - 192.168.20.65:44421:21/tcp # FTP
+      - 192.168.20.65:44422:22/tcp # SSH
+      - 192.168.20.65:44423:23/tcp # Telnet
+      - 192.168.20.65:44469:69/tcp # TFTP
+      - 192.168.20.65:44480:80/tcp # HTTP
+      - 192.168.20.65:44123:123/tcp # NTP
+      - 192.168.20.65:44161:161/tcp # SNMP
+      - 192.168.20.65:41433:1433/tcp # MSSQL
+      - 192.168.20.65:43306:3306/tcp # MYSQL
+      - 192.168.20.65:43389:3389/tcp # RDP
+      - 192.168.20.65:45000:5000/tcp # VNC
+      - 192.168.20.65:45060:5060/tcp # SIP
+      - 192.168.20.65:46379:6379/tcp # REDIS
+      - 192.168.20.65:48001:8001/tcp # TCP Banner
+      - 192.168.20.65:48080:8080/tcp # HTTP Proxy
+      - 192.168.20.65:49418:9418/tcp # Git
+    profiles: [ docker2, docker2a, ]
+    read_only: true
+    security_opt: [ no-new-privileges=true, ]
+    tmpfs:
+      - /var/log/:noexec,nosuid,uid=0,gid=0,size=64M
+      - /var/run/:noexec,nosuid,uid=0,gid=0,size=64M
+      - /var/tmp/:noexec,nosuid,uid=65534,gid=65534,size=64M
+    user: 0:0
+    volumes:
+      - ./configs/opencanary.conf:/etc/opencanaryd/opencanary.conf:ro
+
   paperless-ngx:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     cap_drop: [ ALL, ]
