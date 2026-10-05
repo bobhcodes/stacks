@@ -39,6 +39,8 @@ services:
       - ${REPOS_DIR:-/opt/repos}/Configurations/ganymede.env
     environment:
       DEBUG: "false"
+      PUID: "1000"
+      PGID: "1000"
       TZ: Etc/UTC
       VIDEOS_DIR: /data/videos
       TEMP_DIR: /data/temp
@@ -136,12 +138,13 @@ services:
     security_opt: [ no-new-privileges=true, ]
     tmpfs:
       - /config/log/:noexec,nosuid,uid=1000,gid=1000
+      - /tmp/:noexec,nosuid,uid=1000,gid=1000
     user: 1000:1000
     volumes:
       - ${DATA_DIR:-/opt/appdata}/jellyfin/:/config/:rw
       - /mnt/md1/anime/:/media/anime/:rw
       - /mnt/md1/films/:/media/films/:rw
-      - /mnt/md1/streamers/:/media/streamers/:rw
+      - /mnt/md1/ganymede/videos/:/media/ganymede/:rw
       - /mnt/md0/tvshows/:/media/tv/:rw
       - /mnt/md1/videos/:/media/videos/:rw
       - /mnt/md1/music/:/media/music/:rw
@@ -625,7 +628,7 @@ services:
       - /mnt/md1/MediaThumbnails/sonarr/:/config/MediaCover/:rw
 
   tunarr:
-    image: ghcr.io/chrisbenincasa/tunarr:latest-vaapi
+    image: ghcr.io/chrisbenincasa/tunarr:latest
     cap_drop: [ ALL, ]
     container_name: tunarr
     depends_on:
@@ -633,8 +636,7 @@ services:
         condition: service_healthy
       traefik:
         condition: service_healthy
-    devices:
-      - /dev/dri:/dev/dri:rwm
+    devices: [ /dev/dri:/dev/dri:rwm, ]
     environment:
       LOG_LEVEL: INFO
       TZ: Etc/UTC
@@ -644,17 +646,15 @@ services:
       traefik.http.routers.tunarr-router.tls: "true"
       traefik.http.services.tunarr-service.loadbalancer.server.port: "8000"
     networks:
+      default: null
       traefik: null
     profiles: [ media1, media1a, ]
-    read_only: true
     security_opt: [ no-new-privileges=true, ]
-    tmpfs: [ /config/tunarr/backups/, /config/tunarr/cache/, /config/tunarr/logs/, /tunarr/streams/, '/root/.cache/:exec', /tmp/, ]
     volumes:
       - ${DATA_DIR:-/opt/appdata}/tunarr/:/config/tunarr/:rw
-      - /mnt/md1/MediaThumbnails/tunarr/:/config/tunarr/images/:rw
       - /mnt/md1/anime/:/media/anime/:ro
       - /mnt/md1/films/:/media/films/:ro
-      - /mnt/md1/streamers/:/media/streamers/:ro
+      - /mnt/md1/ganymede/videos/:/media/ganymede/:ro
       - /mnt/md0/tvshows/:/media/tv/:ro
       - /mnt/md1/videos/:/media/videos/:ro
       - /mnt/md1/music/:/media/music/:ro

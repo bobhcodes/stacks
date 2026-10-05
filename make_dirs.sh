@@ -30,7 +30,9 @@ fi
 
 if [[ $(hostname --long) =~ ^tana ]]; then
 	echo tana
+	make_user_directory "/mnt/md1/ganymede/"
 	make_user_directory "/mnt/md1/MediaThumbnails/navidrome/"
+	make_user_directory "/opt/appdata/ganymede/"
 fi
 
 if [[ $(hostname --long) =~ ^wan1 ]]; then

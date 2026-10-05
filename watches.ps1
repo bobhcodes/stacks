@@ -43,6 +43,7 @@ Add-Watch -Tag 'apps' -Title 'https://gethomepage.dev/widgets/' -Uri 'https://gi
 Add-Watch -Tag 'apps' -Title 'https://github.com/alexta69/metube/blob/master/README.md' -Uri 'https://github.com/alexta69/metube/raw/refs/heads/master/README.md'
 Add-Watch -Tag 'apps' -Title 'https://github.com/paperless-ngx/paperless-ngx/blob/dev/docker/compose/docker-compose.postgres.yml' -Uri 'https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/refs/heads/dev/docker/compose/docker-compose.postgres.yml'
 Add-Watch -Tag 'apps' -Title 'https://github.com/MohamedElashri/snipo/blob/main/docker-compose.yml' -Uri 'https://raw.githubusercontent.com/MohamedElashri/snipo/refs/heads/main/docker-compose.yml'
+Add-Watch -Tag 'apps' -IncludeFilters 'jq:{state,updated_at}' -Title 'https://github.com/chrisbenincasa/tunarr/pull/1849' -Uri 'https://api.github.com/repos/chrisbenincasa/tunarr/pulls/1849'
 Add-Watch -Tag 'apps' -Title 'https://github.com/go-vikunja/website/blob/main/src/content/docs/setup/docker-start-to-finish.mdx' -Uri 'https://raw.githubusercontent.com/go-vikunja/website/refs/heads/main/src/content/docs/setup/docker-start-to-finish.mdx'
 Add-Watch -Tag 'apps' -Title 'https://github.com/DialmasterOrg/Youtarr/blob/main/docker-compose.yml' -Uri 'https://raw.githubusercontent.com/DialmasterOrg/Youtarr/refs/heads/main/docker-compose.yml'
 

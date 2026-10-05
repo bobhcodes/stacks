@@ -234,6 +234,9 @@ configs:
       /registry/docker/
       /sonarr/logs.db*
       /scrutiny/
+      /tunarr/backups/
+      /tunarr/cache/
+      /tunarr/logs/
       /tunarr/db*.bak
       /trivy/db/
       /whisper-asr/data/
