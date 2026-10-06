@@ -29,6 +29,15 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: bentopdf .1
+    group: dns .1
+    url: 192.168.1.50
+    dns:
+      query-name: bentopdf.bob.house
+      query-type: CNAME
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: changedetection .1
     group: dns .1
     url: 192.168.1.50

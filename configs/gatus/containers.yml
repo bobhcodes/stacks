@@ -51,6 +51,12 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: bentopdf
+    group: containers
+    url: http://192.168.20.65:2375/v1.56/containers/bentopdf/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: changedetection
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/changedetection/json

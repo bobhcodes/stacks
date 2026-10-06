@@ -59,6 +59,29 @@ services:
       - ${DATA_DIR:-/opt/appdata}/apprise/config/:/config/:rw
       - ${DATA_DIR:-/opt/appdata}/apprise/plugin/:/plugin/:rw
 
+  bentopdf:
+    image: ghcr.io/alam00000/bentopdf-simple:latest
+    cap_drop: [ ALL, ]
+    container_name: bentopdf
+    depends_on:
+      traefik:
+        condition: service_healthy
+    environment:
+      PUID: "1000"
+      GUID: "1000"
+    labels:
+      traefik.http.routers.bentopdf-router.entrypoints: lan
+      traefik.http.routers.bentopdf-router.rule: Host(`bentopdf.bob.house`)
+      traefik.http.routers.bentopdf-router.tls: "true"
+      traefik.http.services.bentopdf-service.loadbalancer.server.port: "8080"
+    profiles: [ docker2, docker2b, ]
+    read_only: true
+    tmpfs:
+      - /etc/nginx/tmp/:noexec,nosuid,uid=1000,gid=1000
+      - /var/cache/nginx/:noexec,nosuid,uid=1000,gid=1000
+    user: 1000:1000
+    security_opt: [ no-new-privileges=true, ]
+
   changedetection:
     image: dgtlmoon/changedetection.io:latest
     cap_drop: [ ALL, ]

@@ -54,6 +54,12 @@
         icon: baikal.png
         server: freeman-docker
         container: baikal
+    - BentoPDF: &bentopdf
+        description: The Privacy First PDF Toolkit
+        href: https://bentopdf.bob.house/
+        icon: bentopdf.svg
+        server: docker2
+        container: bentopdf
     - Change Detection: &changedetection
         description: Web page change detection, website watcher, restock monitor and notification service
         href: https://changedetection.bob.house/
