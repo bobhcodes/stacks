@@ -231,6 +231,7 @@ services:
     depends_on:
       traefik:
         condition: service_healthy
+    dns: [ 192.168.20.65, ]
     environment:
       PUID: "1000"
       PGID: "1000"
@@ -254,6 +255,7 @@ services:
     image: amir20/dozzle:latest
     cap_drop: [ ALL, ]
     container_name: dozzle
+    dns: [ 192.168.20.65, ]
     depends_on:
       socket-proxy:
         condition: service_started
@@ -357,6 +359,7 @@ services:
     depends_on:
       traefik:
         condition: service_healthy
+    dns: [ 192.168.20.65, ]
     env_file:
       - ${REPOS_DIR:-/opt/repos}/Configurations/gatus.env
     environment:
@@ -427,6 +430,7 @@ services:
     cap_drop: [ ALL, ]
     cap_add: [ CHOWN, DAC_OVERRIDE, NET_ADMIN, SETGID, SETUID, ]
     container_name: homepage
+    dns: [ 192.168.20.65, ]
     depends_on:
       socket-proxy:
         condition: service_started
@@ -465,6 +469,7 @@ services:
     command:
       - --config.file=/etc/prometheus/prometheus.yml
     container_name: prometheus
+    dns: [ 192.168.20.65, ]
     depends_on:
       traefik:
         condition: service_healthy
@@ -514,6 +519,7 @@ services:
     image: niruix/sshwifty:latest
     cap_drop: [ ALL, ]
     container_name: sshwifty
+    dns: [ 192.168.20.65, ]
     depends_on:
       traefik:
         condition: service_healthy

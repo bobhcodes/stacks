@@ -9,6 +9,7 @@ services:
         condition: service_healthy
     devices:
       - /dev/apex_0:/dev/apex_0
+    dns: [ 192.168.20.65, ]
     env_file:
       - ${REPOS_DIR:-/opt/repos}/Configurations/frigate.env
     labels:

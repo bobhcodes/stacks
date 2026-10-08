@@ -17,7 +17,7 @@ scrape_configs:
 
   - job_name: 'telegraf'
     static_configs:
-      - targets: ['192.168.1.50:9273']
+      - targets: ['badgey.bob.house:9273']
       - targets: ['host.docker.internal:9273']
       - targets: ['billups.bob.house:9273']
       - targets: ['docker2.bob.house:9273']

@@ -123,8 +123,9 @@ services:
         reservations:
           cpus: 1
           memory: 2G
+    dns: [ 192.168.20.65, ]
     healthcheck:
-      test: curl -f http://localhost:8096/health
+      test: curl -f http://127.0.0.1:8096/health
     labels:
       traefik.http.routers.jellyfin-router.entrypoints: lan
       traefik.http.routers.jellyfin-router.rule: Host(`jellyfin.bob.house`)
@@ -166,6 +167,7 @@ services:
         condition: service_healthy
       traefik:
         condition: service_healthy
+    dns: [ 192.168.20.65, ]
     environment:
       LOG_LEVEL: debug
       TZ: UTC
@@ -288,6 +290,7 @@ services:
     depends_on:
       traefik:
         condition: service_healthy
+    dns: [ 192.168.20.65, ]
     environment:
       ND_BASEURL: ""
       ND_ENABLEINSIGHTSCOLLECTOR: "false"
@@ -637,6 +640,7 @@ services:
       traefik:
         condition: service_healthy
     devices: [ /dev/dri:/dev/dri:rwm, ]
+    dns: [ 192.168.20.65, ]
     environment:
       LOG_LEVEL: INFO
       TZ: Etc/UTC
@@ -712,6 +716,7 @@ services:
     depends_on:
       traefik:
         condition: service_healthy
+    dns: [ 192.168.20.65, ]
     environment:
       PUID: "1000"
       PGID: "1000"
