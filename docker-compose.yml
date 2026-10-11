@@ -1,7 +1,6 @@
 include:
   - ./docker-compose-docker1.yml
   - ./docker-compose-docker2.yml
-  - ./docker-compose-llm.yml
   - ./docker-compose-media.yml
   - ./docker-compose-security.yml
   - ./docker-compose-wan1.yml

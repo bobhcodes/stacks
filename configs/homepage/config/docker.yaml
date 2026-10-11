@@ -2,10 +2,6 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/docker/
 
-billups-docker:
-  host: billups.bob.house
-  port: 2375
-
 docker2:
   host: docker2.bob.house
   port: 2375
