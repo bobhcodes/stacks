@@ -19,7 +19,6 @@ scrape_configs:
     static_configs:
       - targets: ['badgey.bob.house:9273']
       - targets: ['host.docker.internal:9273']
-      - targets: ['billups.bob.house:9273']
       - targets: ['docker2.bob.house:9273']
       - targets: ['shaxs.bob.house:9273']
       - targets: ['tana.bob.house:9273']
@@ -33,7 +32,6 @@ scrape_configs:
   - job_name: 'traefik'
     scheme: https
     static_configs:
-      - targets: ['traefik-billups.bob.house']
       - targets: ['traefik-docker2.bob.house']
       - targets: ['traefik-freeman.bob.house']
       - targets: ['traefik-shaxs.bob.house']

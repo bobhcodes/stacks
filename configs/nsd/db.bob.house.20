@@ -4,7 +4,7 @@ $TTL 7200
 ; SOA
 
 @       IN      SOA    docker2.bob.house. hostmaster.bob.house. (
-                                         2026100601 ; Serial
+                                         2026101100 ; Serial
                                          7200       ; Refresh
                                          1800       ; Retry
                                          1209600    ; Expire
@@ -18,7 +18,6 @@ $TTL 7200
 
 @                   IN        A                    192.168.20.65
 badgey              IN        A                    192.168.1.50
-billups             IN        A                    192.168.1.75
 docker2             IN        A                    192.168.20.65
 freeman             IN        A                    192.168.20.60
 haos                IN        A                    192.168.20.80
@@ -27,15 +26,6 @@ tana                IN        A                    192.168.20.70
 wan1                IN        A                    192.168.1.85
 
 ; CNAME RECORDS
-
-docker-billups      IN        CNAME                billups
-glances-billups     IN        CNAME                billups
-kopia-billups       IN        CNAME                billups
-ollama              IN        CNAME                billups
-open-webui          IN        CNAME                billups
-speakr              IN        CNAME                billups
-traefik-billups     IN        CNAME                billups
-whisper-asr         IN        CNAME                billups
 
 apache              IN        CNAME                docker2
 apprise             IN        CNAME                docker2

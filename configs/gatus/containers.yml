@@ -159,13 +159,6 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: glances BILLUPS
-    group: containers
-    enabled: false
-    url: http://192.168.1.75:2375/v1.56/containers/glances/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
   - name: glances DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/glances/json
@@ -280,13 +273,6 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: kopia BILLUPS
-    group: containers
-    enabled: false
-    url: http://192.168.1.75:2375/v1.56/containers/kopia/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
   - name: kopia DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/kopia/json
@@ -386,20 +372,6 @@ endpoints:
   - name: nuget
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/nuget/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: ollama
-    group: containers
-    enabled: false
-    url: http://192.168.1.75:2375/v1.56/containers/ollama/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: open-webui
-    group: containers
-    enabled: false
-    url: http://192.168.1.75:2375/v1.56/containers/open-webui/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -517,13 +489,6 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: socket-proxy BILLUPS
-    group: containers
-    enabled: false
-    url: http://192.168.1.75:2375/v1.56/containers/socket-proxy/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
   - name: socket-proxy DOCKER2
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/socket-proxy/json
@@ -554,13 +519,6 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: speakr
-    group: containers
-    enabled: false
-    url: http://192.168.1.75:2375/v1.56/containers/speakr/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
   - name: squid
     group: containers
     url: http://192.168.20.60:2375/v1.56/containers/squid/json
@@ -576,13 +534,6 @@ endpoints:
   - name: speedtest-tracker
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/speedtest-tracker/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: traefik BILLUPS
-    group: containers
-    enabled: false
-    url: http://192.168.1.75:2375/v1.56/containers/traefik/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -649,13 +600,6 @@ endpoints:
   - name: webhooks
     group: containers
     url: http://192.168.1.85:2375/v1.56/containers/webhooks/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: whisper-asr
-    group: containers
-    enabled: false
-    url: http://192.168.1.75:2375/v1.56/containers/whisper-asr/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
