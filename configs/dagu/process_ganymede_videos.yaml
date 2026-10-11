@@ -27,32 +27,38 @@ steps:
         from: stdout
         decode: json
         select: .vod_id
-  - id: make_path
-    run: |
+  - id: make_paths
+    command: |
       channel=$(echo -n "${inspect_webhook.output.channel_display_name}" | tr [:upper:] [:lower:])
 
-      printf "/mnt/md1/ganymede/videos/%s/%.10s-%s-%s-%s/" \
+      dir=$(printf "/mnt/md1/ganymede/videos/%s/%.10s-%s-%s-%s/" \
         "${channel}" \
         "${inspect_webhook.output.vod_streamed_at}" \
         "${inspect_webhook.output.vod_ext_id}" \
         "${inspect_webhook.output.vod_type}" \
-        "${inspect_webhook.output.vod_id}"
+        "${inspect_webhook.output.vod_id}")
+
+      id="${inspect_webhook.output.vod_ext_id}"
+
+      printf '{"info":"%s%s-info.json","thumbnail":"%s%s-thumbnail.jpg","video":"%s%s-video.mp4"}' \
+        "${dir}" "${id}" \
+        "${dir}" "${id}" \
+        "${dir}" "${id}"
     depends: inspect_webhook
-    preconditions:
-      - condition: "${inspect_webhook.output.channel_display_name}"
-        expected: "re:.+"
-      - condition: "${inspect_webhook.output.vod_streamed_at}"
-        expected: "re:.+"
-      - condition: "${inspect_webhook.output.vod_ext_id}"
-        expected: "re:.+"
-      - condition: "${inspect_webhook.output.vod_type}"
-        expected: "re:.+"
-      - condition: "${inspect_webhook.output.vod_id}"
-        expected: "re:.+"
     output:
-      path:
+      info:
         from: stdout
-  - id: get_video_file_paths
+        decode: json
+        select: .info
+      thumbnail:
+        from: stdout
+        decode: json
+        select: .thumbnail
+      video:
+        from: stdout
+        decode: json
+        select: .video
+  - id: get_info
     action: ssh.run
     with:
       user: root
@@ -60,74 +66,141 @@ steps:
       key: /run/secrets/id_rsa
       known_host_file: /run/secrets/known_hosts
       timeout_sec: 60s
-      command: |
-        find "${make_path.output.path}" -name "*.mp4" \
-          | jq --raw-input \
-          | jq --slurp
-    depends: make_path
-    preconditions:
-      - condition: "${make_path.output.path}"
-        expected: "re:.+"
+      command: cat "${make_paths.output.info}"
+    depends: make_paths
     output:
-      files:
+      id:
         from: stdout
         decode: json
-  - id: loop
+        select: .id
+      started_at:
+        from: stdout
+        decode: json
+        select: .started_at
+      title:
+        from: stdout
+        decode: json
+        select: .title
+      type:
+        from: stdout
+        decode: json
+        select: .type
+      user_name:
+        from: stdout
+        decode: json
+        select: .user_name
+  - id: build_target_file_path
+    command: |
+      title=$(echo -n "${get_info.output.title}" | tr -cd '[:alnum:] ')
+
+      printf '/mnt/md1/streamers/%s/%s_%.10s_%s_%s_%s.mp4' \
+        "${get_info.output.user_name}" \
+        "${get_info.output.user_name}" \
+        "${get_info.output.started_at}" \
+        "${get_info.output.id}" \
+        "${get_info.output.type}" \
+        "${title}"
+    depends: get_info
+    output:
+      path:
+        from: stdout
+        decode: text
+  - id: make_target_directory
+    run: |
+      dir=$(dirname --zero "${build_target_file_path.output.path}")
+      mkdir --parents --verbose "${dir}"
+    depends: build_target_file_path
+  - id: count_target_files
+    run: |
+      ( ls -1U --literal "${make_target_path.output.path}" 2>/dev/null || true ) \
+        | grep --count ^ || true
+    depends: make_target_directory
+    output:
+      count:
+        from: stdout
+        decode: text
+  - id: do_work
     action: dag.run
     with:
       dag: video_processor
       params:
-        VIDEO_FILE_PATH: "${ITEM}"
-    parallel:
-      items: "${get_video_file_paths.output.files}"
-      max_concurrent: 1
-    depends: get_video_file_paths
+        THUMBNAIL: "${make_paths.output.thumbnail}"
+        VIDEO: "${make_paths.output.video}"
+        TARGET: "${build_target_file_path.output.path}"
+    depends: count_target_files
     preconditions:
-      - condition: "${get_video_file_paths.output.files}"
-        expected: "[]"
-        negate: true
+      - condition: "${count_target_files.output.count}"
+        expected: "0"
 ---
 name: video_processor
 retry_policy:
   limit: 0
 params:
-  - VIDEO_FILE_PATH: ""
+  - THUMBNAIL: ""
+  - VIDEO: ""
+  - TARGET: ""
 ssh:
   user: root
   host: tana.bob.house
   key: /run/secrets/id_rsa
   known_host_file: /run/secrets/known_hosts
 steps:
-  - id: get_fps
-    run: |
-      ffprobe \
-        -v error -select_streams v -of default=noprint_wrappers=1:nokey=1 -show_entries stream=r_frame_rate \
-        "${VIDEO_FILE_PATH}"
-    output:
-      fps:
-        from: stdout
-  - id: mktemp
-    run: mktemp --suffix .mp4 --tmpdir=/mnt/md1/
-    depends: get_fps
-    preconditions:
-      - condition: "${get_fps.output.fps}"
-        expected: "re:^[36]0/1$"
+  - id: mktemp_metadata
+    run: mktemp --quiet --suffix .txt --tmpdir=/mnt/md1/
     output:
       path:
         from: stdout
-  - id: process
+  - id: mktemp_adjusted_metadata
+    run: mktemp --quiet --suffix .txt --tmpdir=/mnt/md1/
+    output:
+      path:
+        from: stdout
+  - id: mktemp_vid_file
+    run: mktemp --quiet --suffix .mp4 --tmpdir=/mnt/md1/
+    output:
+      path:
+        from: stdout
+  - id: extract_metadata
     run: |
+      ffmpeg -hide_banner -loglevel error -y \
+        -i "${VIDEO}" \
+        -f ffmetadata \
+        "${mktemp_metadata.output.path}"
+    depends: mktemp_metadata
+  - id: adjust_metadata
+    run: |
+      awk -F= '{ if($1~/^(END|START)$/) {$2=($2*10)/13; printf "%s=%d\n", $1, $2} else {print $0} }' "${mktemp_metadata.output.path}" \
+        > "${mktemp_adjusted_metadata.output.path}"
+    depends: [ extract_metadata, mktemp_adjusted_metadata, ]
+  - id: shrink
+    run: |
+      ffmpeg -hide_banner -loglevel error -y -i "${VIDEO}" \
+        -map 0:v:0 -filter:v:0 fps=fps=8,setpts=PTS/1.3 \
+        -map 0:a:0 -filter:a:0 atempo=1.3 \
+        -map_chapters -1 \
+        "${mktemp_vid_file.output.path}"
+    depends: mktemp_vid_file
+  - id: combine
+    run: |
+      # input:0:video     = output:stream:0
+      # input:0:audio     = output:stream:1
+      # input:1:thumbnail = output:stream:2
+      # input:2:metadata  = output:metadata
       ffmpeg -hide_banner -y \
-        -i "${VIDEO_FILE_PATH}" \
-        -r 8 -filter:v fps=fps=8 -crf 24 -c:a aac -q:a 1 \
-        "${mktemp.output.path}"
-    depends: mktemp
-    preconditions:
-      - condition: "${mktemp.output.path}"
-        expected: "re:.+"
-  - id: move
-    run: mv --force --verbose "${mktemp.output.path}" "${VIDEO_FILE_PATH}"
-    depends: process
+        -i "${mktemp_vid_file.output.path}" \
+        -i "${THUMBNAIL}" \
+        -i "${mktemp_adjusted_metadata.output.path}" \
+        -map 0:v:0 -map 0:a:0 -map 1 -map_metadata 2 \
+        -codec copy -codec:2 mjpeg -disposition:2 attached_pic \
+        "${TARGET}"
+    depends: [ adjust_metadata, shrink, ]
   - id: chown
-    run: chown --from root:root --verbose 911:911 "${VIDEO_FILE_PATH}"
-    depends: move
+    run: |
+      chown --changes --from root:root --preserve-root 1000:1000 "${TARGET}"
+    depends: combine
+  - id: cleanup
+    run: |
+      rm -fv "${mktemp_metadata.output.path}"
+      rm -fv "${mktemp_adjusted_metadata.output.path}"
+      rm -fv "${mktemp_vid_file.output.path}"
+    depends: combine
