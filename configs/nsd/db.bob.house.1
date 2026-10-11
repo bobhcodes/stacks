@@ -4,7 +4,7 @@ $TTL 7200
 ; SOA
 
 @       IN      SOA    docker2.bob.house. hostmaster.bob.house. (
-                                         2026101100 ; Serial
+                                         2026101101 ; Serial
                                          7200       ; Refresh
                                          1800       ; Retry
                                          1209600    ; Expire
@@ -20,6 +20,7 @@ $TTL 7200
 badgey              IN        A                    192.168.1.50
 docker2             IN        A                    192.168.1.65
 freeman             IN        A                    192.168.1.60
+gpu1                IN        A                    192.168.1.117
 haos                IN        A                    192.168.20.80
 shaxs               IN        A                    192.168.1.55
 tana                IN        A                    192.168.1.70
@@ -89,6 +90,13 @@ prometheus          IN        CNAME                freeman
 squid               IN        CNAME                freeman
 sshwifty            IN        CNAME                freeman
 traefik-freeman     IN        CNAME                freeman
+
+docker-gpu1         IN        CNAME                gpu1
+glances-gpu1        IN        CNAME                gpu1
+kopia-gpu1          IN        CNAME                gpu1
+ollama              IN        CNAME                gpu1
+traefik-gpu1        IN        CNAME                gpu1
+whisper-asr         IN        CNAME                gpu1
 
 docker-shaxs        IN        CNAME                shaxs
 frigate             IN        CNAME                shaxs
