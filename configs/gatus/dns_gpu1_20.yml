@@ -1,0 +1,57 @@
+endpoints:
+  - name: docker-gpu1 .20
+    group: dns .20
+    url: 192.168.20.60
+    dns:
+      query-name: docker-gpu1.bob.house
+      query-type: CNAME
+    conditions: &conditions-definition
+      - "[BODY] == gpu1.bob.house."
+      - "[DNS_RCODE] == NOERROR"
+    alerts: &alerts-definition
+      - type: ntfy
+
+  - name: glances-gpu1 .20
+    group: dns .20
+    url: 192.168.20.60
+    dns:
+      query-name: glances-gpu1.bob.house
+      query-type: CNAME
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: kopia-gpu1 .20
+    group: dns .20
+    url: 192.168.20.60
+    dns:
+      query-name: kopia-gpu1.bob.house
+      query-type: CNAME
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: ollama .20
+    group: dns .20
+    url: 192.168.20.60
+    dns:
+      query-name: ollama.bob.house
+      query-type: CNAME
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: traefik-gpu1 .20
+    group: dns .20
+    url: 192.168.20.60
+    dns:
+      query-name: traefik-gpu1.bob.house
+      query-type: CNAME
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: whisper-asr .20
+    group: dns .20
+    url: 192.168.20.60
+    dns:
+      query-name: whisper-asr.bob.house
+      query-type: CNAME
+    conditions: *conditions-definition
+    alerts: *alerts-definition
