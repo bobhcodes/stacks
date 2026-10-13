@@ -761,6 +761,12 @@
         icon: microsoft.svg
         server: docker2
         container: nuget
+    - Open WebUI: &openwebui
+        description: An extensible, feature-rich, and user-friendly self-hosted AI platform designed to operate entirely offline
+        href: https://open-webui.bob.house
+        icon: open-webui-light.webp
+        server: docker2
+        container: open-webui
     - Paperless-ngx: &paperlessngx
         description: A community-supported open-source document management system
         href: https://paperless-ngx.bob.house
@@ -878,6 +884,12 @@
           url: https://sonarr.bob.house
           key: {{HOMEPAGE_VAR_SONARR_KEY}}
           enableQueue: true
+    - Speakr: &speakr
+        description: Self-hosted web application for transcribing audio recordings
+        href: https://speakr.bob.house
+        icon: /icons/speakr.png
+        server: docker2
+        container: speakr
     - Speedtest: &speedtest
         description: Free & Open-Source HTML5 Network Performance Estimation Tool
         href: https://speedtest.bob.house/
@@ -1018,9 +1030,11 @@
     - Mockoon: *mockoon
     - Node RED: *nodered
     - NuGet: *nuget
+    - Open WebUI: *openwebui
     - RabbitMQ: *rabbitmq
     - Restfox: *restfox
     - Snipo: *snipo
+    - Speakr: *speakr
     - Sshwifty: *sshwifty
     - Trilium: *trilium
     - Vikunja: *vikunja
