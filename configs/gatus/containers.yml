@@ -375,6 +375,13 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: open-webui
+    group: containers
+    enabled: false
+    url: http://192.168.20.65:2375/v1.56/containers/open-webui/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: opencanary
     group: containers
     url: http://192.168.20.65:2375/v1.56/containers/opencanary/json
@@ -516,6 +523,13 @@ endpoints:
   - name: socket-proxy WAN1
     group: containers
     url: http://192.168.1.85:2375/v1.56/containers/socket-proxy/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: speakr
+    group: containers
+    enabled: false
+    url: http://192.168.20.65:2375/v1.56/containers/speakr/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
