@@ -4,7 +4,7 @@ $TTL 7200
 ; SOA
 
 @       IN      SOA    docker2.bob.house. hostmaster.bob.house. (
-                                         2026100601 ; Serial
+                                         2026101102 ; Serial
                                          7200       ; Refresh
                                          1800       ; Retry
                                          1209600    ; Expire
@@ -18,24 +18,15 @@ $TTL 7200
 
 @                   IN        A                    192.168.20.65
 badgey              IN        A                    192.168.1.50
-billups             IN        A                    192.168.1.75
 docker2             IN        A                    192.168.20.65
 freeman             IN        A                    192.168.20.60
+gpu1                IN        A                    192.168.1.117
 haos                IN        A                    192.168.20.80
 shaxs               IN        A                    192.168.20.55
 tana                IN        A                    192.168.20.70
 wan1                IN        A                    192.168.1.85
 
 ; CNAME RECORDS
-
-docker-billups      IN        CNAME                billups
-glances-billups     IN        CNAME                billups
-kopia-billups       IN        CNAME                billups
-ollama              IN        CNAME                billups
-open-webui          IN        CNAME                billups
-speakr              IN        CNAME                billups
-traefik-billups     IN        CNAME                billups
-whisper-asr         IN        CNAME                billups
 
 apache              IN        CNAME                docker2
 apprise             IN        CNAME                docker2
@@ -61,6 +52,7 @@ mockoon             IN        CNAME                docker2
 moodist             IN        CNAME                docker2
 ntfy                IN        CNAME                docker2
 nuget               IN        CNAME                docker2
+open-webui          IN        CNAME                docker2
 paperless-ngx       IN        CNAME                docker2
 rabbitmq            IN        CNAME                docker2
 readeck             IN        CNAME                docker2
@@ -68,6 +60,7 @@ registry            IN        CNAME                docker2
 registry-ui         IN        CNAME                docker2
 restfox             IN        CNAME                docker2
 snipo               IN        CNAME                docker2
+speakr              IN        CNAME                docker2
 speedtest           IN        CNAME                docker2
 traefik-docker2     IN        CNAME                docker2
 trilium             IN        CNAME                docker2
@@ -99,6 +92,13 @@ prometheus          IN        CNAME                freeman
 squid               IN        CNAME                freeman
 sshwifty            IN        CNAME                freeman
 traefik-freeman     IN        CNAME                freeman
+
+docker-gpu1         IN        CNAME                gpu1
+glances-gpu1        IN        CNAME                gpu1
+kopia-gpu1          IN        CNAME                gpu1
+ollama              IN        CNAME                gpu1
+traefik-gpu1        IN        CNAME                gpu1
+whisper-asr         IN        CNAME                gpu1
 
 docker-shaxs        IN        CNAME                shaxs
 frigate             IN        CNAME                shaxs

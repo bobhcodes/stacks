@@ -176,60 +176,6 @@
         icon: glance.png
         server: freeman-docker
         container: glance
-    - Glances BILLUPS: &glancesbillups
-        href: https://glances-billups.bob.house/
-        icon: glances.png
-        server: billups-docker
-        container: glances
-        widgets:
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: uptime
-                format:
-                  type: duration
-                query: system_uptime{host='billups'}
-              - label: user cpu
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                  scale: 100
-                query: rate(cpu_usage_user{cpu='cpu-total',host='billups'}[5m])
-              - label: system cpu
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                  scale: 100
-                query: rate(cpu_usage_system{cpu='cpu-total',host='billups'}[5m])
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: free disk
-                format:
-                  type: bytes
-                  options:
-                    maximumFractionDigits: 1
-                query: disk_free{host='billups',path='/'}
-              - label: disk used
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                query: disk_used_percent{host='billups',path='/'}
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: running containers
-                query: docker_n_containers_running{host='billups'}
-              - label: paused containers
-                query: docker_n_containers_paused{host='billups'}
-              - label: stopped containers
-                query: docker_n_containers_stopped{host='billups'}
     - Glances DOCKER2: &glancesdocker2
         href: https://glances-docker2.bob.house/
         icon: glances.png
@@ -668,17 +614,6 @@
         icon: kiwix-light.png
         server: tana-docker
         container: kiwix
-    - Kopia BILLUPS: &kopiabillups
-        description: Cross-platform backup tool
-        href: https://kopia-billups.bob.house/
-        icon: kopia.svg
-        server: billups-docker
-        container: kopia
-        widget:
-          type: kopia
-          url: https://kopia-billups.bob.house
-          username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
-          password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
     - Kopia DOCKER2: &kopiadocker2
         description: Cross-platform backup tool
         href: https://kopia-docker2.bob.house/
@@ -830,7 +765,7 @@
         description: An extensible, feature-rich, and user-friendly self-hosted AI platform designed to operate entirely offline
         href: https://open-webui.bob.house
         icon: open-webui-light.webp
-        server: billups-docker
+        server: docker2
         container: open-webui
     - Paperless-ngx: &paperlessngx
         description: A community-supported open-source document management system
@@ -953,7 +888,7 @@
         description: Self-hosted web application for transcribing audio recordings
         href: https://speakr.bob.house
         icon: /icons/speakr.png
-        server: billups-docker
+        server: docker2
         container: speakr
     - Speedtest: &speedtest
         description: Free & Open-Source HTML5 Network Performance Estimation Tool
@@ -973,15 +908,6 @@
         icon: sshwifty.svg
         server: freeman-docker
         container: sshwifty
-    - Traefik BILLUPS: &traefikbillups
-        description: HTTP reverse proxy and load balancer
-        href: https://traefik-billups.bob.house/dashboard/
-        icon: traefik-proxy.svg
-        server: billups-docker
-        container: traefik
-        widget:
-          type: traefik
-          url: https://traefik-billups.bob.house
     - Traefik DOCKER2: &traefikdocker2
         description: HTTP reverse proxy and load balancer
         href: https://traefik-docker2.bob.house/dashboard/
@@ -1104,9 +1030,11 @@
     - Mockoon: *mockoon
     - Node RED: *nodered
     - NuGet: *nuget
+    - Open WebUI: *openwebui
     - RabbitMQ: *rabbitmq
     - Restfox: *restfox
     - Snipo: *snipo
+    - Speakr: *speakr
     - Sshwifty: *sshwifty
     - Trilium: *trilium
     - Vikunja: *vikunja
@@ -1129,10 +1057,6 @@
     - Wireshark TANA: *wiresharkstana
 
 - Servers:
-    - Billups:
-          - Glances: *glancesbillups
-          - Kopia: *kopiabillups
-          - Traefik: *traefikbillups
     - Docker2:
           - Glances: *glancesdocker2
           - Kopia: *kopiadocker2

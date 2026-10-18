@@ -1,7 +1,7 @@
 include:
   - ./docker-compose-docker1.yml
   - ./docker-compose-docker2.yml
-  - ./docker-compose-llm.yml
+  - ./docker-compose-gpu1.yml
   - ./docker-compose-media.yml
   - ./docker-compose-security.yml
   - ./docker-compose-wan1.yml
@@ -123,7 +123,7 @@ services:
       # Mount local folders to snapshot
       - ${DATA_DIR:-/opt/appdata}/.:/data/:rw
       # Mount repository location
-      - /repository/:/repository/:rw
+      - ${ROOT_DIR:-}/repository/:/repository/:rw
 
   socket-proxy:
     image: tecnativa/docker-socket-proxy:${DOCKER_SOCKET_PROXY_IMAGE_TAG?:missing docker-socket-proxy image tag}

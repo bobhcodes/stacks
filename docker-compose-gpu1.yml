@@ -1,0 +1,62 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    cap_drop: [ ALL, ]
+    container_name: ollama
+    depends_on:
+      traefik:
+        condition: service_healthy
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [ gpu, ]
+              count: 1
+    labels:
+      traefik.docker.network: traefik-network
+      traefik.http.routers.ollama-router.entrypoints: lan
+      traefik.http.routers.ollama-router.rule: Host(`ollama.bob.house`)
+      traefik.http.routers.ollama-router.tls: "true"
+      traefik.http.services.ollama-service.loadbalancer.server.port: "11434"
+    networks:
+      traefik: null
+    profiles: [ gpu1, ]
+    read_only: true
+    security_opt: [ no-new-privileges=true, ]
+    volumes:
+      - ${DATA_DIR:-/opt/appdata}/ollama/:/root/.ollama/:rw
+
+  whisper-asr:
+    image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    cap_drop: [ ALL, ]
+    container_name: whisper-asr
+    depends_on:
+      traefik:
+        condition: service_healthy
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [ gpu, ]
+              count: 1
+    environment:
+      ASR_DEVICE: cuda # cpu, cuda
+      ASR_ENGINE: openai_whisper # openai_whisper, faster_whisper, whisperx
+      ASR_MODEL: medium # tiny, base, small, medium, large-v1, large-v2, large-v3, large-v3-turbo
+      ASR_MODEL_PATH: /data/whisper
+    labels:
+      traefik.docker.network: traefik-network
+      traefik.http.routers.whisper-asr-router.entrypoints: lan
+      traefik.http.routers.whisper-asr-router.rule: Host(`whisper-asr.bob.house`)
+      traefik.http.routers.whisper-asr-router.tls: "true"
+      traefik.http.services.whisper-asr-service.loadbalancer.server.port: "9000"
+    networks:
+      #default: null
+      traefik: null
+    profiles: [ gpu1, ]
+    security_opt: [ no-new-privileges=true, ]
+    volumes:
+      - ${DATA_DIR:-/opt/appdata}/whisper-asr/cache/:/root/.cache/:rw
+      - ${DATA_DIR:-/opt/appdata}/whisper-asr/data/:/data/whisper/:rw

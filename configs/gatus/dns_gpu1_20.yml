@@ -1,40 +1,36 @@
 endpoints:
-  - name: docker-billups .20
+  - name: docker-gpu1 .20
     group: dns .20
-    enabled: false
     url: 192.168.20.60
     dns:
-      query-name: docker-billups.bob.house
+      query-name: docker-gpu1.bob.house
       query-type: CNAME
     conditions: &conditions-definition
-      - "[BODY] == billups.bob.house."
+      - "[BODY] == gpu1.bob.house."
       - "[DNS_RCODE] == NOERROR"
     alerts: &alerts-definition
       - type: ntfy
 
-  - name: glances-billups .20
+  - name: glances-gpu1 .20
     group: dns .20
-    enabled: false
     url: 192.168.20.60
     dns:
-      query-name: glances-billups.bob.house
+      query-name: glances-gpu1.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: kopia-billups .20
+  - name: kopia-gpu1 .20
     group: dns .20
-    enabled: false
     url: 192.168.20.60
     dns:
-      query-name: kopia-billups.bob.house
+      query-name: kopia-gpu1.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
   - name: ollama .20
     group: dns .20
-    enabled: false
     url: 192.168.20.60
     dns:
       query-name: ollama.bob.house
@@ -42,39 +38,17 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: open-webui .20
+  - name: traefik-gpu1 .20
     group: dns .20
-    enabled: false
     url: 192.168.20.60
     dns:
-      query-name: open-webui.bob.house
-      query-type: CNAME
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: speakr .20
-    group: dns .20
-    enabled: false
-    url: 192.168.20.60
-    dns:
-      query-name: speakr.bob.house
-      query-type: CNAME
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
-  - name: traefik-billups .20
-    group: dns .20
-    enabled: false
-    url: 192.168.20.60
-    dns:
-      query-name: traefik-billups.bob.house
+      query-name: traefik-gpu1.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
   - name: whisper-asr .20
     group: dns .20
-    enabled: false
     url: 192.168.20.60
     dns:
       query-name: whisper-asr.bob.house

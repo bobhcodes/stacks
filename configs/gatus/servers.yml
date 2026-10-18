@@ -19,42 +19,6 @@ suites:
           - "[STATUS] == 200"
           - "has([BODY]) == true"
         alerts: *alerts-definition
-  - name: billups
-    group: servers
-    enabled: false
-    interval: 1m
-    timeout: 30s
-    endpoints:
-      - name: ping billups
-        url: icmp://192.168.1.75
-        conditions: *ping-conditions-definition
-        alerts: *alerts-definition
-      - name: telegraf billups
-        url: http://192.168.1.75:9273/metrics
-        conditions: *telegraf-conditions-definition
-        alerts: *alerts-definition
-      - name: docker billups
-        url: http://192.168.1.75:2375/v1.56/_ping
-        conditions: &docker-conditions-definition
-          - "[CONNECTED] == true"
-          - "[RESPONSE_TIME] < 100"
-          - "[STATUS] == 200"
-          - "len([BODY]) > 0"
-          - "[BODY] == OK"
-        alerts: *alerts-definition
-      - name: traefik billups
-        url: https://192.168.1.75/dashboard/
-        headers:
-          Host: traefik-billups.bob.house
-        client: &traefik-client-definition
-          insecure: true
-          ignore-redirect: true
-        conditions: &traefik-conditions-definition
-          - "[CONNECTED] == true"
-          - "[RESPONSE_TIME] < 100"
-          - "[STATUS] == 200"
-          - "len([BODY]) > 0"
-        alerts: *alerts-definition
   - name: docker2
     group: servers
     interval: 1m
@@ -74,14 +38,25 @@ suites:
         alerts: *alerts-definition
       - name: docker docker2
         url: http://192.168.20.65:2375/v1.56/_ping
-        conditions: *docker-conditions-definition
+        conditions: &docker-conditions-definition
+          - "[CONNECTED] == true"
+          - "[RESPONSE_TIME] < 100"
+          - "[STATUS] == 200"
+          - "len([BODY]) > 0"
+          - "[BODY] == OK"
         alerts: *alerts-definition
       - name: traefik docker2
         url: https://192.168.20.65/dashboard/
         headers:
           Host: traefik-docker2.bob.house
-        client: *traefik-client-definition
-        conditions: *traefik-conditions-definition
+        client: &traefik-client-definition
+          insecure: true
+          ignore-redirect: true
+        conditions: &traefik-conditions-definition
+          - "[CONNECTED] == true"
+          - "[RESPONSE_TIME] < 100"
+          - "[STATUS] == 200"
+          - "len([BODY]) > 0"
         alerts: *alerts-definition
   - name: freeman
     group: servers
