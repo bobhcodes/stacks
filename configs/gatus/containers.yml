@@ -617,9 +617,9 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: windows-tana
+  - name: webui-tana
     group: containers
-    url: http://192.168.20.70:2375/v1.56/containers/windows/json
+    url: http://192.168.20.70:2375/v1.56/containers/webui/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 

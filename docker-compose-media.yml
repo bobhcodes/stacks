@@ -693,47 +693,41 @@ services:
       - /mnt/md1/youtube/:/media/youtube/:ro
       - /mnt/md1/youtarr/:/media/youtarr/:ro
 
-  windows:
-    image: dockurr/windows:latest
+  webui:
+    image: docker.io/qemux/qemu:latest
     cap_drop: [ ALL, ]
-    cap_add: [ CHOWN, DAC_OVERRIDE, FOWNER, NET_ADMIN, NET_BIND_SERVICE, NET_RAW, SETGID, SETUID, SYS_CHROOT, ]
-    container_name: windows
+    cap_add: [ NET_ADMIN, NET_BIND_SERVICE, SETUID, SETGID, ]
+    container_name: webui
     depends_on:
       traefik:
         condition: service_healthy
     devices:
       - /dev/kvm:/dev/kvm:rwm
+      - /dev/md0:/disk2
+      - /dev/md1:/disk3
+      - /dev/md2:/disk4
       - /dev/net/tun:/dev/net/tun:rwm
-    env_file:
-      - ${REPOS_DIR:-/opt/repos}/Configurations/windows-tana.env
     environment:
-      VERSION: "2022"
-      CPU_CORES: "4"
-      DISK_SIZE: 32G
-      RAM_SIZE: 8G
-      REGION: en-GB
-      KEYBOARD: en-GB
-      USERNAME: bob
+      BOOT: mint
+      CPU_CORES: "2"
+      DISK_SIZE: 16G
+      RAM_SIZE: 2G
+      DEBUG: Y
     labels:
       traefik.docker.network: traefik-network
-      traefik.http.routers.windows-router.entrypoints: lan
-      traefik.http.routers.windows-router.rule: Host(`windows-tana.bob.house`)
-      traefik.http.routers.windows-router.tls: "true"
-      traefik.http.services.windows-service.loadbalancer.server.port: "8006"
+      traefik.http.routers.webui-router.entrypoints: lan
+      traefik.http.routers.webui-router.rule: Host(`webui-tana.bob.house`)
+      traefik.http.routers.webui-router.tls: "true"
+      traefik.http.services.webui-service.loadbalancer.server.port: "8006"
     networks:
       default: null
       traefik: null
-    ports:
-      - 192.168.1.70:3389:3389/tcp
-      - 192.168.1.70:3389:3389/udp
-      - 192.168.20.70:3389:3389/tcp
-      - 192.168.20.70:3389:3389/udp
     profiles: [ media1, media1c, ]
     security_opt: [ no-new-privileges=true, ]
-    stop_grace_period: 2m0s
+    stop_grace_period: 1m0s
+    tmpfs: [ "/var/log/nginx/:noexec,nosuid", ]
     volumes:
-      - /mnt/md1/windows/:/storage/:rw
-      - /mnt/:/data/:rw
+      - /mnt/md1/linux/:/storage/:rw
 
   wireshark:
     image: lscr.io/linuxserver/wireshark:latest

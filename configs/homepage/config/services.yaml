@@ -975,12 +975,12 @@
           key: {{HOMEPAGE_VAR_VIKUNJA_KEY}}
           enableTaskList: true
           version: 2
-    - Windows TANA: &windowstana
-        description: Windows inside a Docker container
-        href: https://windows-tana.bob.house/
-        icon: windows-7.png
+    - WebUI TANA: &webuitana
+        description: Web interface for Linux UI
+        href: https://webui-tana.bob.house/
+        icon: linux.png
         server: tana-docker
-        container: windows
+        container: webui
     - Wireshark TANA: &wiresharkstana
         description: Powerful, open-source network protocol analyser
         href: https://wireshark-tana.bob.house/
@@ -1095,5 +1095,5 @@
     - SABnzbd: *sabnzbd
     - Sonarr: *sonarr
     - Tunarr: *tunarr
-    - Windows TANA: *windowstana
+    - WebUI TANA: *webuitana
     - Youtarr: *youtarr
