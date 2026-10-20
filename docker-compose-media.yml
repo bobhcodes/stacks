@@ -123,9 +123,8 @@ services:
         reservations:
           cpus: 1
           memory: 2G
-    dns: [ 192.168.20.65, ]
     healthcheck:
-      test: curl -f http://127.0.0.1:8096/health
+      test: curl -f http://localhost:8096/health
     labels:
       traefik.http.routers.jellyfin-router.entrypoints: lan
       traefik.http.routers.jellyfin-router.rule: Host(`jellyfin.bob.house`)
