@@ -155,11 +155,11 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: retroarr .1
+  - name: romm .1
     group: dns .1
     url: 192.168.1.50
     dns:
-      query-name: retroarr.bob.house
+      query-name: romm.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition

@@ -466,9 +466,15 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: retroarr
+  - name: romm
     group: containers
-    url: http://192.168.20.70:2375/v1.56/containers/retroarr/json
+    url: http://192.168.20.70:2375/v1.56/containers/romm/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: romm-db
+    group: containers
+    url: http://192.168.20.70:2375/v1.56/containers/romm-db/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 

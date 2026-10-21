@@ -1,0 +1,279 @@
+# This is a generic example of a configuration file
+# Rename this file to `config.yml`, copy it to a `config` folder, and mount that folder as per the docker-compose.example.yml
+# Only uncomment the lines you want to use/modify, or add new ones where needed
+
+# exclude:
+#   # Exclude platforms to be scanned
+#   platforms:
+#     - excluded_folder_a
+#     - excluded_folder_b
+
+#   # Exclude ROMs or parts of ROMs to be scanned
+#   roms:
+#     # Single file games section.
+#     # Will not apply to files that are in sub-folders (multi-disc ROMs, games with updates, DLC, patches, etc.)
+#     single_file:
+#       # Exclude all files with certain extensions to be scanned
+#       extensions:
+#         - xml
+#         - txt
+
+#       # Exclude matched file names to be scanned
+#       # Supports unix filename pattern matching
+#       names:
+#         - 'info.txt'
+#         - '._*'
+#         - '*.nfo'
+
+#     # Multi files games section
+#     # Will apply to files that are in sub-folders (multi-disc ROMs, games with updates, DLC, patches, etc.)
+#     multi_file:
+#       # Exclude matched 'folder' names to be scanned (RomM identifies folders as multi file games)
+#       # Common ES-DE media folders are listed below
+#       names:
+#         - 3dboxes
+#         - backcovers
+#         - covers
+#         - fanart
+#         - manuals
+#         - marquees
+#         - miximages
+#         - physicalmedia
+#         - screenshots
+#         - titlescreens
+#         - videos
+#         - downloaded_media
+#         - media
+
+#       # Exclude files within sub-folders.
+#       parts:
+#         # Exclude matched file names to be scanned from multi file roms
+#         # Keep in mind that RomM doesn't scan folders inside multi files games,
+#         # so there is no need to exclude folders from inside of multi files games.
+#         names:
+#           - 'data.xml'
+#           - '._*' # Supports unix filename pattern matching
+
+#         # Exclude all files with certain extensions to be scanned from multi file roms
+#         extensions:
+#           - xml
+#           - txt
+
+# system:
+#   # Asociate different platform names to your current file system platform names
+#   # [your custom platform folder name]: [RomM platform name]
+#   # Case-insensitive. Batocera, RetroBat and ES-DE folders are already recognised.
+#   platforms:
+#     ps1: psx
+#     super_nintendo: snes
+
+#   # Asociate one platform to it's main version (IGDB only)
+#   versions:
+#     naomi: arcade
+
+# filesystem:
+#   # Skip file hash calculations on low power devices (eg. Raspberry PI)
+#   skip_hash_calculation: false
+#   # Skip reading platform-native title IDs out of ROM binaries during scans
+#   # (rom-converto's per-file title IDs follow `converto.scan_metadata` instead)
+#   skip_title_id_extraction: false
+#   # Rename Switch ROMs to embed ` [TITLEID][vVERSION]` in their filename
+#   embed_switch_title_ids: false
+#   # Library structure, relative to the library root. `{platform}` is the
+#   # platform folder; `{game}` is where a game begins, a file there being one
+#   # game and a folder one multi-file game. Any other macro is a wildcard level.
+#   # https://docs.romm.app/latest/getting-started/folder-structure/#custom-library-structure
+#   structure:
+#     default: 'roms/{platform}/{game}'
+#     firmware: 'bios/{platform}'
+#     # Overrides by fs_slug; a list unions its layouts.
+#     nes:
+#       - 'roms/{platform}/{game}'
+#       - 'roms/{platform}/{category}/{game}'
+#     ps3: 'roms/{platform}/{category}/{game}'
+#     snes: 'roms/{platform}/{region}/{game}'
+
+# scan:
+#   # Metadata priority during scans
+#   priority:
+#     # Below are the default priority values used
+#     metadata: # Top-level metadata source priority
+#       - igdb # IGDB (highest priority)
+#       - moby # MobyGames
+#       - ss # Screenscraper
+#       - ra # RetroAchievements
+#       - launchbox # Launchbox
+#       - gamelist # ES-DE gamelist.xml
+#       - hasheous # Hasheous
+#       - flashpoint # Flashpoint Project
+#       - steam # Steam (PC platforms only)
+#       - hltb # HowLongToBeat (lowest priority)
+#     artwork: # Cover art and screenshots
+#       - sgdb # SteamGridDB (highest priority)
+#       - igdb # IGDB
+#       - moby # MobyGames
+#       - ss # Screenscraper
+#       - ra # RetroAchievements
+#       - launchbox # Launchbox
+#       - libretro # Libretro
+#       - gamelist # ES-DE gamelist.xml
+#       - hasheous # Hasheous
+#       - flashpoint # Flashpoint Project
+#       - steam # Steam (PC platforms only)
+#       - hltb # HowLongToBeat
+#     # Optional per-field overrides, each falls back to "artwork" when omitted
+#     cover: # Cover art only
+#       - igdb
+#       - ss
+#     screenshot: # Screenshots only
+#       - ss
+#       - igdb
+#     manual: # Game manuals only
+#       - launchbox
+#     region: # Used by IGDB and ScreenScraper for regional variants
+#       - us
+#       - wor
+#       - ss
+#       - eu
+#       - jp
+#     region_mode: prefer_rom_tags # Region tags win over priority list
+#     language: # Used by ScreenScraper for descriptions
+#       - en
+#       - fr
+#   # Media assets to download
+#   # Only used by Screenscraper and ES-DE gamelist.xml
+#   media:
+#     # Used as alternative cover art
+#     - box2d  # Normal cover art (always enabled)
+#     - box3d  # 3D box art
+#     - miximage  # Mixed image of multiple media (v1 / mixrbv1)
+#     - miximage_v2  # Mixed image of multiple media (v2 / mixrbv2)
+#     - physical  # Disc, cartridge, etc.
+#     # Added to the screenshots carousel
+#     - screenshot  # Screenshot (enabled by default)
+#     # Shown in the artwork gallery
+#     - title_screen  # Title screen
+#     - fanart  # User uploaded artwork
+#     # Bezel displayed around the emulatorjs window
+#     - bezel
+#     # Manual in PDF format
+#     - manual # Manual (enabled by default)
+#     # Gameplay video
+#     - video  # Video (warning: large file size)
+#     - video_normalized  # Normalized video (smaller file size than video)
+#     # Media used for batocera gamelist.xml export
+#     - box2d_back  # Back cover art
+#     - box2d_side  # Box spine (enables the interactive 3D box on detail pages)
+#     - logo  # Transparent logo
+#     # Other media assets (might be used in the future)
+#     - marquee  # Custom marquee
+#   # Auto-export metadata files after scan completes
+#   gamelist:
+#     export: false # Whether to export gamelist.xml for ES-DE/Batocera/RetroBAT (merged into an existing file)
+#     media:
+#       # Select a media type from the list above (eg. box2d, screenshot, etc.)
+#       thumbnail: box2d # Use as the <thumbnail> tag in the exported gamelist.xml
+#       image: screenshot  # Use as the <image> tag in the exported gamelist.xml
+#   pegasus:
+#     export: false # Whether to export metadata.pegasus.txt for Pegasus (merged into an existing file)
+
+# EmulatorJS per-core options
+# emulatorjs:
+#   debug: true # Available options will be logged to the browser console
+#   cache_limit: null # Cache limit per ROM (in bytes)
+#   disable_batch_bootup: false
+#   disable_auto_unload: false
+#   auto_save_sync: true # Upload the save to the server seconds after the game writes it, without Save & Quit
+#   default_cores: # Core preselected per platform, unless overridden on the device
+#     # Use the exact core name, as listed for the platform in the docs
+#     nds: desmume
+#     nintendo-dsi: melonds
+#   settings:
+#     parallel_n64: # Use the exact core name
+#       vsync: disabled
+#     snes9x:
+#       snes9x_region: ntsc
+#     default: # These settings apply to all cores
+#       fps: show
+#   netplay:
+#     enabled: true
+#     ice_servers:
+#       - urls: "stun:stun.relay.metered.ca:80"
+#       - urls: "turn:global.relay.metered.ca:80"
+#         username: "<username>"
+#         credential: "<password>"
+#   controls: # https://emulatorjs.org/docs4devs/control-mapping/
+#     snes9x:
+#       0: # Player 1
+#         0: # A MAPPING FOR EACH BUTTON MUST BE SET!
+#           value: x # Mapping for keyboard
+#           value2: BUTTON_2 # Mapping for connected controller
+#       1: # Player 2
+#       2: # Player 3
+#       3: # Player 4
+
+# Emulator streaming: play a ROM through a real emulator in a webstation
+# container, streamed to the browser.
+# Supported platforms, emulators and BIOS requirements:
+# https://docs.romm.app/latest/using/emulator-streaming/
+#
+# streaming:
+#   enabled: true
+#   containers:
+#     # One container can serve many platforms. Container keys are defaults
+#     # for every platform it serves; a platform block may override emulator,
+#     # label, memory_card_sync, clears_stale_saves, core and
+#     # experimental_cores.
+#     - protocol: webstation
+#       host: https://192.168.1.56:3010  # browser-facing UI, must be https
+#       subfolder: /streaming            # matches the container's SUBFOLDER
+#       # library_path: /mnt/games/library  # only if the container can't mount the library at /romm/library
+#       broker_secret: change-me         # matches the container's BROKER_SECRET
+#       label: Emulation station
+#       broker_host: http://192.168.1.56:3010  # server-to-broker URL, when RomM can't dial `host` itself
+#       platforms:
+#         snes: retroarch                 # the emulator name directly...
+#         ps2:                            # ...or a block overriding container keys
+#           emulator: pcsx2
+#           memory_card_sync: true
+#         # Whether the broker wipes the save tree before restoring, which is
+#         # what lets the launch screen restore a save other than the newest.
+#         # RomM assumes what each emulator's broker does; set this only on a
+#         # fork or a broker newer than your RomM.
+#         wii:
+#           emulator: dolphin
+#           clears_stale_saves: true
+#         # RetroArch boots the broker's best-tested core for each platform.
+#         # To pick another libretro core, name it after the emulator...
+#         gba: retroarch:gpsp
+#         # ...or set `core` in a block. The broker refuses a core it doesn't
+#         # know and warns about one nobody has tested yet; see
+#         # https://github.com/romm-streaming/romm-broker (retroarch-cores docs).
+#         n64:
+#           emulator: retroarch
+#           core: parallel_n64
+#           # Lets a core listed as broken by the broker run anyway.
+#           # experimental_cores: true
+
+# converto:
+#   # Convert a single-file download into a format the client lists with
+#   # ?format=, e.g. ?format=zso,iso (needs ROM_CONVERTO_ENABLED)
+#   download_conversion_enabled: false
+#   # Read per-file title IDs with rom-converto during scans
+#   scan_metadata: true
+#   # Hours a converted download stays cached after it was last downloaded
+#   cache_ttl_hours: 24
+#   # Cache size before the least recently downloaded copies are evicted (0: unbounded)
+#   cache_max_size_gb: 20
+#   # Platform slug -> the format the "Convert library" task stores its matched
+#   # roms in, replacing the original files. Formats per platform:
+#   #   3ds: cci, cia, z3ds
+#   #   psp, ps2: chd, cso, iso, zso
+#   #   psx, saturn, segacd, dc: chd
+#   #   ngc: iso, rvz
+#   #   wii: iso, rvz, wbfs
+#   #   switch, switch-2: nsp, nsz, xci, xcz
+#   #   xbox360: zar
+#   platform_formats:
+#     psx: chd
+#     ngc: rvz

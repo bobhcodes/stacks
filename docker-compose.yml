@@ -232,8 +232,7 @@ configs:
       /prowlarr/logs.db*
       /radarr/logs.db*
       /registry/docker/
-      /retroarr/logs/
-      /retroarr/RetroArr.log
+      /romm/app/library/roms/
       /sonarr/logs.db*
       /scrutiny/
       /tunarr/backups/
@@ -267,6 +266,9 @@ networks:
     internal: "true"
   registry:
     name: registry-network
+    internal: "true"
+  romm:
+    name: romm-network
     internal: "true"
   socket-proxy:
     name: socket-proxy-network

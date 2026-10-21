@@ -34,8 +34,9 @@ if [[ $(hostname --long) =~ ^tana ]]; then
 	make_user_directory "/mnt/md1/MediaThumbnails/navidrome/"
 	make_user_directory "/mnt/md1/retro/"
 	make_user_directory "/opt/appdata/ganymede/"
-	make_user_directory "/opt/appdata/retroarr/config/"
-	make_user_directory "/opt/appdata/retroarr/savestates/"
+	make_user_directory "/opt/appdata/romm/app/"
+	make_user_directory "/opt/appdata/romm/db/"
+	make_user_directory "/opt/appdata/romm/redis/"
 fi
 
 if [[ $(hostname --long) =~ ^wan1 ]]; then

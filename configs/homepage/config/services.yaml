@@ -842,12 +842,16 @@
         icon: /icons/restfox.png
         server: docker2
         container: restfox
-    - Retroarr: &retroarr
-        description: Game library manager for PC and retro consoles
-        href: https://retroarr.bob.house/
-        icon: /icons/retroarr.png
+    - ROMM: &romm
+        description: Self-hosted ROM manager and player
+        href: https://romm.bob.house/
+        icon: romm.png
         server: tana-docker
-        container: retroarr
+        container: romm
+        widget:
+          type: romm
+          url: https://romm.bob.house
+          fields: [ "platforms", "totalRoms", "saves", "states", ]
     - SABnzbd: &sabnzbd
         description: Free and easy binary newsreader
         href: https://sabnzbd.bob.house/
