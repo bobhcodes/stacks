@@ -81,6 +81,55 @@ services:
     read_only: true
     security_opt: [ no-new-privileges=true, ]
 
+  opencanary:
+    image: thinkst/opencanary:${OPENCANARY_IMAGE_TAG?:missing opencanary image tag}
+    cap_drop: [ ALL, ]
+    cap_add: [ SETGID, SETUID, ]
+    container_name: opencanary
+    deploy:
+      resources:
+        limits:
+          cpus: 1
+          memory: 128M
+          pids: 4
+        reservations:
+          cpus: 1
+          memory: 128M
+    dns: [ 192.168.1.65, ]
+    labels:
+      dd.link.template: https://github.com/thinkst/opencanary/releases/tag/v$${major}.$${minor}.$${patch}
+      dd.tag.family: loose
+      dd.tag.include: ^\d+\.\d+\.\d+$$
+      dd.watch: "true"
+      traefik.enable: "false"
+    networks:
+      default: null
+    ports:
+      - 192.168.1.85:44421:21/tcp # FTP
+      - 192.168.1.85:44422:22/tcp # SSH
+      - 192.168.1.85:44423:23/tcp # Telnet
+      - 192.168.1.85:44469:69/tcp # TFTP
+      - 192.168.1.85:44480:80/tcp # HTTP
+      - 192.168.1.85:44123:123/tcp # NTP
+      - 192.168.1.85:44161:161/tcp # SNMP
+      - 192.168.1.85:41433:1433/tcp # MSSQL
+      - 192.168.1.85:43306:3306/tcp # MYSQL
+      - 192.168.1.85:43389:3389/tcp # RDP
+      - 192.168.1.85:45000:5000/tcp # VNC
+      - 192.168.1.85:45060:5060/tcp # SIP
+      - 192.168.1.85:46379:6379/tcp # REDIS
+      - 192.168.1.85:48001:8001/tcp # TCP Banner
+      - 192.168.1.85:48080:8080/tcp # HTTP Proxy
+      - 192.168.1.85:49418:9418/tcp # Git
+    profiles: [ wan1, ]
+    read_only: true
+    security_opt: [ no-new-privileges=true, ]
+    tmpfs:
+      - /var/run/:noexec,nosuid,uid=0,gid=0,size=64M
+      - /var/tmp/:noexec,nosuid,uid=65534,gid=65534,size=64M
+    user: 0:0
+    volumes: [ ./configs/opencanary.conf:/etc/opencanaryd/opencanary.conf:ro, ]
+
   webhooks:
     build:
       dockerfile_inline: |
