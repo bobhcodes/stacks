@@ -30,7 +30,12 @@ steps:
     parallel:
       items:
         - name: gutenberg_en_all
-        - name: maps_en_united-kingdom
+        - name: maps_en_africa
+        - name: maps_en_asia
+        - name: maps_en_australia-oceania
+        - name: maps_en_europe
+        - name: maps_en_north-america
+        - name: maps_en_south-america
         - name: wikibooks_en_all
           flavor: maxi
         - name: wikipedia_en_all
