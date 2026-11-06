@@ -312,11 +312,11 @@ services:
     profiles: [ docker2, docker2b, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
+    user: 1000:1000
 
   it-tools:
     image: ghcr.io/corentinth/it-tools:latest
     cap_drop: [ ALL, ]
-    cap_add: [ CHOWN, SETGID, SETUID, ]
     container_name: it-tools
     depends_on:
       traefik:
@@ -329,7 +329,12 @@ services:
     networks:
       traefik: null
     profiles: [ docker2, docker2b, ]
+    read_only: true
     security_opt: [ no-new-privileges=true, ]
+    tmpfs:
+      - /var/cache/nginx/:noexec,nosuid,uid=1000,gid=1000
+      - /var/run/:noexec,nosuid,uid=1000,gid=1000
+    user: 1000:1000
 
   jotty:
     image: ghcr.io/fccview/jotty:latest
@@ -368,7 +373,6 @@ services:
   jsonpath:
     image: ashphy/jsonpath-online-evaluator:latest
     cap_drop: [ ALL, ]
-    cap_add: [ CHOWN, SETGID, SETUID, ]
     container_name: jsonpath
     depends_on:
       traefik:
@@ -382,6 +386,10 @@ services:
       traefik: null
     profiles: [ docker2, docker2b, ]
     security_opt: [ no-new-privileges=true, ]
+    tmpfs:
+      - /var/cache/nginx/:noexec,nosuid,uid=1000,gid=1000
+      - /var/run/:noexec,nosuid,uid=1000,gid=1000
+    user: 1000:1000
 
   jsonplaceholder:
     image: svenwal/jsonplaceholder:latest
@@ -767,7 +775,6 @@ services:
   registry-ui:
     image: joxit/docker-registry-ui:main
     cap_drop: [ ALL, ]
-    cap_add: [ CHOWN, DAC_OVERRIDE, SETGID, SETUID, ]
     container_name: registry-ui
     depends_on:
       registry:
@@ -798,6 +805,7 @@ services:
       registry: null
       traefik: null
     security_opt: [ no-new-privileges=true, ]
+    user: 101:101
 
   restfox:
     image: flawiddsouza/restfox:latest
