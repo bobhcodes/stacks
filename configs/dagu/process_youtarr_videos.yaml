@@ -5,7 +5,7 @@ steps:
     action: ssh.run
     with:
       user: root
-      host: tana.bob.house
+      host: media1.bob.house
       key: /run/secrets/id_rsa
       known_host_file: /run/secrets/known_hosts
       timeout_sec: 60s
@@ -37,7 +37,7 @@ steps:
     action: ssh.run
     with:
       user: root
-      host: tana.bob.house
+      host: media1.bob.house
       key: /run/secrets/id_rsa
       known_host_file: /run/secrets/known_hosts
       timeout_sec: 60s

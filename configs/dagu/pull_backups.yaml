@@ -4,7 +4,7 @@ retry_policy:
 
 ssh:
   user: root
-  host: tana.bob.house
+  host: media1.bob.house
   key: /run/secrets/id_rsa
   known_host_file: /run/secrets/known_hosts
 
@@ -15,8 +15,8 @@ steps:
     run: rsync --archive --delete --partial --progress root@freeman.bob.house:/repository/ /mnt/md2/backup/freeman/
   - id: shaxs
     run: rsync --archive --delete --partial --progress root@shaxs.bob.house:/repository/ /mnt/md2/backup/shaxs/
-  - id: tana
-    run: rsync --archive --delete --partial --progress /repository/ /mnt/md2/backup/tana/
+  - id: media1
+    run: rsync --archive --delete --partial --progress /repository/ /mnt/md2/backup/media1/
   - id: wan1
     run: rsync --archive --delete --partial --progress root@wan1.bob.house:/repository/ /mnt/md2/backup/wan1/
   - id: cctv
@@ -24,7 +24,7 @@ steps:
     depends: shaxs
   - id: get_disk_usage
     run: df --human-readable --print-type /mnt/md2/
-    depends: [docker2, freeman, shaxs, tana, wan1, cctv]
+    depends: [docker2, freeman, shaxs, media1, wan1, cctv]
     output: USAGE
   - id: notify
     type: http

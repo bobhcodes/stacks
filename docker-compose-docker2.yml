@@ -203,9 +203,9 @@ services:
       DD_WATCHER_SHAXS_HOST: shaxs.bob.house
       DD_WATCHER_SHAXS_CRON: 0 8,20 * * *
       DD_WATCHER_SHAXS_WATCHBYDEFAULT: "false"
-      DD_WATCHER_TANA_HOST: tana.bob.house
-      DD_WATCHER_TANA_CRON: 0 10,22 * * *
-      DD_WATCHER_TANA_WATCHBYDEFAULT: "false"
+      DD_WATCHER_MEDIA1_HOST: media1.bob.house
+      DD_WATCHER_MEDIA1_CRON: 0 10,22 * * *
+      DD_WATCHER_MEDIA1_WATCHBYDEFAULT: "false"
       DD_WATCHER_WAN1_HOST: wan1.bob.house
       DD_WATCHER_WAN1_CRON: 0 4,16 * * *
       DD_WATCHER_WAN1_WATCHBYDEFAULT: "false"
