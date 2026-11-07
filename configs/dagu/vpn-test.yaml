@@ -29,7 +29,7 @@ steps:
           container: gluetun
         - host: docker2.bob.house
           container: gluetun
-        - host: tana.bob.house
+        - host: media1.bob.house
           container: gluetun
     with:
       dag: server-processor

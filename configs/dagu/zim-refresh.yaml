@@ -69,7 +69,7 @@ steps:
     action: ssh.run
     with:
       user: root
-      host: tana.bob.house
+      host: media1.bob.house
       key: /run/secrets/id_rsa
       known_host_file: /run/secrets/known_hosts
       command: docker compose --file /opt/repos/stacks/docker-compose.yml down kiwix
@@ -89,7 +89,7 @@ steps:
     action: ssh.run
     with:
       user: root
-      host: tana.bob.house
+      host: media1.bob.house
       key: /run/secrets/id_rsa
       known_host_file: /run/secrets/known_hosts
       command: docker compose --file /opt/repos/stacks/docker-compose.yml up --detach kiwix
@@ -189,7 +189,7 @@ steps:
     action: ssh.run
     with:
       user: root
-      host: tana.bob.house
+      host: media1.bob.house
       key: /run/secrets/id_rsa
       known_host_file: /run/secrets/known_hosts
       command: |
@@ -237,7 +237,7 @@ steps:
     action: ssh.run
     with:
       user: root
-      host: tana.bob.house
+      host: media1.bob.house
       key: /run/secrets/id_rsa
       known_host_file: /run/secrets/known_hosts
       command: |

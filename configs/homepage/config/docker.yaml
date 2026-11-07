@@ -14,8 +14,8 @@ shaxs-docker:
   host: shaxs.bob.house
   port: 2375
 
-tana-docker:
-  host: tana.bob.house
+media1-docker:
+  host: media1.bob.house
   port: 2375
 
 wan1-docker:

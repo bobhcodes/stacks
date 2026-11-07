@@ -9,7 +9,7 @@ steps:
         - docker2.bob.house
         - freeman.bob.house
         - shaxs.bob.house
-        - tana.bob.house
+        - media1.bob.house
         - wan1.bob.house
     with:
       dag: update-processor

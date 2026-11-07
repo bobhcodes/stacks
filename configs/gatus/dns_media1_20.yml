@@ -1,235 +1,235 @@
 endpoints:
-  - name: docker-tana .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: docker-media1 .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
-      query-name: docker-tana.bob.house
+      query-name: docker-media1.bob.house
       query-type: CNAME
     conditions: &conditions-definition
-      - "[BODY] == tana.bob.house."
+      - "[BODY] == media1.bob.house."
       - "[DNS_RCODE] == NOERROR"
     alerts: &alerts-definition
       - type: ntfy
 
-  - name: feishin .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: feishin .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: feishin.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: ganymede .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: ganymede .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: ganymede.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: glances-tana .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: glances-media1 .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
-      query-name: glances-tana.bob.house
+      query-name: glances-media1.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: gluetun-tana .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: gluetun-media1 .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
-      query-name: gluetun-tana.bob.house
+      query-name: gluetun-media1.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: jellyfin .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: jellyfin .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: jellyfin.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: jellyseerr .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: jellyseerr .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: jellyseerr.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: kiwix .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: kiwix .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: kiwix.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: kopia-tana .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: kopia-media1 .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
-      query-name: kopia-tana.bob.house
+      query-name: kopia-media1.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: lidarr .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: lidarr .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: lidarr.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: metube .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: metube .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: metube.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: navidrome .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: navidrome .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: navidrome.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: nodered .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: nodered .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: nodered.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: pinepods .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: pinepods .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: pinepods.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: prowlarr .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: prowlarr .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: prowlarr.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: qbittorrent .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: qbittorrent .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: qbittorrent.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: radarr .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: radarr .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: radarr.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: romm .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: romm .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: romm.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: sabnzbd .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: sabnzbd .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: sabnzbd.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: scrutiny .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: scrutiny .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: scrutiny.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: sonarr .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: sonarr .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: sonarr.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: traefik-tana .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: traefik-media1 .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
-      query-name: traefik-tana.bob.house
+      query-name: traefik-media1.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: tunarr .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: tunarr .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: tunarr.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: webui-tana .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: webui-media1 .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
-      query-name: webui-tana.bob.house
+      query-name: webui-media1.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: wireshark-tana .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: wireshark-media1 .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
-      query-name: wireshark-tana.bob.house
+      query-name: wireshark-media1.bob.house
       query-type: CNAME
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: youtarr .1
-    group: dns .1
-    url: 192.168.1.50
+  - name: youtarr .20
+    group: dns .20
+    url: 192.168.20.60
     dns:
       query-name: youtarr.bob.house
       query-type: CNAME
