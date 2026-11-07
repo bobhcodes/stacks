@@ -177,7 +177,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: glances TANA
+  - name: glances MEDIA1
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/glances/json
     conditions: *conditions-definition
@@ -201,7 +201,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: gluetun TANA
+  - name: gluetun MEDIA1
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/gluetun/json
     conditions: *conditions-definition
@@ -291,7 +291,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: kopia TANA
+  - name: kopia MEDIA1
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/kopia/json
     conditions: *conditions-definition
@@ -520,7 +520,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: socket-proxy TANA
+  - name: socket-proxy MEDIA1
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/socket-proxy/json
     conditions: *conditions-definition
@@ -575,7 +575,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: traefik TANA
+  - name: traefik MEDIA1
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/traefik/json
     conditions: *conditions-definition
@@ -623,19 +623,19 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: webui-tana
+  - name: webui-media1
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/webui/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: wireshark-tana
+  - name: wireshark-media1
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/wireshark/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: youtarr-tana
+  - name: youtarr-media1
     group: containers
     url: http://192.168.20.70:2375/v1.56/containers/youtarr/json
     conditions: *conditions-definition

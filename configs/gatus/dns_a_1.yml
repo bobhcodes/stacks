@@ -44,11 +44,11 @@ endpoints:
       - "[DNS_RCODE] == NOERROR"
     alerts: *alerts-definition
 
-  - name: tana .1
+  - name: media1 .1
     group: dns .1
     url: 192.168.1.50
     dns:
-      query-name: tana.bob.house
+      query-name: media1.bob.house
       query-type: A
     conditions:
       - "[BODY] == 192.168.1.70"

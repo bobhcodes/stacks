@@ -591,6 +591,7 @@ services:
       romm: null
     profiles: [ media1, media1a, ]
     security_opt: [ no-new-privileges=true, ]
+    tmpfs: [ "/tmp/:noexec,nosuid,uid=1000,gid=1000", ]
     user: 1000:1000
     volumes:
       - ${DATA_DIR:-/opt/appdata}/romm/db/:/var/lib/mysql/:rw
@@ -743,7 +744,7 @@ services:
       - /dev/kvm:/dev/kvm:rwm
       - /dev/md0:/disk2
       - /dev/md1:/disk3
-      - /dev/md2:/disk4
+      - /dev/md125p1:/disk4
       - /dev/net/tun:/dev/net/tun:rwm
     environment:
       BOOT: mint
@@ -754,7 +755,7 @@ services:
     labels:
       traefik.docker.network: traefik-network
       traefik.http.routers.webui-router.entrypoints: lan
-      traefik.http.routers.webui-router.rule: Host(`webui-tana.bob.house`)
+      traefik.http.routers.webui-router.rule: Host(`webui-media1.bob.house`)
       traefik.http.routers.webui-router.tls: "true"
       traefik.http.services.webui-service.loadbalancer.server.port: "8006"
     networks:
@@ -783,7 +784,7 @@ services:
     labels:
       traefik.docker.network: traefik-network
       traefik.http.routers.wireshark-router.entrypoints: lan
-      traefik.http.routers.wireshark-router.rule: Host(`wireshark-tana.bob.house`)
+      traefik.http.routers.wireshark-router.rule: Host(`wireshark-media1.bob.house`)
       traefik.http.routers.wireshark-router.tls: "true"
       traefik.http.services.wireshark-service.loadbalancer.server.port: "3000"
     networks:

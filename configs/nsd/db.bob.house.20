@@ -4,7 +4,7 @@ $TTL 7200
 ; SOA
 
 @       IN      SOA    docker2.bob.house. hostmaster.bob.house. (
-                                         2026102100 ; Serial
+                                         2026110700 ; Serial
                                          7200       ; Refresh
                                          1800       ; Retry
                                          1209600    ; Expire
@@ -23,7 +23,7 @@ freeman             IN        A                    192.168.20.60
 gpu1                IN        A                    192.168.1.117
 haos                IN        A                    192.168.20.80
 shaxs               IN        A                    192.168.20.55
-tana                IN        A                    192.168.20.70
+media1              IN        A                    192.168.20.70
 wan1                IN        A                    192.168.1.85
 
 ; CNAME RECORDS
@@ -106,32 +106,32 @@ glances-shaxs       IN        CNAME                shaxs
 kopia-shaxs         IN        CNAME                shaxs
 traefik-shaxs       IN        CNAME                shaxs
 
-docker-tana         IN        CNAME                tana
-feishin             IN        CNAME                tana
-ganymede            IN        CNAME                tana
-glances-tana        IN        CNAME                tana
-gluetun-tana        IN        CNAME                tana
-jellyfin            IN        CNAME                tana
-jellyseerr          IN        CNAME                tana
-kiwix               IN        CNAME                tana
-kopia-tana          IN        CNAME                tana
-lidarr              IN        CNAME                tana
-metube              IN        CNAME                tana
-navidrome           IN        CNAME                tana
-nodered             IN        CNAME                tana
-pinepods            IN        CNAME                tana
-prowlarr            IN        CNAME                tana
-qbittorrent         IN        CNAME                tana
-radarr              IN        CNAME                tana
-romm                IN        CNAME                tana
-sabnzbd             IN        CNAME                tana
-scrutiny            IN        CNAME                tana
-sonarr              IN        CNAME                tana
-traefik-tana        IN        CNAME                tana
-tunarr              IN        CNAME                tana
-webui-tana          IN        CNAME                tana
-wireshark-tana      IN        CNAME                tana
-youtarr             IN        CNAME                tana
+docker-media1       IN        CNAME                media1
+feishin             IN        CNAME                media1
+ganymede            IN        CNAME                media1
+glances-media1      IN        CNAME                media1
+gluetun-media1      IN        CNAME                media1
+jellyfin            IN        CNAME                media1
+jellyseerr          IN        CNAME                media1
+kiwix               IN        CNAME                media1
+kopia-media1        IN        CNAME                media1
+lidarr              IN        CNAME                media1
+metube              IN        CNAME                media1
+navidrome           IN        CNAME                media1
+nodered             IN        CNAME                media1
+pinepods            IN        CNAME                media1
+prowlarr            IN        CNAME                media1
+qbittorrent         IN        CNAME                media1
+radarr              IN        CNAME                media1
+romm                IN        CNAME                media1
+sabnzbd             IN        CNAME                media1
+scrutiny            IN        CNAME                media1
+sonarr              IN        CNAME                media1
+traefik-media1      IN        CNAME                media1
+tunarr              IN        CNAME                media1
+webui-media1        IN        CNAME                media1
+wireshark-media1    IN        CNAME                media1
+youtarr             IN        CNAME                media1
 
 miasma              IN        CNAME                wan1
 docker-wan1         IN        CNAME                wan1

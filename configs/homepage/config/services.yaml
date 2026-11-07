@@ -127,7 +127,7 @@
         description: A modern self-hosted music player
         href: https://feishin.bob.house
         icon: feishin.png
-        server: tana-docker
+        server: media1-docker
         container: feishin
     - Forgejo: &forgejo
         description: A lightweight software forge focused on scaling, federation, and privacy
@@ -159,7 +159,7 @@
         description: Live stream archiving platform
         href: https://ganymede.bob.house/
         icon: /icons/ganymede.png
-        server: tana-docker
+        server: media1-docker
         container: ganymede
     - Gatus: &gatus
         description: Automated developer-oriented status page
@@ -338,10 +338,10 @@
                 query: docker_n_containers_paused{host='shaxs'}
               - label: stopped containers
                 query: docker_n_containers_stopped{host='shaxs'}
-    - Glances TANA: &glancestana
-        href: https://glances-tana.bob.house/
+    - Glances MEDIA1: &glancesmedia1
+        href: https://glances-media1.bob.house/
         icon: glances.png
-        server: tana-docker
+        server: media1-docker
         container: glances
         widgets:
           - type: prometheusmetric
@@ -351,21 +351,21 @@
               - label: uptime
                 format:
                   type: duration
-                query: system_uptime{host='tana'}
+                query: system_uptime{host='media1'}
               - label: user cpu
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_user{cpu='cpu-total',host='tana'}[5m])
+                query: rate(cpu_usage_user{cpu='cpu-total',host='tmedia1ana'}[5m])
               - label: system cpu
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
                   scale: 100
-                query: rate(cpu_usage_system{cpu='cpu-total',host='tana'}[5m])
+                query: rate(cpu_usage_system{cpu='cpu-total',host='media1'}[5m])
           - type: prometheusmetric
             url: https://prometheus.bob.house
             refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
@@ -375,29 +375,29 @@
                   type: percent
                   options:
                     maximumFractionDigits: 1
-                query: disk_used_percent{host='tana',path='/mnt/md0'}
+                query: disk_used_percent{host='media1',path='/mnt/md0'}
               - label: md1
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
-                query: disk_used_percent{host='tana',path='/mnt/md1'}
+                query: disk_used_percent{host='media1',path='/mnt/md1'}
               - label: md2
                 format:
                   type: percent
                   options:
                     maximumFractionDigits: 1
-                query: disk_used_percent{host='tana',path='/mnt/md2'}
+                query: disk_used_percent{host='media1',path='/mnt/md2'}
           - type: prometheusmetric
             url: https://prometheus.bob.house
             refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
             metrics:
               - label: running containers
-                query: docker_n_containers_running{host='tana'}
+                query: docker_n_containers_running{host='media1'}
               - label: paused containers
-                query: docker_n_containers_paused{host='tana'}
+                query: docker_n_containers_paused{host='media1'}
               - label: stopped containers
-                query: docker_n_containers_stopped{host='tana'}
+                query: docker_n_containers_stopped{host='media1'}
     - Glances WAN1: &glanceswan1
         href: https://glances-wan1.bob.house/
         icon: glances.png
@@ -472,14 +472,14 @@
           url: https://gluetun-freeman.bob.house/
           key: {{HOMEPAGE_VAR_GLUETUN_KEY}}
           version: 2
-    - Gluetun TANA: &gluetuntana
+    - Gluetun MEDIA1: &gluetunmedia1
         description: VPN client for multiple VPN providers using OpenVPN or Wireguard, DNS over TLS
         icon: gluetun.svg
-        server: tana-docker
+        server: media1-docker
         container: gluetun
         widget:
           type: gluetun
-          url: https://gluetun-tana.bob.house/
+          url: https://gluetun-media1.bob.house/
           key: {{HOMEPAGE_VAR_GLUETUN_KEY}}
           version: 2
     - go2rtc: &go2rtc
@@ -553,7 +553,7 @@
         description: Your media, on your terms
         href: https://jellyfin.bob.house/web/
         icon: jellyfin.svg
-        server: tana-docker
+        server: media1-docker
         container: jellyfin
         widgets:
           - type: jellyfin
@@ -574,17 +574,17 @@
                   type: bytes
                   options:
                     maximumFractionDigits: 2
-                query: docker_container_mem_usage{host='tana',container_image='jellyfin/jellyfin'}
+                query: docker_container_mem_usage{host='media1',container_image='jellyfin/jellyfin'}
               - label: uptime
                 format:
                   type: duration
                   scale: .000000001
-                query: docker_container_status_uptime_ns{host='tana',container_image='jellyfin/jellyfin'}
+                query: docker_container_status_uptime_ns{host='media1',container_image='jellyfin/jellyfin'}
     - Jellyseerr: &jellyseerr
         description: Request management and media discovery tool for the Jellyfin ecosystem
         href: https://jellyseerr.bob.house/
         icon: jellyseerr.svg
-        server: tana-docker
+        server: media1-docker
         container: jellyseerr
         widget:
           type: jellyseerr
@@ -612,7 +612,7 @@
         description: When there is No Internet, there is Kiwix
         href: https://kiwix.bob.house/
         icon: kiwix-light.png
-        server: tana-docker
+        server: media1-docker
         container: kiwix
     - Kopia DOCKER2: &kopiadocker2
         description: Cross-platform backup tool
@@ -647,15 +647,15 @@
           url: https://kopia-shaxs.bob.house
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
-    - Kopia TANA: &kopiatana
+    - Kopia MEDIA1: &kopiamedia1
         description: Cross-platform backup tool
-        href: https://kopia-tana.bob.house/
+        href: https://kopia-media1.bob.house/
         icon: kopia.svg
-        server: tana-docker
+        server: media1-docker
         container: kopia
         widget:
           type: kopia
-          url: https://kopia-tana.bob.house
+          url: https://kopia-media1.bob.house
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
     - Kopia WAN1: &kopiawan1
@@ -679,7 +679,7 @@
         description: Looks and smells like Sonarr but made for music
         href: https://lidarr.bob.house/
         icon: lidarr.svg
-        server: tana-docker
+        server: media1-docker
         container: lidarr
         widget:
           type: lidarr
@@ -689,7 +689,7 @@
         description: Web UI for youtube-dl / yt-dlp
         href: https://metube.bob.house/
         icon: metube.svg
-        server: tana-docker
+        server: media1-docker
         container: metube
     - Miasma: &miasma
         description: Trap AI web scrapers in an endless poison pit
@@ -713,7 +713,7 @@
         description: 🎧☁️ Your Personal Streaming Service
         href: https://navidrome.bob.house/app/
         icon: navidrome-light.png
-        server: tana-docker
+        server: media1-docker
         container: navidrome
         widget:
           type: navidrome
@@ -725,7 +725,7 @@
         description: Low-code programming for event-driven applications
         href: https://nodered.bob.house
         icon: node-red.svg
-        server: tana-docker
+        server: media1-docker
         container: nodered
     - ntfy: &ntfy
         description: Send push notifications to your phone or desktop via PUT/POST
@@ -781,7 +781,7 @@
         description: A complete podcast management system
         href: https://pinepods.bob.house/
         icon: pinepods.png
-        server: tana-docker
+        server: media1-docker
         container: pinepods
     - Prometheus: &prometheus
         description: The Prometheus monitoring system and time series database
@@ -796,7 +796,7 @@
         description: Indexer manager / proxy
         href: https://prowlarr.bob.house/
         icon: prowlarr.svg
-        server: tana-docker
+        server: media1-docker
         container: prowlarr
         widget:
           type: prowlarr
@@ -806,7 +806,7 @@
         description: A BitTorrent client in Qt
         href: https://qbittorrent.bob.house
         icon: qbittorrent.svg
-        server: tana-docker
+        server: media1-docker
         container: qbittorrent
         widget:
           type: qbittorrent
@@ -823,7 +823,7 @@
         description: Movie organizer/manager for usenet and torrent users
         href: https://radarr.bob.house/
         icon: radarr.svg
-        server: tana-docker
+        server: media1-docker
         container: radarr
         widget:
           type: radarr
@@ -846,7 +846,7 @@
         description: Self-hosted ROM manager and player
         href: https://romm.bob.house/
         icon: romm.png
-        server: tana-docker
+        server: media1-docker
         container: romm
         widget:
           type: romm
@@ -856,7 +856,7 @@
         description: Free and easy binary newsreader
         href: https://sabnzbd.bob.house/
         icon: sabnzbd.svg
-        server: tana-docker
+        server: media1-docker
         container: sabnzbd
         widget:
           type: sabnzbd
@@ -866,7 +866,7 @@
         description: Hard Drive S.M.A.R.T Monitoring, Historical Trends & Real World Failure Thresholds
         href: https://scrutiny.bob.house/web/
         icon: scrutiny-light.png
-        server: tana-docker
+        server: media1-docker
         container: scrutiny
         widget:
           type: scrutiny
@@ -881,7 +881,7 @@
         description: Usenet and BitTorrent PVR
         href: https://sonarr.bob.house/
         icon: sonarr.svg
-        server: tana-docker
+        server: media1-docker
         container: sonarr
         widget:
           type: sonarr
@@ -939,15 +939,15 @@
         widget:
           type: traefik
           url: https://traefik-shaxs.bob.house
-    - Traefik TANA: &traefiktana
+    - Traefik MEDIA1: &traefikmedia1
         description: HTTP reverse proxy and load balancer
-        href: https://traefik-tana.bob.house/dashboard/
+        href: https://traefik-media1.bob.house/dashboard/
         icon: traefik-proxy.svg
-        server: tana-docker
+        server: media1-docker
         container: traefik
         widget:
           type: traefik
-          url: https://traefik-tana.bob.house
+          url: https://traefik-media1.bob.house
     - Traefik WAN1: &traefikwan1
         description: HTTP reverse proxy and load balancer
         href: https://traefik-wan1.bob.house/dashboard/
@@ -965,7 +965,7 @@
         description: IPTV backed by Plex/Jellyfin/Emby
         href: https://tunarr.bob.house/web
         icon: tunarr.svg
-        server: tana-docker
+        server: media1-docker
         container: tunarr
     - Vikunja: &vikunja
         description: The to-do app to organize your life
@@ -979,23 +979,23 @@
           key: {{HOMEPAGE_VAR_VIKUNJA_KEY}}
           enableTaskList: true
           version: 2
-    - WebUI TANA: &webuitana
+    - WebUI MEDIA1: &webuimedia1
         description: Web interface for Linux UI
-        href: https://webui-tana.bob.house/
+        href: https://webui-media1.bob.house/
         icon: linux.png
-        server: tana-docker
+        server: media1-docker
         container: webui
-    - Wireshark TANA: &wiresharkstana
+    - Wireshark MEDIA1: &wiresharksmedia1
         description: Powerful, open-source network protocol analyser
-        href: https://wireshark-tana.bob.house/
+        href: https://wireshark-media1.bob.house/
         icon: wireshark.webp
-        server: tana-docker
+        server: media1-docker
         container: wireshark
     - Youtarr: &youtarr
         description: Automates downloading, organizing, and scheduling YouTube channel content
         href: https://youtarr.bob.house/
         icon: youtarr.png
-        server: tana-docker
+        server: media1-docker
         container: youtarr
     - ZIM API: &zimapi
         description: Wrapper API for the Kiwix official Download Repository
@@ -1058,7 +1058,7 @@
     - Scrutiny: *scrutiny
     - Speedtest: *speedtest
     - Sshwifty: *sshwifty
-    - Wireshark TANA: *wiresharkstana
+    - Wireshark MEDIA1: *wiresharksmedia1
 
 - Servers:
     - Docker2:
@@ -1073,10 +1073,10 @@
           - Glances: *glancesshaxs
           - Kopia: *kopiashaxs
           - Traefik: *traefikshaxs
-    - Tana:
-          - Glances: *glancestana
-          - Kopia: *kopiatana
-          - Traefik: *traefiktana
+    - Media1:
+          - Glances: *glancesmedia1
+          - Kopia: *kopiamedia1
+          - Traefik: *traefikmedia1
     - WAN1:
           - Glances: *glanceswan1
           - Kopia: *kopiawan1
@@ -1085,7 +1085,7 @@
 - Media:
     - Feishin: *feishin
     - Ganymede: *ganymede
-    - Gluetun: *gluetuntana
+    - Gluetun: *gluetunmedia1
     - Jellyfin: *jellyfin
     - Jellyseerr: *jellyseerr
     - Lidarr: *lidarr
@@ -1099,5 +1099,5 @@
     - SABnzbd: *sabnzbd
     - Sonarr: *sonarr
     - Tunarr: *tunarr
-    - WebUI TANA: *webuitana
+    - WebUI MEDIA1: *webuimedia1
     - Youtarr: *youtarr

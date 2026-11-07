@@ -127,31 +127,31 @@ suites:
         client: *traefik-client-definition
         conditions: *traefik-conditions-definition
         alerts: *alerts-definition
-  - name: tana
+  - name: media1
     group: servers
     interval: 1m
     timeout: 30s
     endpoints:
-      - name: ping tana .1
+      - name: ping media1 .1
         url: icmp://192.168.1.70
         conditions: *ping-conditions-definition
         alerts: *alerts-definition
-      - name: ping tana .20
+      - name: ping media1 .20
         url: icmp://192.168.20.70
         conditions: *ping-conditions-definition
         alerts: *alerts-definition
-      - name: telegraf tana
+      - name: telegraf media1
         url: http://192.168.20.70:9273/metrics
         conditions: *telegraf-conditions-definition
         alerts: *alerts-definition
-      - name: docker tana
+      - name: docker media1
         url: http://192.168.20.70:2375/v1.56/_ping
         conditions: *docker-conditions-definition
         alerts: *alerts-definition
-      - name: traefik tana
+      - name: traefik media1
         url: https://192.168.20.70/dashboard/
         headers:
-          Host: traefik-tana.bob.house
+          Host: traefik-media1.bob.house
         client: *traefik-client-definition
         conditions: *traefik-conditions-definition
         alerts: *alerts-definition

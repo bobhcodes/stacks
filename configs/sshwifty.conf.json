@@ -66,14 +66,14 @@
       }
     },
     {
-      "Title": "tana",
+      "Title": "media1",
       "Type": "SSH",
-      "Host": "tana.bob.house:22",
+      "Host": "media1.bob.house:22",
       "Meta": {
         "Authentication": "Private Key",
         "User": "root",
         "Private Key": "file:////run/secrets/id_rsa",
-        "Fingerprint": "SHA256:IHL/4TvGclhsGd+ZNIHmb1vJVn0R6mb/XyPYPqEicMc",
+        "Fingerprint": "SHA256:4KI1mDGnxWUuFGaLjvlT3DKy1Y3NIOu3lMmiCSfVmxw",
         "Encoding": "utf-8"
       }
     },
