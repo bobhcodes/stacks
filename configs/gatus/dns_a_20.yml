@@ -44,17 +44,6 @@ endpoints:
       - "[DNS_RCODE] == NOERROR"
     alerts: *alerts-definition
 
-  - name: shaxs .20
-    group: dns .20
-    url: 192.168.20.60
-    dns:
-      query-name: shaxs.bob.house
-      query-type: A
-    conditions:
-      - "[BODY] == 192.168.20.55"
-      - "[DNS_RCODE] == NOERROR"
-    alerts: *alerts-definition
-
   - name: media1 .20
     group: dns .20
     url: 192.168.20.60
@@ -63,6 +52,17 @@ endpoints:
       query-type: A
     conditions:
       - "[BODY] == 192.168.20.70"
+      - "[DNS_RCODE] == NOERROR"
+    alerts: *alerts-definition
+
+  - name: shaxs .20
+    group: dns .20
+    url: 192.168.20.60
+    dns:
+      query-name: shaxs.bob.house
+      query-type: A
+    conditions:
+      - "[BODY] == 192.168.20.55"
       - "[DNS_RCODE] == NOERROR"
     alerts: *alerts-definition
 

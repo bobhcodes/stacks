@@ -284,60 +284,6 @@
                 query: docker_n_containers_paused{host='freeman'}
               - label: stopped containers
                 query: docker_n_containers_stopped{host='freeman'}
-    - Glances SHAXS: &glancesshaxs
-        href: https://glances-shaxs.bob.house/
-        icon: glances.png
-        server: shaxs-docker
-        container: glances
-        widgets:
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: uptime
-                format:
-                  type: duration
-                query: system_uptime{host='shaxs'}
-              - label: user cpu
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                  scale: 100
-                query: rate(cpu_usage_user{cpu='cpu-total',host='shaxs'}[5m])
-              - label: system cpu
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                  scale: 100
-                query: rate(cpu_usage_system{cpu='cpu-total',host='shaxs'}[5m])
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: free disk
-                format:
-                  type: bytes
-                  options:
-                    maximumFractionDigits: 1
-                query: disk_free{host='shaxs',path='/'}
-              - label: disk used
-                format:
-                  type: percent
-                  options:
-                    maximumFractionDigits: 1
-                query: disk_used_percent{host='shaxs',path='/'}
-          - type: prometheusmetric
-            url: https://prometheus.bob.house
-            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
-            metrics:
-              - label: running containers
-                query: docker_n_containers_running{host='shaxs'}
-              - label: paused containers
-                query: docker_n_containers_paused{host='shaxs'}
-              - label: stopped containers
-                query: docker_n_containers_stopped{host='shaxs'}
     - Glances MEDIA1: &glancesmedia1
         href: https://glances-media1.bob.house/
         icon: glances.png
@@ -398,6 +344,60 @@
                 query: docker_n_containers_paused{host='media1'}
               - label: stopped containers
                 query: docker_n_containers_stopped{host='media1'}
+    - Glances SHAXS: &glancesshaxs
+        href: https://glances-shaxs.bob.house/
+        icon: glances.png
+        server: shaxs-docker
+        container: glances
+        widgets:
+          - type: prometheusmetric
+            url: https://prometheus.bob.house
+            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
+            metrics:
+              - label: uptime
+                format:
+                  type: duration
+                query: system_uptime{host='shaxs'}
+              - label: user cpu
+                format:
+                  type: percent
+                  options:
+                    maximumFractionDigits: 1
+                  scale: 100
+                query: rate(cpu_usage_user{cpu='cpu-total',host='shaxs'}[5m])
+              - label: system cpu
+                format:
+                  type: percent
+                  options:
+                    maximumFractionDigits: 1
+                  scale: 100
+                query: rate(cpu_usage_system{cpu='cpu-total',host='shaxs'}[5m])
+          - type: prometheusmetric
+            url: https://prometheus.bob.house
+            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
+            metrics:
+              - label: free disk
+                format:
+                  type: bytes
+                  options:
+                    maximumFractionDigits: 1
+                query: disk_free{host='shaxs',path='/'}
+              - label: disk used
+                format:
+                  type: percent
+                  options:
+                    maximumFractionDigits: 1
+                query: disk_used_percent{host='shaxs',path='/'}
+          - type: prometheusmetric
+            url: https://prometheus.bob.house
+            refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
+            metrics:
+              - label: running containers
+                query: docker_n_containers_running{host='shaxs'}
+              - label: paused containers
+                query: docker_n_containers_paused{host='shaxs'}
+              - label: stopped containers
+                query: docker_n_containers_stopped{host='shaxs'}
     - Glances WAN1: &glanceswan1
         href: https://glances-wan1.bob.house/
         icon: glances.png
@@ -636,17 +636,6 @@
           url: http://kopia:51515
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
-    - Kopia SHAXS: &kopiashaxs
-        description: Cross-platform backup tool
-        href: https://kopia-shaxs.bob.house/
-        icon: kopia.svg
-        server: shaxs-docker
-        container: kopia
-        widget:
-          type: kopia
-          url: https://kopia-shaxs.bob.house
-          username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
-          password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
     - Kopia MEDIA1: &kopiamedia1
         description: Cross-platform backup tool
         href: https://kopia-media1.bob.house/
@@ -656,6 +645,17 @@
         widget:
           type: kopia
           url: https://kopia-media1.bob.house
+          username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
+          password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
+    - Kopia SHAXS: &kopiashaxs
+        description: Cross-platform backup tool
+        href: https://kopia-shaxs.bob.house/
+        icon: kopia.svg
+        server: shaxs-docker
+        container: kopia
+        widget:
+          type: kopia
+          url: https://kopia-shaxs.bob.house
           username: {{HOMEPAGE_VAR_KOPIA_USERNAME}}
           password: {{HOMEPAGE_VAR_KOPIA_PASSWORD}}
     - Kopia WAN1: &kopiawan1
@@ -930,15 +930,6 @@
         widget:
           type: traefik
           url: https://traefik-freeman.bob.house
-    - Traefik SHAXS: &traefikshaxs
-        description: HTTP reverse proxy and load balancer
-        href: https://traefik-shaxs.bob.house/dashboard/
-        icon: traefik-proxy.svg
-        server: shaxs-docker
-        container: traefik
-        widget:
-          type: traefik
-          url: https://traefik-shaxs.bob.house
     - Traefik MEDIA1: &traefikmedia1
         description: HTTP reverse proxy and load balancer
         href: https://traefik-media1.bob.house/dashboard/
@@ -948,6 +939,15 @@
         widget:
           type: traefik
           url: https://traefik-media1.bob.house
+    - Traefik SHAXS: &traefikshaxs
+        description: HTTP reverse proxy and load balancer
+        href: https://traefik-shaxs.bob.house/dashboard/
+        icon: traefik-proxy.svg
+        server: shaxs-docker
+        container: traefik
+        widget:
+          type: traefik
+          url: https://traefik-shaxs.bob.house
     - Traefik WAN1: &traefikwan1
         description: HTTP reverse proxy and load balancer
         href: https://traefik-wan1.bob.house/dashboard/
@@ -1069,14 +1069,14 @@
           - Glances: *glancesfreeman
           - Kopia: *kopiafreeman
           - Traefik: *traefikfreeman
-    - Shaxs:
-          - Glances: *glancesshaxs
-          - Kopia: *kopiashaxs
-          - Traefik: *traefikshaxs
     - Media1:
           - Glances: *glancesmedia1
           - Kopia: *kopiamedia1
           - Traefik: *traefikmedia1
+    - Shaxs:
+          - Glances: *glancesshaxs
+          - Kopia: *kopiashaxs
+          - Traefik: *traefikshaxs
     - WAN1:
           - Glances: *glanceswan1
           - Kopia: *kopiawan1

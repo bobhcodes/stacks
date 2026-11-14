@@ -99,34 +99,6 @@ suites:
         url: http://192.168.20.80:8123
         conditions: *telegraf-conditions-definition
         alerts: *alerts-definition
-  - name: shaxs
-    group: servers
-    interval: 1m
-    timeout: 30s
-    endpoints:
-      - name: ping shaxs .1
-        url: icmp://192.168.1.55
-        conditions: *ping-conditions-definition
-        alerts: *alerts-definition
-      - name: ping shaxs .20
-        url: icmp://192.168.20.55
-        conditions: *ping-conditions-definition
-        alerts: *alerts-definition
-      - name: telegraf shaxs
-        url: http://192.168.20.55:9273/metrics
-        conditions: *telegraf-conditions-definition
-        alerts: *alerts-definition
-      - name: docker shaxs
-        url: http://192.168.20.55:2375/v1.57/_ping
-        conditions: *docker-conditions-definition
-        alerts: *alerts-definition
-      - name: traefik shaxs
-        url: https://192.168.20.55/dashboard/
-        headers:
-          Host: traefik-shaxs.bob.house
-        client: *traefik-client-definition
-        conditions: *traefik-conditions-definition
-        alerts: *alerts-definition
   - name: media1
     group: servers
     interval: 1m
@@ -152,6 +124,34 @@ suites:
         url: https://192.168.20.70/dashboard/
         headers:
           Host: traefik-media1.bob.house
+        client: *traefik-client-definition
+        conditions: *traefik-conditions-definition
+        alerts: *alerts-definition
+  - name: shaxs
+    group: servers
+    interval: 1m
+    timeout: 30s
+    endpoints:
+      - name: ping shaxs .1
+        url: icmp://192.168.1.55
+        conditions: *ping-conditions-definition
+        alerts: *alerts-definition
+      - name: ping shaxs .20
+        url: icmp://192.168.20.55
+        conditions: *ping-conditions-definition
+        alerts: *alerts-definition
+      - name: telegraf shaxs
+        url: http://192.168.20.55:9273/metrics
+        conditions: *telegraf-conditions-definition
+        alerts: *alerts-definition
+      - name: docker shaxs
+        url: http://192.168.20.55:2375/v1.57/_ping
+        conditions: *docker-conditions-definition
+        alerts: *alerts-definition
+      - name: traefik shaxs
+        url: https://192.168.20.55/dashboard/
+        headers:
+          Host: traefik-shaxs.bob.house
         client: *traefik-client-definition
         conditions: *traefik-conditions-definition
         alerts: *alerts-definition

@@ -20,8 +20,8 @@ scrape_configs:
       - targets: ['badgey.bob.house:9273']
       - targets: ['host.docker.internal:9273']
       - targets: ['docker2.bob.house:9273']
-      - targets: ['shaxs.bob.house:9273']
       - targets: ['media1.bob.house:9273']
+      - targets: ['shaxs.bob.house:9273']
       - targets: ['wan1.bob.house:9273']
 
   - job_name: 'ntfy'
@@ -34,6 +34,6 @@ scrape_configs:
     static_configs:
       - targets: ['traefik-docker2.bob.house']
       - targets: ['traefik-freeman.bob.house']
-      - targets: ['traefik-shaxs.bob.house']
       - targets: ['traefik-media1.bob.house']
+      - targets: ['traefik-shaxs.bob.house']
       - targets: ['traefik-wan1.bob.house']
