@@ -10,12 +10,12 @@ freeman-docker:
   host: socket-proxy
   port: 2375
 
-shaxs-docker:
-  host: shaxs.bob.house
-  port: 2375
-
 media1-docker:
   host: media1.bob.house
+  port: 2375
+
+shaxs-docker:
+  host: shaxs.bob.house
   port: 2375
 
 wan1-docker:

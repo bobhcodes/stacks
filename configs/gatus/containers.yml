@@ -171,15 +171,15 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: glances SHAXS
-    group: containers
-    url: http://192.168.20.55:2375/v1.57/containers/glances/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
   - name: glances MEDIA1
     group: containers
     url: http://192.168.20.70:2375/v1.57/containers/glances/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: glances SHAXS
+    group: containers
+    url: http://192.168.20.55:2375/v1.57/containers/glances/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -285,15 +285,15 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: kopia SHAXS
-    group: containers
-    url: http://192.168.20.55:2375/v1.57/containers/kopia/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
   - name: kopia MEDIA1
     group: containers
     url: http://192.168.20.70:2375/v1.57/containers/kopia/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: kopia SHAXS
+    group: containers
+    url: http://192.168.20.55:2375/v1.57/containers/kopia/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -514,15 +514,15 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: socket-proxy SHAXS
-    group: containers
-    url: http://192.168.20.55:2375/v1.57/containers/socket-proxy/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
   - name: socket-proxy MEDIA1
     group: containers
     url: http://192.168.20.70:2375/v1.57/containers/socket-proxy/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: socket-proxy SHAXS
+    group: containers
+    url: http://192.168.20.55:2375/v1.57/containers/socket-proxy/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -569,15 +569,15 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: traefik SHAXS
-    group: containers
-    url: http://192.168.20.55:2375/v1.57/containers/traefik/json
-    conditions: *conditions-definition
-    alerts: *alerts-definition
-
   - name: traefik MEDIA1
     group: containers
     url: http://192.168.20.70:2375/v1.57/containers/traefik/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
+  - name: traefik SHAXS
+    group: containers
+    url: http://192.168.20.55:2375/v1.57/containers/traefik/json
     conditions: *conditions-definition
     alerts: *alerts-definition
 
@@ -635,7 +635,7 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
-  - name: youtarr-media1
+  - name: youtarr
     group: containers
     url: http://192.168.20.70:2375/v1.57/containers/youtarr/json
     conditions: *conditions-definition

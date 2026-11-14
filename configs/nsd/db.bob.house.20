@@ -4,7 +4,7 @@ $TTL 7200
 ; SOA
 
 @       IN      SOA    docker2.bob.house. hostmaster.bob.house. (
-                                         2026110700 ; Serial
+                                         2026111400 ; Serial
                                          7200       ; Refresh
                                          1800       ; Retry
                                          1209600    ; Expire
@@ -22,8 +22,8 @@ docker2             IN        A                    192.168.20.65
 freeman             IN        A                    192.168.20.60
 gpu1                IN        A                    192.168.1.117
 haos                IN        A                    192.168.20.80
-shaxs               IN        A                    192.168.20.55
 media1              IN        A                    192.168.20.70
+shaxs               IN        A                    192.168.20.55
 wan1                IN        A                    192.168.1.85
 
 ; CNAME RECORDS
@@ -100,12 +100,6 @@ ollama              IN        CNAME                gpu1
 traefik-gpu1        IN        CNAME                gpu1
 whisper-asr         IN        CNAME                gpu1
 
-docker-shaxs        IN        CNAME                shaxs
-frigate             IN        CNAME                shaxs
-glances-shaxs       IN        CNAME                shaxs
-kopia-shaxs         IN        CNAME                shaxs
-traefik-shaxs       IN        CNAME                shaxs
-
 docker-media1       IN        CNAME                media1
 feishin             IN        CNAME                media1
 ganymede            IN        CNAME                media1
@@ -132,6 +126,12 @@ tunarr              IN        CNAME                media1
 webui-media1        IN        CNAME                media1
 wireshark-media1    IN        CNAME                media1
 youtarr             IN        CNAME                media1
+
+docker-shaxs        IN        CNAME                shaxs
+frigate             IN        CNAME                shaxs
+glances-shaxs       IN        CNAME                shaxs
+kopia-shaxs         IN        CNAME                shaxs
+traefik-shaxs       IN        CNAME                shaxs
 
 miasma              IN        CNAME                wan1
 docker-wan1         IN        CNAME                wan1
