@@ -339,6 +339,7 @@ services:
     profiles: [ media1, media1a, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
+    user: 1000:1000
     volumes:
       - ${DATA_DIR:-/opt/appdata}/nodered/:/data/:rw
       - /mnt/md1/youtube/:/youtube/:rw
