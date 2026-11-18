@@ -37,7 +37,7 @@ suites:
         conditions: *telegraf-conditions-definition
         alerts: *alerts-definition
       - name: docker docker2
-        url: http://192.168.20.65:2375/v1.56/_ping
+        url: http://192.168.20.65:2375/v1.57/_ping
         conditions: &docker-conditions-definition
           - "[CONNECTED] == true"
           - "[RESPONSE_TIME] < 100"
@@ -76,7 +76,7 @@ suites:
         conditions: *telegraf-conditions-definition
         alerts: *alerts-definition
       - name: docker freeman
-        url: http://socket-proxy:2375/v1.56/_ping
+        url: http://socket-proxy:2375/v1.57/_ping
         conditions: *docker-conditions-definition
         alerts: *alerts-definition
       - name: traefik freeman
@@ -117,7 +117,7 @@ suites:
         conditions: *telegraf-conditions-definition
         alerts: *alerts-definition
       - name: docker shaxs
-        url: http://192.168.20.55:2375/v1.56/_ping
+        url: http://192.168.20.55:2375/v1.57/_ping
         conditions: *docker-conditions-definition
         alerts: *alerts-definition
       - name: traefik shaxs
@@ -145,7 +145,7 @@ suites:
         conditions: *telegraf-conditions-definition
         alerts: *alerts-definition
       - name: docker tana
-        url: http://192.168.20.70:2375/v1.56/_ping
+        url: http://192.168.20.70:2375/v1.57/_ping
         conditions: *docker-conditions-definition
         alerts: *alerts-definition
       - name: traefik tana
