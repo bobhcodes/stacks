@@ -233,6 +233,7 @@ services:
         condition: service_healthy
     dns: [ 192.168.20.65, ]
     environment:
+      DAGU_SIGNAL_DRAIN_TIMEOUT: 2m
       PUID: "1000"
       PGID: "1000"
       TRUST_FORWARDED_HEADERS: "true"
@@ -248,6 +249,7 @@ services:
     profiles: [ docker1, docker1b, ]
     read_only: true
     security_opt: [ no-new-privileges=true, ]
+    stop_grace_period: 3m
     user: 1000:1000
     volumes: [ "${REPOS_DIR:-/opt/appdata}/dockhand/:/app/data/:rw", ]
 
