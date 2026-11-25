@@ -11,6 +11,15 @@ endpoints:
     alerts: &alerts-definition
       - type: ntfy
 
+  - name: doom .1
+    group: dns .1
+    url: 192.168.1.50
+    dns:
+      query-name: doom.bob.house
+      query-type: CNAME
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: feishin .1
     group: dns .1
     url: 192.168.1.50

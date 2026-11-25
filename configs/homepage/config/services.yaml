@@ -99,6 +99,18 @@
           url: https://dockhand.bob.house
           username: {{HOMEPAGE_VAR_DOCKHAND_USERNAME}}
           password: {{HOMEPAGE_VAR_DOCKHAND_PASSWORD}}
+    - DOOM: &doom1
+        description: The Ultimate Doom
+        href: https://doom.bob.house/?iwad=doom.wad&nomelt=1&skill=4&warp=4,1
+        icon: /icons/doom.png
+        server: media1-docker
+        container: doom
+    - DOOM II: &doom2
+        description: Hell on Earth
+        href: https://doom.bob.house/?iwad=doom2.wad&nomelt=1&skill=4&warp=1
+        icon: /icons/doom2.png
+        server: media1-docker
+        container: doom
     - Donetick: &donetick
         description: Simplify Tasks & Chores, Together
         href: https://donetick.bob.house/

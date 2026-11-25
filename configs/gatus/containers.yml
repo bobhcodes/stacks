@@ -81,6 +81,12 @@ endpoints:
     conditions: *conditions-definition
     alerts: *alerts-definition
 
+  - name: doom
+    group: containers
+    url: http://192.168.20.70:2375/v1.57/containers/doom/json
+    conditions: *conditions-definition
+    alerts: *alerts-definition
+
   - name: donetick
     group: containers
     url: http://192.168.20.65:2375/v1.57/containers/donetick/json

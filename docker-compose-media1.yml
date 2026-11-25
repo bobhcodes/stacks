@@ -1,4 +1,25 @@
 services:
+  doom:
+    image: ghcr.io/abootnet/uzdoom-wasm:latest
+    cap_drop: [ ALL, ]
+    container_name: doom
+    depends_on:
+      traefik:
+        condition: service_healthy
+    labels:
+      traefik.http.routers.doom-router.entrypoints: lan
+      traefik.http.routers.doom-router.rule: Host(`doom.bob.house`)
+      traefik.http.routers.doom-router.tls: "true"
+      traefik.http.services.doom-service.loadbalancer.server.port: "80"
+    networks:
+      traefik: null
+    profiles: [ media1, media1b, ]
+    read_only: true
+    security_opt: [ no-new-privileges=true, ]
+    tmpfs: [ /data/caddy/, /config/caddy/, ]
+    user: 1000:1000
+    volumes: [ /mnt/md1/downloads/wads/:/srv/private/:ro, ]
+
   feishin:
     image: ghcr.io/jeffvli/feishin:latest
     cap_drop: [ ALL, ]
